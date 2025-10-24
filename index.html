@@ -99,17 +99,67 @@
         }
     }
     </script>
-        <!-- Google Analytics (GA4) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6GML1CR323"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-6GML1CR323', { 'anonymize_ip': true });
-        </script>
-</head>
+            <!-- Consent & GA loader: n'ajoute pas le script GA tant que l'utilisateur n'a pas donné son consentement -->
+            <script>
+                (function(){
+                    var MEAS_ID = 'G-6GML1CR323';
+                    window.loadGtag = function(){
+                        if(window.gtagLoaded) return;
+                        var s = document.createElement('script');
+                        s.async = true;
+                        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + MEAS_ID;
+                        document.head.appendChild(s);
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);} 
+                        window.gtag = gtag;
+                        gtag('js', new Date());
+                        gtag('config', MEAS_ID, { 'anonymize_ip': true });
+                        window.gtagLoaded = true;
+                    };
+                    // auto-load if consent already granted
+                    try{
+                        var c = localStorage.getItem('ga_consent');
+                        if(c === 'granted'){
+                            window.addEventListener('load', window.loadGtag);
+                        }
+                    }catch(e){}
+                })();
+            </script>
+    </head>
 <body>
+        <!-- Cookie consent banner -->
+        <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite">
+            <div class="cookie-inner">
+                <p>Nous utilisons des cookies analytiques pour améliorer ce site. Acceptez-vous les cookies analytiques&nbsp;?</p>
+                <div class="cookie-actions">
+                    <button id="cookie-accept" class="btn">Accepter</button>
+                    <button id="cookie-decline" class="btn btn-secondary">Refuser</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            (function(){
+                var banner = document.getElementById('cookie-banner');
+                if(!banner) return;
+                try{
+                    var c = localStorage.getItem('ga_consent');
+                    if(c === 'granted' || c === 'denied'){
+                        banner.style.display = 'none';
+                        if(c === 'granted') window.loadGtag && window.loadGtag();
+                        return;
+                    }
+                }catch(e){}
+
+                function setConsent(val){
+                    try{ localStorage.setItem('ga_consent', val); }catch(e){}
+                    banner.style.display = 'none';
+                    if(val === 'granted') window.loadGtag && window.loadGtag();
+                }
+
+                document.getElementById('cookie-accept').addEventListener('click', function(){ setConsent('granted'); });
+                document.getElementById('cookie-decline').addEventListener('click', function(){ setConsent('denied'); });
+            })();
+        </script>
     <!-- Header / Navigation -->
     <header class="header">
         <nav class="navbar">
