@@ -1,0 +1,25 @@
+# Robots.txt pour Ced A Tout Faire
+# https://cedatoutfaire.org
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.pdf$
+Disallow: /*.docx$
+
+# Sitemap
+Sitemap: https://cedatoutfaire.org/sitemap.xml
+
+# Crawl delay (en secondes)
+Crawl-delay: 1
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0

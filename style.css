@@ -1,0 +1,492 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    background-color: #1a6f7a;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header & Navigation */
+.header {
+    background-color: #1a6f7a;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+    overflow: visible; /* allow logo to visually overlap the next section */
+    padding-top: 1px; /* ensure some space above logo so it isn't cut at the very top */
+}
+
+.navbar {
+    padding: 1rem 0; /* reduced to help shrink header height */
+}
+
+.nav-content {
+    display: flex;
+    justify-content: flex-end; /* push the menu to the right since logo is outside the header */
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+.logo-img {
+    height: 125px; /* logo size */
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+    position: relative;
+    z-index: 110;
+}
+
+.logo-below {
+    position: absolute;
+    top: -80px;
+    left: 30px;
+    z-index: 50;
+}
+.logo-below .logo-img {
+    height: 125px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #fff;
+    opacity: 0.7;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #1a6f7a 0%, #0f4a50 100%);
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    margin-bottom: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+}
+
+.hero-photo {
+    position: absolute;
+    bottom: -80px;
+    right: 30px;
+    width: 280px;
+    height: 280px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-content h1 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: normal;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    opacity: 0.95;
+}
+
+.hero-content .tagline {
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+.hero-content .tagline strong {
+    font-weight: 700;
+}
+
+/* Services Section */
+.services {
+    padding: 60px 20px;
+    background-color: #1a6f7a;
+}
+
+.services .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.services h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.service-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background-color: #0f4a50;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.service-content {
+    padding: 25px;
+    background-color: transparent;
+}
+
+.service-content h3 {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.service-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Testimonials Section */
+.testimonials {
+    background-color: #1a6f7a;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* Lien cliquable pour toute la section avis */
+.testimonials-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.testimonials-link:hover {
+    opacity: 0.95;
+}
+
+.testimonials-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: -10px;
+}
+
+.google-logo {
+    height: 40px;
+    width: auto;
+    margin-top: -20px;
+}
+
+.testimonials-content h2 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.rating {
+    font-size: 1.2rem;
+    color: #ffd700;
+    margin-bottom: 20px;
+}
+
+.rating i {
+    color: #ffd700;
+    margin: 0 2px;
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-style: italic;
+    margin-top: 20px;
+}
+
+/* Galerie d'avis (images) */
+.avis-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    margin: 10px 0 10px; /* reduced vertical spacing */
+    flex-wrap: nowrap; /* force single row on wide screens */
+}
+
+.avis-item {
+    display: block;
+}
+
+.avis-item img {
+    display: block;
+    max-height: 140px;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+    border: 3px solid rgba(255,255,255,0.12);
+}
+
+/* Contact Section */
+.contact {
+    padding: -10px 20px; /* reduced top padding to bring Contact closer */
+    background-color: #1a6f7a;
+}
+
+.contact h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.contact-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 20px; /* remonter les contacts pour créer espace avec footer */
+}
+
+.contact-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 8px;
+    border-left: 4px solid #fff;
+}
+
+.contact-item i {
+    font-size: 2rem;
+    color: #fff;
+    min-width: 50px;
+    text-align: center;
+}
+
+.contact-item h4 {
+    color: #fff;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.contact-item p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-item a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.contact-item a:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+    background-color: #0f4a50;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.footer h1 {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+.footer p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.footer p:first-child {
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.footer p:last-child {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-content {
+        justify-content: center; /* center menu on smaller screens */
+    }
+
+    .logo-below {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .hero-photo {
+        position: static;
+        width: 220px;
+        height: 220px;
+        margin: 30px auto 0;
+    }
+
+    .nav-menu {
+        gap: 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .services h2,
+    .contact h2 {
+        font-size: 1.8rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Make avis gallery wrap on smaller screens */
+    .avis-gallery {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .avis-item img {
+        max-height: 120px;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-item {
+        flex-direction: column;
+    }
+
+    .contact-item i {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+
+    /* Logo responsive on very small screens */
+    .logo-img {
+        height: 100px;
+    }
+
+    .nav-menu {
+        gap: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .services h2,
+    .contact h2,
+    .testimonials-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .service-content h3 {
+        font-size: 1.1rem;
+    }
+}
