@@ -141,6 +141,7 @@
             (function(){
                 var banner = document.getElementById('cookie-banner');
                 if(!banner) return;
+
                 // always expose a function to re-open cookie banner (works even if consent already set)
                 window.openCookieSettings = function(){
                     try{
@@ -150,6 +151,7 @@
                         if(btn && btn.focus) btn.focus();
                     }catch(e){/* silently ignore */}
                 };
+
                 // delegate click events for the footer/settings link so it works even if the link is added later
                 document.addEventListener('click', function(ev){
                     var t = ev.target || ev.srcElement;
@@ -159,6 +161,21 @@
                         window.openCookieSettings();
                     }
                 });
+
+                // setter used by the buttons
+                function setConsent(val){
+                    try{ localStorage.setItem('ga_consent', val); }catch(e){}
+                    banner.style.display = 'none';
+                    if(val === 'granted') window.loadGtag && window.loadGtag();
+                }
+
+                // attach listeners immediately so they work even after reopening
+                var acceptBtn = document.getElementById('cookie-accept');
+                var declineBtn = document.getElementById('cookie-decline');
+                if(acceptBtn) acceptBtn.addEventListener('click', function(){ setConsent('granted'); });
+                if(declineBtn) declineBtn.addEventListener('click', function(){ setConsent('denied'); });
+
+                // If consent already exists, hide banner and apply consent effect
                 try{
                     var c = localStorage.getItem('ga_consent');
                     if(c === 'granted' || c === 'denied'){
@@ -168,14 +185,6 @@
                     }
                 }catch(e){}
 
-                function setConsent(val){
-                    try{ localStorage.setItem('ga_consent', val); }catch(e){}
-                    banner.style.display = 'none';
-                    if(val === 'granted') window.loadGtag && window.loadGtag();
-                }
-
-                document.getElementById('cookie-accept').addEventListener('click', function(){ setConsent('granted'); });
-                document.getElementById('cookie-decline').addEventListener('click', function(){ setConsent('denied'); });
             })();
         </script>
     <!-- Header / Navigation -->
