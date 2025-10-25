@@ -514,3 +514,17 @@ body {
 .btn { background:#0f7178; color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; }
 .btn-secondary { background:#e9eef0; color:#083038; }
 
+/* Footer cookie settings link */
+.footer a#cookie-settings {
+    color: #fff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.footer a#cookie-settings:hover { opacity: 0.85; }
+
+/* Privacy page small helper styles */
+.privacy-wrapper { max-width: 900px; margin: 40px auto; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 8px; }
+.privacy-wrapper h1 { font-size: 1.6rem; color: #fff; margin-bottom: 12px; }
+.privacy-wrapper p, .privacy-wrapper li { color: rgba(255,255,255,0.95); line-height: 1.6; }
+.privacy-wrapper ul { margin-left: 1.2rem; }
+

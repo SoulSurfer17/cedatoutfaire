@@ -158,6 +158,18 @@
 
                 document.getElementById('cookie-accept').addEventListener('click', function(){ setConsent('granted'); });
                 document.getElementById('cookie-decline').addEventListener('click', function(){ setConsent('denied'); });
+                // expose a function to re-open cookie banner from other parts of the page
+                window.openCookieSettings = function(){
+                    try{
+                        banner.style.display = 'flex';
+                        banner.focus && banner.focus();
+                    }catch(e){
+                        // fail silently
+                    }
+                };
+                // wire the footer link if present
+                var cs = document.getElementById('cookie-settings');
+                if(cs) cs.addEventListener('click', function(e){ e.preventDefault(); window.openCookieSettings(); });
             })();
         </script>
     <!-- Header / Navigation -->
@@ -305,6 +317,11 @@
         <div class="container">
             <h1>Nettoyage démoussage de toiture et de véranda, entretien d'espaces verts, tonte, débroussaillage, taille de haie à Rochefort</h1>
             <p>&copy; 2025 Ced A Tout Faire - Tous droits réservés</p>
+            <p>
+                <a href="privacy.html">Politique de confidentialité / Cookies</a>
+                &nbsp;&middot;&nbsp;
+                <a href="#" id="cookie-settings">Paramètres cookies</a>
+            </p>
         </div>
     </footer>
 
