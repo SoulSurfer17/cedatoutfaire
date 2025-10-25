@@ -210,6 +210,16 @@ body {
     font-weight: bold;
 }
 
+/* Reduce size for service card titles when they're using H2 for SEO */
+.service-content h2 {
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+}
+
 .service-content p {
     color: rgba(255, 255, 255, 0.9);
     font-size: 1rem;
