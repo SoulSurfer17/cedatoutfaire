@@ -141,6 +141,24 @@
             (function(){
                 var banner = document.getElementById('cookie-banner');
                 if(!banner) return;
+                // always expose a function to re-open cookie banner (works even if consent already set)
+                window.openCookieSettings = function(){
+                    try{
+                        banner.style.display = 'flex';
+                        // try to focus the accept button for accessibility
+                        var btn = banner.querySelector && banner.querySelector('#cookie-accept');
+                        if(btn && btn.focus) btn.focus();
+                    }catch(e){/* silently ignore */}
+                };
+                // delegate click events for the footer/settings link so it works even if the link is added later
+                document.addEventListener('click', function(ev){
+                    var t = ev.target || ev.srcElement;
+                    if(!t) return;
+                    if(t.id === 'cookie-settings' || (t.closest && t.closest && t.closest('#cookie-settings'))){
+                        ev.preventDefault();
+                        window.openCookieSettings();
+                    }
+                });
                 try{
                     var c = localStorage.getItem('ga_consent');
                     if(c === 'granted' || c === 'denied'){
@@ -158,18 +176,6 @@
 
                 document.getElementById('cookie-accept').addEventListener('click', function(){ setConsent('granted'); });
                 document.getElementById('cookie-decline').addEventListener('click', function(){ setConsent('denied'); });
-                // expose a function to re-open cookie banner from other parts of the page
-                window.openCookieSettings = function(){
-                    try{
-                        banner.style.display = 'flex';
-                        banner.focus && banner.focus();
-                    }catch(e){
-                        // fail silently
-                    }
-                };
-                // wire the footer link if present
-                var cs = document.getElementById('cookie-settings');
-                if(cs) cs.addEventListener('click', function(e){ e.preventDefault(); window.openCookieSettings(); });
             })();
         </script>
     <!-- Header / Navigation -->
