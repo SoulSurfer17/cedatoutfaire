@@ -39,117 +39,69 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Schema.org Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Ced A Tout Faire",
-    "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
-    "description": "Nettoyage de toiture véranda | entretien des espaces verts | Rochefort",
-        "address": {
-            "@type": "79 rue Lefèvre",
-            "addressLocality": "Rochefort",
-            "addressRegion": "Charente-Maritime",
-            "postalCode": "17300",
-            "addressCountry": "FR"
-        },
-        "telephone": "+33649386780",
-        "email": "cedric.puygrenier@gmail.com",
-        "url": "https://cedatoutfaire.org",
-        "sameAs": [
-            "https://www.facebook.com/profile.php?id=100089059665059"
-        ],
-        "priceRange": "$$",
-        "areaServed": [
-            {
-                "@type": "City",
-                "name": "Rochefort"
-            },
-            {
-                "@type": "AdministrativeArea",
-                "name": "Charente-Maritime"
-            }
-        ],
-        "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "08:30",
-                "closes": "19:30"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Saturday", "Sunday"],
-                "opens": "00:00",
-                "closes": "00:00"
-            }
-        ],
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5",
-            "ratingCount": "27",
-            "bestRating": "5",
-            "worstRating": "1"
-        },
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Nettoyage de toiture véranda et entretien d'espaces-verts",
-            "itemListElement": [
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "LocalBusiness",
-                        "name": "Nettoyage de toiture",
-                        "description": "Grattage manuel des mousses et lichens, puis application d'un produit fongicide professionnel agréé par le ministère de l'environnement."
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "LocalBusiness",
-                        "name": "Nettoyage de véranda",
-                        "description": "Nettoyage de véranda au nettoyeur haute pression."
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "LocalBusiness",
-                        "name": "Entretien des espaces verts",
-                        "description": "Tonte, débroussaillage, taille de haie, tailles diverses, évacuation ou broyage des déchets verts."
-                    }
-                }
-            ]
-        }
-    }
-    </script>
-    
-    <!-- Reviews Schema Markup for Google Search Console -->
-    <script type="application/ld+json">
-   {
-  "@context": "https://schema.org/",
+   <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Ced A Tout Faire",
-  "url": "https://cedatoutfaire.org/",
-  "telephone": "0649386780",
+  "url": "https://cedatoutfaire.org",
+  "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+  "description": "Nettoyage de toiture véranda | entretien des espaces verts | Rochefort",
+  
   "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "79 rue Lefèvre", 
+    "@type": "PostalAddress", /* CORRECTION: Doit être 'PostalAddress' */
+    "streetAddress": "79 rue Lefèvre", /* CORRECTION: Le nom de la propriété de la rue est 'streetAddress' */
     "addressLocality": "Rochefort",
+    "addressRegion": "Charente-Maritime",
     "postalCode": "17300",
-    "addressRegion": "Nouvelle-Aquitaine",
     "addressCountry": "FR"
   },
+  
+  "telephone": "+33649386780",
+  "email": "cedric.puygrenier@gmail.com",
+  
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=100089059665059"
+  ],
+  "priceRange": "$$",
+  
+  /* J'ai retiré le second "areaServed" pour la Charente-Maritime pour simplifier, Rochefort suffit. */
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Rochefort"
+    }
+  ],
+  
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:30",
+      "closes": "19:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday", "Sunday"],
+      "opens": "00:00", 
+      "closes": "00:00" /* Si fermé, 00:00 est la façon de le coder */
+    }
+  ],
+  
   "aggregateRating": {
     "@type": "AggregateRating",
+    /* AJOUT ESSENTIEL pour éviter l'erreur "Type d'objet non valide" */
     "itemReviewed": {
       "@type": "LocalBusiness",
       "name": "Ced A Tout Faire"
     },
     "ratingValue": "5",
-    "reviewCount": "27"
+    "reviewCount": "27",
+    "bestRating": "5",
+    "worstRating": "1"
   },
+  
+  /* DÉBUT DE LA FUSION : Ajout des avis individuels du second bloc */
   "review": [
     {
       "@type": "Review",
@@ -203,8 +155,8 @@
       "datePublished": "2025-03-26"
     }
   ]
-}
-    </script>
+ }
+</script>
             <!-- Consent & GA loader: n'ajoute pas le script GA tant que l'utilisateur n'a pas donné son consentement -->
             <script>
                 (function(){
