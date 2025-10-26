@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Entretien des espaces verts à Rochefort | Jardinier, tonte, débroussaillage | Ced A Tout Faire</title>
+    
+    <!-- Meta Description & Keywords -->
+    <meta name="description" content="Entretien des espaces verts à Rochefort - Tonte, débroussaillage, taille de haie. Jardinier professionnel. Devis gratuit.">
+    <meta name="keywords" content="entretien espaces verts Rochefort, jardinier Rochefort, tonte, débroussaillage, taille haie, jardinage">
+    <meta name="author" content="Ced A Tout Faire">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="French">
+    
+    <!-- Open Graph Meta Tags (Réseaux Sociaux) -->
+    <meta property="og:type" content="business.business">
+    <meta property="og:title" content="Entretien des espaces verts à Rochefort | Jardinier | Ced A Tout Faire">
+    <meta property="og:description" content="Entretien des espaces verts à Rochefort - Tonte, débroussaillage, taille de haie, jardinage professionnel. Devis gratuit.">
+    <meta property="og:url" content="https://cedatoutfaire.org/entretien-espaces-verts.html">
+    <meta property="og:image" content="https://cedatoutfaire.org/ressources/logoCATF.png">
+    <meta property="og:site_name" content="Ced A Tout Faire">
+    <meta property="og:locale" content="fr_FR">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Entretien des espaces verts à Rochefort | Jardinier | Ced A Tout Faire">
+    <meta name="twitter:description" content="Entretien des espaces verts à Rochefort - Tonte, débroussaillage, taille de haie, jardinage professionnel. Devis gratuit.">
+    <meta name="twitter:image" content="https://cedatoutfaire.org/ressources/logoCATF.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://cedatoutfaire.org/entretien-espaces-verts.html">
+    
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="https://cedatoutfaire.org/sitemap.xml">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="ressources/logoCATF.png">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Schema.org Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Ced A Tout Faire",
+        "image": "https://cedatoutfaire.org/ressources/logoCATF.png",
+        "description": "Entretien des espaces verts et jardinage à Rochefort",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Rochefort",
+            "addressRegion": "Charente-Maritime",
+            "postalCode": "17300",
+            "addressCountry": "FR"
+        },
+        "telephone": "+33649386780",
+        "email": "cedric.puygrenier@gmail.com",
+        "url": "https://cedatoutfaire.org",
+        "sameAs": [
+            "https://www.facebook.com/profile.php?id=100089059665059"
+        ]
+    }
+    </script>
+    <!-- Consent & GA loader: n'ajoute pas le script GA tant que l'utilisateur n'a pas donné son consentement -->
+    <script>
+        (function(){
+            var MEAS_ID = 'G-6GML1CR323';
+            window.loadGtag = function(){
+                if(window.gtagLoaded) return;
+                var s = document.createElement('script');
+                s.async = true;
+                s.src = 'https://www.googletagmanager.com/gtag/js?id=' + MEAS_ID;
+                document.head.appendChild(s);
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);} 
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', MEAS_ID, { 'anonymize_ip': true });
+                window.gtagLoaded = true;
+            };
+            // auto-load if consent already granted
+            try{
+                var c = localStorage.getItem('ga_consent');
+                if(c === 'granted'){
+                    window.addEventListener('load', window.loadGtag);
+                }
+            }catch(e){}
+        })();
+    </script>
+</head>
+<body>
+    <!-- Cookie consent banner -->
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite">
+        <div class="cookie-inner">
+            <p>Nous utilisons des cookies analytiques pour améliorer ce site. Acceptez-vous les cookies analytiques&nbsp;?</p>
+            <div class="cookie-actions">
+                <button id="cookie-accept" class="btn">Accepter</button>
+                <button id="cookie-decline" class="btn btn-secondary">Refuser</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function(){
+            var banner = document.getElementById('cookie-banner');
+            if(!banner) return;
+
+            // always expose a function to re-open cookie banner (works even if consent already set)
+            window.openCookieSettings = function(){
+                try{
+                    banner.style.display = 'flex';
+                    // try to focus the accept button for accessibility
+                    var btn = banner.querySelector && banner.querySelector('#cookie-accept');
+                    if(btn && btn.focus) btn.focus();
+                }catch(e){/* silently ignore */}
+            };
+
+            // delegate click events for the footer/settings link so it works even if the link is added later
+            document.addEventListener('click', function(ev){
+                var t = ev.target || ev.srcElement;
+                if(!t) return;
+                if(t.id === 'cookie-settings' || (t.closest && t.closest && t.closest('#cookie-settings'))){
+                    ev.preventDefault();
+                    window.openCookieSettings();
+                }
+            });
+
+            // setter used by the buttons
+            function setConsent(val){
+                try{ localStorage.setItem('ga_consent', val); }catch(e){}
+                banner.style.display = 'none';
+                if(val === 'granted') window.loadGtag && window.loadGtag();
+            }
+
+            // attach listeners immediately so they work even after reopening
+            var acceptBtn = document.getElementById('cookie-accept');
+            var declineBtn = document.getElementById('cookie-decline');
+            if(acceptBtn) acceptBtn.addEventListener('click', function(){ setConsent('granted'); });
+            if(declineBtn) declineBtn.addEventListener('click', function(){ setConsent('denied'); });
+
+            // If consent already exists, hide banner and apply consent effect
+            try{
+                var c = localStorage.getItem('ga_consent');
+                if(c === 'granted' || c === 'denied'){
+                    banner.style.display = 'none';
+                    if(c === 'granted') window.loadGtag && window.loadGtag();
+                    return;
+                }
+            }catch(e){}
+
+        })();
+    </script>
+    
+    <!-- Header / Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-content">
+                    <ul class="nav-menu">
+                        <li><a href="index.html#accueil">Accueil</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#testimonials">Avis</a></li>
+                        <li><a href="index.html#contact">Contacts</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Service Detail Section -->
+    <section class="service-detail">
+        <div class="container">
+            <!-- Service Image & Title -->
+            <div class="service-detail-header">
+                <img src="ressources/tonte.png" alt="Entretien d'espaces verts à Rochefort - tonte, taille de haie, débroussaillage; jardinier, jardinage" title="Service entretien espaces verts - jardinier, jardinage" class="service-detail-image">
+                <h1>Entretien des espaces verts à Rochefort</h1>
+            </div>
+
+            <!-- Service Description -->
+            <div class="service-detail-content">
+                <h2>À propos de ce service</h2>
+                <h3><p><strong>L'entretien des espaces verts pour un beau jardin</strong></p></h3>
+                <p>Un jardin bien entretenu est un jardin dont vous profitez. Si vous avez besoin d'un jardinier, 
+                    je suis là pour prendre le relais. Mon objectif est de vous livrer un travail propre et soigné, exactement selon vos attentes.
+                J'interviens pour les travaux courants et nécessaires, la tonte de pelouse, le débroussaillage pour la remise en état des zones envahies, 
+                la taille des végétaux : haies, arbustes, bosquets... 
+               Mon rôle est de vous décharger complètement de ces tâches physiques.</p>
+               <h3><p><strong>Ma philosophie de jardinier</strong></p></h3>
+               <p>Je ne suis pas une entreprise d'aménagement paysager, mais un service d'entretien à taille humaine, cela signifie  que je prends
+                 le temps de comprendre ce que vous attendez de chaque intervention. 
+                 Je travaille à votre rythme, que vous ayez besoin d'un coup de main ponctuel ou d'un suivi saisonnier. C'est pour cette raison 
+                 que je ne fais pas de contrat d'entretien pour le jardin, ce qui vous permet de gérer le nombre d'interventions et votre
+                 budget. Mon intervention inclut l'utilisation de mon propre matériel professionnel.</p>
+               <h3><p><strong>Gestion des déchets verts</strong></p></h3>
+               <p>La gestion des déchets après la taille ou la tonte est une question que nous réglons ensemble. Je peux m'occuper de l'enlèvement 
+                et de l'évacuation complète des déchets verts, selon vos préférences. Je propose également le broyage des branches et végétaux, 
+                le broyat peut être réutilisé sur place dans votre jardin (en paillage).</p>  
+
+
+                <!-- Call to Action -->
+                <div class="service-cta">
+                    <h3>Intéressé par ce service ?</h3>
+                    <p>Contactez-moi pour obtenir un devis gratuit</p>
+                    <div class="cta-buttons">
+                        <a href="index.html#contact" class="btn btn-secondary">Nous contacter</a>
+                        <a href="tel:+33649386780" class="btn btn-secondary">Appeler</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Link back to services -->
+            <div class="service-back-link">
+                <a href="index.html#services">← Retour aux services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Ced A Tout Faire - Tous droits réservés</p>
+            <p>
+                <a href="privacy.html">Politique de confidentialité / Cookies</a>
+                &nbsp;&middot;&nbsp;
+                <a href="#" id="cookie-settings">Paramètres cookies</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -184,6 +184,13 @@ body {
     border-color: rgba(255, 255, 255, 0.6);
 }
 
+/* Service card as link */
+.service-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
 .service-image {
     width: 100%;
     height: 200px;
@@ -201,13 +208,22 @@ body {
 .service-content {
     padding: 25px;
     background-color: transparent;
+    text-align: center;
 }
 
 .service-content h3 {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     color: #fff;
-    margin-bottom: 15px;
-    font-weight: bold;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* alléger la graisse des <strong> à l'intérieur des h3 pour une meilleure lisibilité
+   tout en conservant l'emphase (balise <strong> inchangée) */
+h3 strong {
+    font-weight: 600; /* moins lourd que 700/normal bold sur certains systèmes */
+    font-style: inherit;
+    color: inherit; /* conserve la couleur du h3 */
 }
 
 /* Reduce size for service card titles when they're using H2 for SEO */
@@ -322,7 +338,7 @@ body {
 }
 
 .avis-header h3 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #fff;
     margin: 0;
     font-weight: 600;
@@ -358,6 +374,22 @@ body {
     border-radius: 8px;
     box-shadow: 0 6px 14px rgba(0,0,0,0.35);
     border: 3px solid rgba(255,255,255,0.12);
+}
+
+/* Responsive tweak: reduce h3 sizes a bit on very small screens so they restent lisibles
+   sans casser la mise en page */
+@media (max-width: 480px) {
+    .service-content h3 {
+        font-size: 1.35rem;
+        margin-bottom: 14px;
+    }
+    .avis-header h3 {
+        font-size: 1.05rem;
+    }
+    /* keep <strong> emphasis but avoid too large scaling on mobile */
+    h3 strong {
+        font-size: 1.02em;
+    }
 }
 
 /* Contact Section */
@@ -609,4 +641,294 @@ body {
 .privacy-wrapper h1 { font-size: 1.6rem; color: #fff; margin-bottom: 12px; }
 .privacy-wrapper p, .privacy-wrapper li { color: rgba(255,255,255,0.95); line-height: 1.6; }
 .privacy-wrapper ul { margin-left: 1.2rem; }
+
+/* Service Detail Page */
+.service-detail {
+    background: linear-gradient(135deg, #1a6f7a 0%, #0f4a50 100%);
+    color: white;
+    padding: 60px 20px;
+    min-height: calc(100vh - 200px);
+}
+
+.service-detail-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.service-detail-image {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.service-detail-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.service-detail-content {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 40px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(10px);
+}
+
+.service-detail-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.service-detail-content p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
+}
+
+.service-content-placeholder {
+    min-height: 100px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 30px 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.service-cta {
+    text-align: center;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.service-cta h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.service-cta p {
+    margin-bottom: 20px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.service-back-link {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.service-back-link a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.service-back-link a:hover {
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .service-detail-header h1 {
+        font-size: 1.8rem;
+    }
+    .service-detail-content {
+        padding: 20px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Extra small devices (phones, landscape) */
+@media (max-width: 480px) {
+    .service-detail {
+        padding: 40px 15px;
+    }
+
+    .service-detail-header {
+        margin-bottom: 30px;
+    }
+
+    .service-detail-header h1 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+
+    .service-detail-image {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .service-detail-content {
+        padding: 15px;
+        border-radius: 6px;
+    }
+
+    .service-detail-content h2 {
+        font-size: 1.3rem;
+    }
+
+    .service-detail-content p {
+        font-size: 0.9rem;
+    }
+
+    .service-cta {
+        padding: 20px 15px;
+        margin-top: 20px;
+    }
+
+    .service-cta h3 {
+        font-size: 1.2rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .nav-menu {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .service-back-link a {
+        font-size: 0.9rem;
+    }
+
+    /* Hero section responsive */
+    .hero {
+        padding: 60px 15px;
+    }
+
+    .hero-content p {
+        font-size: 0.95rem;
+    }
+
+    .logo-img {
+        height: 100px;
+    }
+
+    /* Services grid on small screens */
+    .services-grid {
+        gap: 20px;
+    }
+
+    .service-card {
+        border-radius: 6px;
+    }
+
+    .service-image {
+        height: 150px;
+    }
+
+    .service-content {
+        padding: 15px;
+    }
+
+    .service-content h3 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    /* Testimonials responsive */
+    .avis-gallery {
+        gap: 15px;
+    }
+
+    .avis-card {
+        padding: 15px;
+    }
+
+    .avis-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .avis-header h3 {
+        font-size: 1rem;
+    }
+
+    .avis-text {
+        font-size: 0.85rem;
+    }
+
+    /* Contact responsive */
+    .contact-info {
+        flex-direction: column;
+    }
+
+    .contact-item {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
 

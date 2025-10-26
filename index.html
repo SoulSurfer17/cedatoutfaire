@@ -124,6 +124,61 @@
         }
     }
     </script>
+    
+    <!-- Reviews Schema Markup for Google Search Console -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Service",
+      "name": "Ced A Tout Faire - Services de nettoyage et multi-services",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "27"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Lucie Timon"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          },
+          "reviewBody": "Cédric et son collègue sont intervenus rapidement pour un nettoyage complet de ma toiture, devis très honnête, rapide et tout cela dans une très bonne ambiance. C'est cool de travailler avec des gens rassurants et sympas! Merci à vous!",
+          "datePublished": "2025-05-26"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Christine Lauer"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          },
+          "reviewBody": "Très satisfaite de leur travail comme toujours. Cela fait des années que je fais appel à eux pour l'entretien de mon jardin et je ne suis jamais déçue. Bravo.",
+          "datePublished": "2024-10-26"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Corinne Fillon"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          },
+          "reviewBody": "Mr Puygrenier et son collègue sont venus pour démousser et traiter notre toiture qui avait été délaissée. Ils sont ponctuels, sérieux, discrets, souriants, ont fait un super travail ! Ont bien tout nettoyé. Merci à eux ! Nous n'hésiterons pas à les conseiller ou les rappeler pour autre chose !",
+          "datePublished": "2025-03-26"
+        }
+      ]
+    }
+    </script>
             <!-- Consent & GA loader: n'ajoute pas le script GA tant que l'utilisateur n'a pas donné son consentement -->
             <script>
                 (function(){
@@ -251,42 +306,34 @@
             
             <div class="services-grid">
                 <!-- Service 1: Nettoyage de toiture -->
-                <div class="service-card">
+                <a href="nettoyage-toiture.html" class="service-card service-card-link">
                     <div class="service-image">
                         <img src="ressources/toiture.png" alt="Nettoyage de toiture professionnel à Rochefort - démoussage, nettoyage mousse et lichen" title="Service de nettoyage de toiture">
                     </div>
                     <div class="service-content">
                         <h3>Nettoyage démoussage de toiture</h3>
-                        <p>Pour garder sa toiture en bon état, il faut procéder à un nettoyage régulier (environ tous les 5 ans). Pour cet entretien, je procède à un grattage manuel des mousses et lichens, puis j'applique 
-                            un produit fongicide professionnel agréé par le ministère de l'environnement, pour un résultat efficace et avec une bonne durée dans le temps.</p>
                     </div>
-                </div>
+                </a>
 
                 <!-- Service 2: Nettoyage de véranda -->
-                <div class="service-card">
+                <a href="nettoyage-veranda.html" class="service-card service-card-link">
                     <div class="service-image">
                         <img src="ressources/véranda.png" alt="Nettoyage de véranda haute pression à Rochefort - vitrage et cadres" title="Service de nettoyage de véranda">
                     </div>
                     <div class="service-content">
                         <h3>Nettoyage de véranda</h3>
-                        <p>Pour conserver une bonne luminosité de cette extension d'espace de vie, il est nécessaire de faire le nettoyage de sa véranda régulièrement.
-                            J'effectue cet entretien au nettoyeur haute pression, en prenant soin de ne pas trop insister sur l'ensemble des joints, afin de 
-                            préserver l'étanchéité de votre véranda.</p>
                     </div>
-                </div>
+                </a>
 
                 <!-- Service 3: Entretien des espaces verts -->
-                <div class="service-card">
+                <a href="entretien-espaces-verts.html" class="service-card service-card-link">
                     <div class="service-image">
                         <img src="ressources/tonte.png" alt="Entretien d'espaces verts à Rochefort - tonte, taille de haie, débroussaillage; jardinier, jardinage" title="Service entretien espaces verts - jardinier, jardinage">
                     </div>
                     <div class="service-content">
                         <h3>Entretien des espaces verts</h3>
-                        <p>Si vous avez besoin d'un jardinier pour l'entretien de votre jardin, j'effectue la tonte, le débroussaillage, la taille des haies, arbustes, bosquets. Selon nécessité et désir de mes
-                            clients, je propose également l'évacuation ou le broyage des déchets verts.
-                        </p>
                     </div>
-                </div>
+                </a>
                
                 </div>
             </div>
