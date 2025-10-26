@@ -285,18 +285,70 @@ body {
     margin-top: 20px;
 }
 
-/* Galerie d'avis (images) */
+/* Galerie d'avis (texte) */
 .avis-gallery {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    align-items: center;
-    margin: 10px 0 10px; /* reduced vertical spacing */
-    flex-wrap: nowrap; /* force single row on wide screens */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin: 10px 0 10px;
 }
 
 .avis-item {
     display: block;
+}
+
+.avis-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.avis-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.avis-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 15px;
+}
+
+.avis-header h3 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin: 0;
+    font-weight: 600;
+}
+
+.avis-rating {
+    display: flex;
+    gap: 5px;
+    color: #ffc107;
+}
+
+.avis-rating i {
+    font-size: 0.9rem;
+}
+
+.avis-date {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 5px 0 10px 0;
+}
+
+.avis-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
 }
 
 .avis-item img {
@@ -507,7 +559,7 @@ body {
     }
 
     .service-content h3 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 }
 
