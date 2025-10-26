@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-   <script type="application/ld+json">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -49,8 +49,8 @@
   "description": "Nettoyage de toiture véranda | entretien des espaces verts | Rochefort",
   
   "address": {
-    "@type": "PostalAddress", /* CORRECTION: Doit être 'PostalAddress' */
-    "streetAddress": "79 rue Lefèvre", /* CORRECTION: Le nom de la propriété de la rue est 'streetAddress' */
+    "@type": "PostalAddress",
+    "streetAddress": "79 rue Lefèvre", 
     "addressLocality": "Rochefort",
     "addressRegion": "Charente-Maritime",
     "postalCode": "17300",
@@ -63,34 +63,18 @@
   "sameAs": [
     "https://www.facebook.com/profile.php?id=100089059665059"
   ],
-  "priceRange": "$$",
   
-  /* J'ai retiré le second "areaServed" pour la Charente-Maritime pour simplifier, Rochefort suffit. */
-  "areaServed": [
-    {
-      "@type": "City",
-      "name": "Rochefort"
-    }
-  ],
-  
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "08:30",
-      "closes": "19:30"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Saturday", "Sunday"],
-      "opens": "00:00", 
-      "closes": "00:00" /* Si fermé, 00:00 est la façon de le coder */
-    }
-  ],
-  
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
+    ],
+    "opens": "08:30",
+    "closes": "19:30"
+  },
+
   "aggregateRating": {
     "@type": "AggregateRating",
-    /* AJOUT ESSENTIEL pour éviter l'erreur "Type d'objet non valide" */
     "itemReviewed": {
       "@type": "LocalBusiness",
       "name": "Ced A Tout Faire"
@@ -101,7 +85,6 @@
     "worstRating": "1"
   },
   
-  /* DÉBUT DE LA FUSION : Ajout des avis individuels du second bloc */
   "review": [
     {
       "@type": "Review",
@@ -117,7 +100,7 @@
         "@type": "Rating",
         "ratingValue": "5"
       },
-      "reviewBody": "Cédric et son collègue sont intervenus rapidement pour un nettoyage complet de ma toiture, devis très honnête, rapide et tout cela dans une très bonne ambiance. C'est cool de travailler avec des gens rassurants et sympas! Merci à vous!",
+      "reviewBody": "Cedric et son collègue sont intervenus rapidement pour un nettoyage complet de ma toiture, devis très honnête, rapide et tout cela dans une très bonne ambiance. C'est cool de travailler avec des gens rassurants et sympas! Merci à vous!",
       "datePublished": "2025-05-26"
     },
     {
@@ -155,7 +138,7 @@
       "datePublished": "2025-03-26"
     }
   ]
- }
+}
 </script>
             <!-- Consent & GA loader: n'ajoute pas le script GA tant que l'utilisateur n'a pas donné son consentement -->
             <script>
