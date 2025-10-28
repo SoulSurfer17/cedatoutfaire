@@ -64,7 +64,7 @@ body {
 .logo-below {
     position: absolute;
     top: -80px;
-    left: 30px;
+    left: 20px;
     z-index: 50;
 }
 .logo-below .logo-img {
@@ -124,9 +124,12 @@ body {
 }
 
 .hero-content h1 {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    font-weight: normal;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    margin-top: 0;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #fff;
 }
 
 .hero-content p {
@@ -136,7 +139,7 @@ body {
 }
 
 .hero-content .tagline {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-top: 20px;
 }
 
