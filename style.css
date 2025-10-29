@@ -290,6 +290,7 @@ h3 strong {
     font-size: 1.2rem;
     color: #ffd700;
     margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .rating i {
@@ -359,7 +360,7 @@ h3 strong {
 
 .avis-date {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.9);
     margin: 5px 0 10px 0;
 }
 
