@@ -1,0 +1,19 @@
+# Cache images for 1 year (immutable = never revalidate)
+/ressources/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache CSS for 1 month
+/style.css
+  Cache-Control: public, max-age=2592000
+
+# Cache JS for 1 month
+/script.js
+  Cache-Control: public, max-age=2592000
+
+# Cache HTML for 1 hour (allows quick updates)
+/*.html
+  Cache-Control: public, max-age=3600
+
+# Cache XML/JSON for 1 day
+/sitemap.xml
+  Cache-Control: public, max-age=86400
