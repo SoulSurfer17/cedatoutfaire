@@ -754,13 +754,13 @@ h3 strong {
     transform: translateY(-2px);
 }
 
-.btn-secondary {
+.btn-service-outline {
     background-color: transparent;
     color: white;
     border: 2px solid white;
 }
 
-.btn-secondary:hover {
+.btn-service-outline:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
 }
