@@ -43,22 +43,55 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Ced A Tout Faire",
-    "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
-        "description": "Nettoyage et démoussage de toiture à Rochefort",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Rochefort",
-            "addressRegion": "Charente-Maritime",
-            "postalCode": "17300",
-            "addressCountry": "FR"
-        },
-        "telephone": "+33649386780",
-        "email": "cedric.puygrenier@gmail.com",
-        "url": "https://cedatoutfaire.org",
-        "sameAs": [
-            "https://www.facebook.com/profile.php?id=100089059665059"
+        "@graph": [
+            {
+                "@type": "LocalBusiness",
+                "name": "Ced A Tout Faire",
+                "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+                "description": "Nettoyage et démoussage de toiture à Rochefort",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Rochefort",
+                    "addressRegion": "Charente-Maritime",
+                    "postalCode": "17300",
+                    "addressCountry": "FR"
+                },
+                "telephone": "+33649386780",
+                "email": "cedric.puygrenier@gmail.com",
+                "url": "https://cedatoutfaire.org",
+                "sameAs": [
+                    "https://www.facebook.com/profile.php?id=100089059665059"
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "À quelle fréquence recommandez-vous le nettoyage et démoussage de toiture ?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Pour maintenir votre toiture en bon état et prévenir les problèmes d'étanchéité dus à l'humidité, une vérification et un nettoyage complet sont généralement recommandés tous les 5 ans environ."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Quelle méthode utilisez-vous pour nettoyer la toiture et les tuiles ?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Ma priorité est de nettoyer sans abîmer. C'est pourquoi je n'utilise jamais la haute pression. Je procède à un grattage manuel complet des mousses et lichens, ce qui garantit l'intégrité de votre couverture. De plus, le nettoyage des gouttières de tous les débris est inclus et systématique."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Quel type de traitement est appliqué après le nettoyage physique du toit ?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Après le nettoyage, je pulvérise à basse pression un produit fongicide professionnel agréé par le Ministère de l'Environnement. Ce traitement agit lentement (6 à 12 mois) pour éliminer les spores en profondeur, protégeant ainsi durablement votre toiture contre la réapparition des végétaux."
+                        }
+                    }
+                ]
+            }
         ]
     }
     </script>

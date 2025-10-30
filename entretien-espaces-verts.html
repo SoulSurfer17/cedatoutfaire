@@ -43,22 +43,55 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Ced A Tout Faire",
-    "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
-        "description": "Entretien des espaces verts et jardinage à Rochefort",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Rochefort",
-            "addressRegion": "Charente-Maritime",
-            "postalCode": "17300",
-            "addressCountry": "FR"
-        },
-        "telephone": "+33649386780",
-        "email": "cedric.puygrenier@gmail.com",
-        "url": "https://cedatoutfaire.org",
-        "sameAs": [
-            "https://www.facebook.com/profile.php?id=100089059665059"
+        "@graph": [
+            {
+                "@type": "LocalBusiness",
+                "name": "Ced A Tout Faire",
+                "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+                "description": "Entretien des espaces verts et jardinage à Rochefort",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Rochefort",
+                    "addressRegion": "Charente-Maritime",
+                    "postalCode": "17300",
+                    "addressCountry": "FR"
+                },
+                "telephone": "+33649386780",
+                "email": "cedric.puygrenier@gmail.com",
+                "url": "https://cedatoutfaire.org",
+                "sameAs": [
+                    "https://www.facebook.com/profile.php?id=100089059665059"
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Travaillez-vous avec des contrats d'entretien annuels pour le jardin ?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Non, mon service d'entretien est conçu pour vous offrir une flexibilité totale. Je n'impose pas de contrat annuel, vous permettant de gérer à votre rythme et selon votre budget le nombre d'interventions nécessaires (ponctuelles ou suivis saisonniers)."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Le tarif du service inclut-il la gestion et l'évacuation des déchets verts ?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Oui, la gestion des déchets (tonte, taille, etc.) est une question que nous réglons ensemble selon vos préférences. Je propose l'enlèvement et l'évacuation complète des déchets verts, mais aussi le broyage des branches et végétaux pour une réutilisation en paillage sur place."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Quels types de travaux de jardinier effectuez-vous à Rochefort ?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "J'interviens pour l'ensemble des travaux courants et nécessaires à l'entretien, notamment la tonte de pelouse, le débroussaillage pour les zones envahies, et la taille des végétaux (haies, arbustes, bosquets). Mon intervention inclut l'utilisation de mon propre matériel professionnel."
+                        }
+                    }
+                ]
+            }
         ]
     }
     </script>

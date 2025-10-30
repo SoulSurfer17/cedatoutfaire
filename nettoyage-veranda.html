@@ -43,22 +43,55 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Ced A Tout Faire",
-    "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
-        "description": "Nettoyage de véranda à Rochefort",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Rochefort",
-            "addressRegion": "Charente-Maritime",
-            "postalCode": "17300",
-            "addressCountry": "FR"
-        },
-        "telephone": "+33649386780",
-        "email": "cedric.puygrenier@gmail.com",
-        "url": "https://cedatoutfaire.org",
-        "sameAs": [
-            "https://www.facebook.com/profile.php?id=100089059665059"
+        "@graph": [
+            {
+                "@type": "LocalBusiness",
+                "name": "Ced A Tout Faire",
+                "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+                "description": "Nettoyage de véranda à Rochefort",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Rochefort",
+                    "addressRegion": "Charente-Maritime",
+                    "postalCode": "17300",
+                    "addressCountry": "FR"
+                },
+                "telephone": "+33649386780",
+                "email": "cedric.puygrenier@gmail.com",
+                "url": "https://cedatoutfaire.org",
+                "sameAs": [
+                    "https://www.facebook.com/profile.php?id=100089059665059"
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "À quelle fréquence est-il recommandé de faire nettoyer ma véranda ?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Pour maintenir une bonne luminosité et prolonger la durée de vie de votre espace de vie, le nettoyage complet de votre véranda est nécessaire au moins une fois par an. Cela prévient l'accumulation de pollution et de mousses."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Le nettoyage de véranda comprend-il la toiture, les vitres et la structure ?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Oui, mon intervention est complète et couvre l'ensemble de votre véranda : la toiture, les vitres latérales et tous les profilés. L'objectif est de décoller les saletés sans compromettre l'étanchéité."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Utilisez-vous le nettoyeur haute pression sur les vérandas ?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "J'utilise le nettoyeur haute pression sur la toiture et les vitrages car l'efficacité y est maximale et sans danger. Je prends toujours le soin de ne jamais insister sur les joints ni les points de raccordement, et je vérifie et nettoie les chéneaux pour assurer un écoulement libre."
+                        }
+                    }
+                ]
+            }
         ]
     }
     </script>
