@@ -37,7 +37,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'; this.onload=null;">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
- <script type="application/ld+json">
+    <!-- Script to load reviews data dynamically -->
+    <script>
+        (function(){
+            // Load reviews.json and update review count
+            fetch('reviews.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Update review count in schema.org
+                    const schemaScript = document.querySelector('script[id="schema-local-business"]');
+                    if(schemaScript) {
+                        const schema = JSON.parse(schemaScript.textContent);
+                        schema.aggregateRating.reviewCount = String(data.totalReviews);
+                        schemaScript.textContent = JSON.stringify(schema, null, 2);
+                    }
+                    
+                    // Update display count
+                    const reviewCountElement = document.getElementById('review-count-display');
+                    if(reviewCountElement) {
+                        reviewCountElement.textContent = data.totalReviews;
+                    }
+                    
+                    // Update recent reviews display
+                    const reviewsContainer = document.getElementById('recent-reviews-container');
+                    if(reviewsContainer && data.recentReviews) {
+                        reviewsContainer.innerHTML = data.recentReviews.map(review => `
+                            <div class="avis-item avis-card">
+                                <div class="avis-header">
+                                    <h3>${review.author}</h3>
+                                    <div class="avis-rating">
+                                        ${Array(review.rating).fill('<i class="fas fa-star"></i>').join('')}
+                                    </div>
+                                </div>
+                                <p class="avis-date">${review.date}</p>
+                                <p class="avis-text">${review.text}</p>
+                            </div>
+                        `).join('');
+                    }
+                })
+                .catch(err => console.log('Could not load reviews.json:', err));
+        })();
+    </script>
+ 
+ <script type="application/ld+json" id="schema-local-business">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -359,11 +401,28 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        28 avis clients sur Google, moyenne 5/5
+                        <span id="review-count-display">28</span> avis clients sur Google, moyenne 5/5
                     </p>
                     <!-- Galerie d'avis (texte) -->
-                    <div class="avis-gallery" aria-label="Galerie des avis clients">
-                        <!-- Avis 1 -->
+                    <div class="avis-gallery" id="recent-reviews-container" aria-label="Galerie des avis clients">
+                        <!-- Avis sont chargés dynamiquement depuis reviews.json -->
+                        <!-- Fallback: affichage statique en cas d'erreur -->
+                        <div class="avis-item avis-card">
+                            <div class="avis-header">
+                                <h3>Corinne Fillon</h3>
+                                <div class="avis-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="avis-date">il y a 7 mois</p>
+                            <p class="avis-text">Mr Puygrenier et son collègue sont venus pour demousser et traiter notre toiture qui avait été délaissée. Ils sont ponctuels, sérieux, discrets, souriants, ont fait un super travail ! Ont bien tout nettoyé. Merci à eux ! Nous n'hésiterons pas à les conseiller ou les rappeler pour autre chose !</p>
+                        </div>
+
+                        <!-- Avis 2 -->
                         <div class="avis-item avis-card">
                             <div class="avis-header">
                                 <h3>Lucie Timon</h3>
@@ -379,7 +438,7 @@
                             <p class="avis-text">Cedric et son collègue sont intervenus rapidement pour un nettoyage complet de ma toiture, devis très honnête, rapide et tout cela dans une très bonne ambiance. C'est cool de travailler avec des gens rassurants et sympas! Merci à vous!</p>
                         </div>
 
-                        <!-- Avis 2 -->
+                        <!-- Avis 3 -->
                         <div class="avis-item avis-card">
                             <div class="avis-header">
                                 <h3>Christine Lauer</h3>
@@ -393,22 +452,6 @@
                             </div>
                             <p class="avis-date">il y a un an</p>
                             <p class="avis-text">Très satisfaite de leur travail comme toujours. Cela fait des années que je fais appel à eux pour l'entretien de mon jardin et je ne suis jamais déçue. Bravo.</p>
-                        </div>
-
-                        <!-- Avis 3 -->
-                        <div class="avis-item avis-card">
-                            <div class="avis-header">
-                                <h3>Corinne Fillon</h3>
-                                <div class="avis-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                            <p class="avis-date">il y a 7 mois</p>
-                            <p class="avis-text">Mr Puygrenier et son collègue sont venus pour demousser et traiter notre toiture qui avait été délaissée. Ils sont ponctuels, sérieux, discrets, souriants, ont fait un super travail ! Ont bien tout nettoyé. Merci à eux ! Nous n'hésiterons pas à les conseiller ou les rappeler pour autre chose !</p>
                         </div>
                     </div>
                 </div>

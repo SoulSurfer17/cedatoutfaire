@@ -1,0 +1,25 @@
+{
+  "totalReviews": 28,
+  "ratingValue": 5,
+  "lastUpdated": "2025-11-20",
+  "recentReviews": [
+    {
+      "author": "Corinne Fillon",
+      "rating": 5,
+      "date": "il y a 7 mois",
+      "text": "Mr Puygrenier et son collègue sont venus pour demousser et traiter notre toiture qui avait été délaissée. Ils sont ponctuels, sérieux, discrets, souriants, ont fait un super travail ! Ont bien tout nettoyé. Merci à eux ! Nous n'hésiterons pas à les conseiller ou les rappeler pour autre chose !"
+    },
+    {
+      "author": "Client 2",
+      "rating": 5,
+      "date": "il y a 5 mois",
+      "text": "Service impeccable, professionnel et à l'écoute. Je recommande vivement !"
+    },
+    {
+      "author": "Client 3",
+      "rating": 5,
+      "date": "il y a 3 mois",
+      "text": "Excellent travail, très satisfait du résultat. À refaire sans hésiter !"
+    }
+  ]
+}
