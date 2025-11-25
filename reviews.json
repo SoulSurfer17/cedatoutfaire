@@ -1,8 +1,14 @@
 {
-  "totalReviews": 28,
+  "totalReviews": 29,
   "ratingValue": 5,
-  "lastUpdated": "2025-11-20",
+  "lastUpdated": "2025-11-25",
   "recentReviews": [
+    {
+      "author": "Maryline RAULT",
+      "rating": 5,
+      "date": "Novembre 2025",
+      "text": "Je recommande vivement Cedric et Christophe. Deux réels professionnels qui en plus vous offre leur gentillesse et leur humour. N'hésitez pas a les solliciter en toute confiance"
+    },
     {
       "author": "Stephane Gaillard",
       "rating": 5,
@@ -14,12 +20,6 @@
       "rating": 5,
       "date": "Juillet 2025",
       "text": "Cedric et son collègue sont intervenus rapidement pour un nettoyage complet de ma toiture, devis très honnête, rapide et tout cela dans une très bonne ambiance. C'est cool de travailler avec des gens rassurants et sympas! Merci à vous!"
-    },
-    {
-      "author": "Corinne Fillon",
-      "rating": 5,
-      "date": "Avril 2025",
-      "text": "Mr Puygrenier et son collègue sont venus pour demousser et traiter notre toiture qui avait été délaissée. Ils sont ponctuels, sérieux, discrets, souriants, ont fait un super travail ! Ont bien tout nettoyé. Merci à eux ! Nous n'hésiterons pas à les conseiller ou les rappeler pour autre chose !"
     }
   ]
 }
