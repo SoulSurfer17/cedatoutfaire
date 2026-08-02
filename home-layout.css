@@ -1,0 +1,140 @@
+/* Correctifs de mise en page de l'accueil. */
+.hero {
+    padding: 40px 20px;
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    grid-template-areas:
+        "logo photo"
+        "title photo"
+        "intro photo"
+        "details photo"
+        "tagline photo";
+    column-gap: 48px;
+    align-items: center;
+}
+
+.logo-below {
+    position: static;
+    grid-area: logo;
+    justify-self: center;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    grid-area: title;
+}
+
+.hero-content > p:nth-of-type(1) {
+    grid-area: intro;
+}
+
+.hero-content > p:nth-of-type(2) {
+    grid-area: details;
+}
+
+.hero-content .tagline {
+    grid-area: tagline;
+}
+
+.hero-photo {
+    position: static;
+    grid-area: photo;
+    justify-self: end;
+}
+
+.avis-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contact-info {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.contact-item,
+.contact-item > div {
+    min-width: 0;
+}
+
+.contact-item a {
+    overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .nav-menu a {
+        position: relative;
+    }
+
+    .nav-menu a::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: -8px;
+        left: 0;
+        height: 2px;
+        background-color: currentColor;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.25s ease;
+    }
+
+    .nav-menu a:hover::after,
+    .nav-menu a:focus-visible::after,
+    .nav-menu a.active::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+
+    .service-image img {
+        transition: transform 0.45s ease;
+    }
+
+    .service-card:hover .service-image img {
+        transform: scale(1.04);
+    }
+
+    .contact-item {
+        transition: transform 0.3s ease;
+    }
+
+    .contact-item:hover {
+        transform: translateY(-3px);
+    }
+}
+
+@media (max-width: 1000px) {
+    .hero {
+        padding: 40px 20px;
+    }
+
+    .hero-content {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "logo"
+            "title"
+            "intro"
+            "details"
+            "tagline"
+            "photo";
+    }
+
+    .hero-photo {
+        justify-self: center;
+        margin: 30px auto 0;
+    }
+
+    .contact-info {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-info,
+    .avis-gallery {
+        grid-template-columns: 1fr;
+    }
+}

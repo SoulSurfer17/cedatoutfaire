@@ -11,6 +11,7 @@
     <meta name="author" content="Ced A Tout Faire">
     <meta name="robots" content="index, follow">
     <meta name="language" content="French">
+    <link rel="canonical" href="https://cedatoutfaire.org/">
     
     <!-- Open Graph Meta Tags (Réseaux Sociaux) -->
     <meta property="og:type" content="business.business">
@@ -34,6 +35,7 @@
     <link rel="icon" type="image/webp" href="ressources/logoCATF.webp">
     
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home-layout.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'; this.onload=null;">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
@@ -73,6 +75,7 @@
                                 <p class="avis-text">${review.text}</p>
                             </div>
                         `).join('');
+                        document.dispatchEvent(new CustomEvent('reviews:loaded', { detail: reviewsContainer }));
                     }
                 })
                 .catch(err => console.log('Could not load reviews.json:', err));
@@ -83,6 +86,7 @@
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+    "@id": "https://cedatoutfaire.org/#localbusiness",
   "name": "Ced A Tout Faire",
   "url": "https://cedatoutfaire.org",
   "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
@@ -104,6 +108,44 @@
   "sameAs": [
     "https://www.facebook.com/profile.php?id=100089059665059"
   ],
+
+    "areaServed": [
+        { "@type": "City", "name": "Rochefort" },
+        { "@type": "City", "name": "Échillais" },
+        { "@type": "City", "name": "Tonnay-Charente" },
+        { "@type": "City", "name": "Saint-Agnant" }
+    ],
+
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services proposés",
+        "itemListElement": [
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Nettoyage et démoussage de toiture",
+                    "url": "https://cedatoutfaire.org/nettoyage-toiture.html"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Nettoyage de véranda",
+                    "url": "https://cedatoutfaire.org/nettoyage-veranda.html"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Entretien des espaces verts",
+                    "url": "https://cedatoutfaire.org/entretien-espaces-verts.html"
+                }
+            }
+        ]
+    },
   
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
@@ -132,7 +174,7 @@
       }
     },
     "ratingValue": "5",
-    "reviewCount": "28",
+    "reviewCount": "33",
     "bestRating": "5",
     "worstRating": "1"
   },
@@ -157,14 +199,14 @@
       },
       "author": {
         "@type": "Person",
-        "name": "Lucie Timon"
+        "name": "Alexis F"
       },
       "reviewRating": {
         "@type": "Rating",
         "ratingValue": "5"
       },
-      "reviewBody": "Cedric et son collègue sont intervenus rapidement pour un nettoyage complet de ma toiture, devis très honnête, rapide et tout cela dans une très bonne ambiance. C'est cool de travailler avec des gens rassurants et sympas! Merci à vous!",
-      "datePublished": "2025-05-26"
+    "reviewBody": "Equipe sympathique et sérieuse qui est intervenue rapidement pour le démoussage et traitement de ma toiture. Super travail! Je recommande pleinement.",
+    "datePublished": "2026-04-01"
     },
     {
       "@type": "Review",
@@ -185,14 +227,14 @@
       },
       "author": {
         "@type": "Person",
-        "name": "Christine Lauer"
+                "name": "Claudine BREON"
       },
       "reviewRating": {
         "@type": "Rating",
         "ratingValue": "5"
       },
-      "reviewBody": "Très satisfaite de leur travail comme toujours. Cela fait des années que je fais appel à eux pour l'entretien de mon jardin et je ne suis jamais déçue. Bravo.",
-      "datePublished": "2024-10-26"
+    "reviewBody": "J'ai beaucoup apprécier la gentillesse, le sérieux et la qualité professionnelle de M. PUYGRENIER et de son collègue qui ont super bien taillé mes haies. Je les recommande particulièrement et garde précieusement leurs coordonnées pour toutes futures interventions.",
+    "datePublished": "2026-01-01"
     },
     {
       "@type": "Review",
@@ -213,14 +255,42 @@
       },
       "author": {
         "@type": "Person",
-        "name": "Corinne Fillon"
+                "name": "Karine Ferré"
       },
       "reviewRating": {
         "@type": "Rating",
         "ratingValue": "5"
       },
-      "reviewBody": "Mr Puygrenier et son collègue sont venus pour démousser et traiter notre toiture qui avait été délaissée. Ils sont ponctuels, sérieux, discrets, souriants, ont fait un super travail ! Ont bien tout nettoyé. Merci à eux ! Nous n'hésiterons pas à les conseiller ou les rappeler pour autre chose !",
-      "datePublished": "2025-03-26"
+            "reviewBody": "Sérieux, ponctualité, efficacité et professionnalisme sont des mots qui résument parfaitement ce duo d'entrepreneurs, intervenus pour le nettoyage de la toiture et de la façade d'une maison à étage. Je garde précieusement les coordonnées de cette Entreprise et je la recommande vivement.",
+            "datePublished": "2026-04-01"
+        },
+        {
+            "@type": "Review",
+            "itemReviewed": {
+                "@type": "LocalBusiness",
+                "name": "Ced A Tout Faire",
+                "telephone": "+33649386780",
+                "priceRange": "$$",
+                "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+                "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": "79 rue Lefèvre",
+                        "addressLocality": "Rochefort",
+                        "addressRegion": "Charente-Maritime",
+                        "postalCode": "17300",
+                        "addressCountry": "FR"
+                }
+            },
+            "author": {
+                "@type": "Person",
+                "name": "Stephane Gaillard"
+            },
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5"
+            },
+            "reviewBody": "Equipe de choc! Cédric et Christophe forment un duo sérieux, efficace et tellement sympathique! J'ai fait appel à eux pour mon jardin, les résultats sont surprenants. Quant aux tarifs, des plus raisonnables. Merci Messieurs et à très vite pour ma toiture.",
+            "datePublished": "2025-11"
     }
   ]
 }
@@ -401,7 +471,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <span id="review-count-display">28</span> avis clients sur Google, moyenne 5/5
+                        <span id="review-count-display">33</span> avis clients sur Google, moyenne 5/5
                     </p>
                     <!-- Galerie d'avis (texte) -->
                     <div class="avis-gallery" id="recent-reviews-container" aria-label="Galerie des avis clients">
@@ -409,7 +479,7 @@
                         <!-- Fallback: affichage statique en cas d'erreur -->
                         <div class="avis-item avis-card">
                             <div class="avis-header">
-                                <h3>Corinne Fillon</h3>
+                                <h3>Karine Ferré</h3>
                                 <div class="avis-rating">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -418,14 +488,14 @@
                                     <i class="fas fa-star"></i>
                                 </div>
                             </div>
-                            <p class="avis-date">il y a 7 mois</p>
-                            <p class="avis-text">Mr Puygrenier et son collègue sont venus pour demousser et traiter notre toiture qui avait été délaissée. Ils sont ponctuels, sérieux, discrets, souriants, ont fait un super travail ! Ont bien tout nettoyé. Merci à eux ! Nous n'hésiterons pas à les conseiller ou les rappeler pour autre chose !</p>
+                            <p class="avis-date">Avril 2026</p>
+                            <p class="avis-text">Sérieux, ponctualité, efficacité et professionnalisme sont des mots qui résument parfaitement ce duo d'entrepreneurs, intervenus pour le nettoyage de la toiture et de la façade d'une maison à étage. Je garde précieusement les coordonnées de cette Entreprise et je la recommande vivement.</p>
                         </div>
 
                         <!-- Avis 2 -->
                         <div class="avis-item avis-card">
                             <div class="avis-header">
-                                <h3>Lucie Timon</h3>
+                                <h3>Stephane Gaillard</h3>
                                 <div class="avis-rating">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -434,14 +504,14 @@
                                     <i class="fas fa-star"></i>
                                 </div>
                             </div>
-                            <p class="avis-date">il y a 5 mois</p>
-                            <p class="avis-text">Cedric et son collègue sont intervenus rapidement pour un nettoyage complet de ma toiture, devis très honnête, rapide et tout cela dans une très bonne ambiance. C'est cool de travailler avec des gens rassurants et sympas! Merci à vous!</p>
+                            <p class="avis-date">Novembre 2025</p>
+                            <p class="avis-text">Equipe de choc! Cédric et Christophe forment un duo sérieux, efficace et tellement sympathique! J'ai fait appel à eux pour mon jardin, les résultats sont surprenants. Quant aux tarifs, des plus raisonnables. Merci Messieurs et à très vite pour ma toiture.</p>
                         </div>
 
                         <!-- Avis 3 -->
                         <div class="avis-item avis-card">
                             <div class="avis-header">
-                                <h3>Christine Lauer</h3>
+                                <h3>Alexis F</h3>
                                 <div class="avis-rating">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -450,8 +520,24 @@
                                     <i class="fas fa-star"></i>
                                 </div>
                             </div>
-                            <p class="avis-date">il y a un an</p>
-                            <p class="avis-text">Très satisfaite de leur travail comme toujours. Cela fait des années que je fais appel à eux pour l'entretien de mon jardin et je ne suis jamais déçue. Bravo.</p>
+                            <p class="avis-date">Avril 2026</p>
+                            <p class="avis-text">Equipe sympathique et sérieuse qui est intervenue rapidement pour le démoussage et traitement de ma toiture. Super travail! Je recommande pleinement.</p>
+                        </div>
+
+                        <!-- Avis 4 -->
+                        <div class="avis-item avis-card">
+                            <div class="avis-header">
+                                <h3>Claudine BREON</h3>
+                                <div class="avis-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="avis-date">Janvier 2026</p>
+                            <p class="avis-text">J'ai beaucoup apprécier la gentillesse, le sérieux et la qualité professionnelle de M. PUYGRENIER et de son collègue qui ont super bien taillé mes haies. Je les recommande particulièrement et garde précieusement leurs coordonnées pour toutes futures interventions.</p>
                         </div>
                     </div>
                 </div>
@@ -464,6 +550,7 @@
         <div class="container">
             <h2>Contacts</h2>
             <p class="contact-intro">N'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez prendre rendez-vous. Les devis sont gratuits et sans engagement.</p>
+            <p class="contact-intro">Zone d'intervention : Rochefort, Échillais, Tonnay-Charente, Saint-Agnant et leurs alentours.</p>
             
             <div class="contact-info">
                 <div class="contact-item">
@@ -510,6 +597,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260802b"></script>
 </body>
 </html>
