@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Nettoyage de véranda haute pression à Rochefort | Ced A Tout Faire</title>
     
-    <!-- Meta Description & Keywords -->
+    <!-- Meta Description -->
     <meta name="description" content="Nettoyage de véranda haute pression à Rochefort - Préservation de l'étanchéité, vitrage et cadres. Devis gratuit.">
-    <meta name="keywords" content="nettoyage véranda Rochefort, haute pression, vitrage, cadres, nettoyage véranda professionnel">
     <meta name="author" content="Ced A Tout Faire">
     <meta name="robots" content="index, follow">
     <meta name="language" content="French">
@@ -46,9 +45,16 @@
         "@graph": [
             {
                 "@type": "LocalBusiness",
+                "@id": "https://cedatoutfaire.org/#localbusiness",
                 "name": "Ced A Tout Faire",
                 "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
-                "description": "Nettoyage de véranda à Rochefort",
+                "logo": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+                "description": "Nettoyage de toiture et de véranda, jardinier et entretien de jardin à Rochefort et alentours.",
+                "priceRange": "€€",
+                "foundingDate": "2013",
+                "founder": {
+                    "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier"
+                },
                 "address": {
                     "@type": "PostalAddress",
                     "streetAddress": "79 rue Lefevre",
@@ -59,10 +65,32 @@
                 },
                 "telephone": "+33649386780",
                 "email": "cedric.puygrenier@gmail.com",
-                "url": "https://cedatoutfaire.org",
+                "url": "https://cedatoutfaire.org/",
                 "sameAs": [
                     "https://www.facebook.com/profile.php?id=100089059665059"
-                ]
+                ],
+                "areaServed": [
+                    { "@type": "City", "name": "Rochefort" },
+                    { "@type": "City", "name": "Échillais" },
+                    { "@type": "City", "name": "Tonnay-Charente" },
+                    { "@type": "City", "name": "Saint-Agnant" }
+                ],
+                "openingHoursSpecification": {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    "opens": "08:30",
+                    "closes": "19:30"
+                }
+            },
+            {
+                "@type": "Person",
+                "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier",
+                "name": "Cédric Puygrenier",
+                "jobTitle": "Professionnel multiservices",
+                "image": "https://cedatoutfaire.org/ressources/a_propos/a_propos.webp",
+                "worksFor": {
+                    "@id": "https://cedatoutfaire.org/#localbusiness"
+                }
             },
             {
                 "@type": "Service",
@@ -81,7 +109,32 @@
                 ]
             },
             {
+                "@type": "BreadcrumbList",
+                "@id": "https://cedatoutfaire.org/nettoyage-veranda.html#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Accueil",
+                        "item": "https://cedatoutfaire.org/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Services",
+                        "item": "https://cedatoutfaire.org/#services"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Nettoyage de véranda",
+                        "item": "https://cedatoutfaire.org/nettoyage-veranda.html"
+                    }
+                ]
+            },
+            {
                 "@type": "FAQPage",
+                "@id": "https://cedatoutfaire.org/nettoyage-veranda.html#faq",
                 "mainEntity": [
                     {
                         "@type": "Question",
@@ -141,12 +194,12 @@
 </head>
 <body>
     <!-- Cookie consent banner -->
-    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite">
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Gestion des cookies analytiques" aria-live="polite">
         <div class="cookie-inner">
             <p>Nous utilisons des cookies analytiques pour améliorer ce site. Acceptez-vous les cookies analytiques&nbsp;?</p>
             <div class="cookie-actions">
-                <button id="cookie-accept" class="btn">Accepter</button>
-                <button id="cookie-decline" class="btn btn-secondary">Refuser</button>
+            <button type="button" id="cookie-accept" class="btn">Accepter</button>
+            <button type="button" id="cookie-decline" class="btn btn-secondary">Refuser</button>
             </div>
         </div>
     </div>
@@ -203,12 +256,13 @@
     
     <!-- Header / Navigation -->
     <header class="header">
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Navigation principale">
             <div class="container">
                 <div class="nav-content">
                     <ul class="nav-menu">
                         <li><a href="index.html#accueil">Accueil</a></li>
                         <li><a href="index.html#services">Services</a></li>
+                        <li><a href="qui-suis-je.html">Qui suis-je&nbsp;?</a></li>
                         <li><a href="index.html#testimonials">Avis</a></li>
                         <li><a href="index.html#contact">Contacts</a></li>
                     </ul>
@@ -220,6 +274,14 @@
     <!-- Service Detail Section -->
     <section class="service-detail">
         <div class="container">
+            <nav class="breadcrumb" aria-label="Fil d'Ariane">
+                <ol>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li aria-current="page">Nettoyage de véranda</li>
+                </ol>
+            </nav>
+
             <!-- Service Image & Title -->
             <div class="service-detail-header">
                 <img src="ressources/veranda.webp" alt="Nettoyage de véranda haute pression à Rochefort - vitrage et cadres" title="Service de nettoyage de véranda" class="service-detail-image" loading="lazy">
@@ -229,12 +291,12 @@
             <!-- Service Description -->
             <div class="service-detail-content">
                 <h2>À propos de ce service</h2>
-                <h3><p><strong>Pourquoi le nettoyage de véranda régulier est-il nécessaire ?</strong></p></h3>
+                <h3>Pourquoi le nettoyage de véranda régulier est-il nécessaire&nbsp;?</h3>
                 <p>La véranda, c'est l'extension qui apporte la lumière chez vous.
                     Pour conserver une bonne luminosité et profiter pleinement de cet espace de vie, le nettoyage 
                     de votre véranda est nécessaire au moins une fois par an. Le temps, la pollution et les mousses 
                     sur les toits finissent par former une couche qui bloque la lumière et, à terme, fragilise les joints et les structures.</p>
-                <h3><p><strong>Quel procédé pour nettoyer une véranda?</strong></p></h3>
+                <h3>Quel procédé pour nettoyer une véranda&nbsp;?</h3>
                 <p>Mon intervention couvre l'ensemble de votre véranda : toiture, vitres latérales et profilés. J'utilise un nettoyeur haute 
                     pression sur la toiture et les vitrages, là où l'efficacité est maximale et sans danger. La prudence est essentielle et je 
                     prends le soin de ne jamais insister directement sur l'ensemble des joints ni sur les points de raccordement. 
@@ -244,6 +306,43 @@
 
                 <h2>Zone d'intervention</h2>
                 <p>J'interviens à Rochefort et dans les alentours, notamment à Échillais, Tonnay-Charente et Saint-Agnant. Contactez-moi pour vérifier la possibilité d'intervention à votre adresse.</p>
+
+                <section class="service-faq" aria-labelledby="faq-veranda-title">
+                    <h2 id="faq-veranda-title">Questions fréquentes sur le nettoyage de véranda</h2>
+                    <p>Voici les réponses aux questions que mes clients me posent le plus souvent avant une intervention.</p>
+
+                    <div class="faq-list">
+                        <details class="faq-item" open>
+                            <summary>À quelle fréquence est-il recommandé de faire nettoyer ma véranda&nbsp;?</summary>
+                            <div class="faq-answer">
+                                <p>Pour maintenir une bonne luminosité et prolonger la durée de vie de votre espace de vie, le nettoyage complet de votre véranda est nécessaire au moins une fois par an. Cela prévient l'accumulation de pollution et de mousses.</p>
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary>Le nettoyage de véranda comprend-il la toiture, les vitres et la structure&nbsp;?</summary>
+                            <div class="faq-answer">
+                                <p>Oui, mon intervention est complète et couvre l'ensemble de votre véranda : la toiture, les vitres latérales et tous les profilés. L'objectif est de décoller les saletés sans compromettre l'étanchéité.</p>
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary>Utilisez-vous le nettoyeur haute pression sur les vérandas&nbsp;?</summary>
+                            <div class="faq-answer">
+                                <p>J'utilise le nettoyeur haute pression sur la toiture et les vitrages car l'efficacité y est maximale et sans danger. Je prends toujours le soin de ne jamais insister sur les joints ni les points de raccordement, et je vérifie et nettoie les chéneaux pour assurer un écoulement libre.</p>
+                            </div>
+                        </details>
+                    </div>
+                </section>
+
+                <nav class="related-services" aria-label="À découvrir également">
+                    <h2>À découvrir également</h2>
+                    <div class="related-services-links">
+                        <a href="nettoyage-toiture.html">Nettoyage de toiture</a>
+                        <a href="entretien-espaces-verts.html">Entretien de jardin</a>
+                        <a href="qui-suis-je.html">Qui suis-je&nbsp;?</a>
+                    </div>
+                </nav>
 
                 <!-- Call to Action -->
                 <div class="service-cta">
@@ -266,8 +365,11 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Ced A Tout Faire - Tous droits réservés</p>
+            <p>&copy; 2026 Ced A Tout Faire - Tous droits réservés</p>
+            <p>79 rue Lefevre, 17300 Rochefort</p>
             <p>
+                <a href="qui-suis-je.html">Qui suis-je&nbsp;?</a>
+                &nbsp;&middot;&nbsp;
                 <a href="privacy.html">Politique de confidentialité / Cookies</a>
                 &nbsp;&middot;&nbsp;
                 <a href="#" id="cookie-settings">Paramètres cookies</a>

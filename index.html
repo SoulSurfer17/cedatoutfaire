@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Nettoyage toiture, véranda & entretien de jardin à Rochefort</title>
+    <title>Nettoyage toiture, véranda &amp; entretien de jardin à Rochefort</title>
     
-    <!-- Meta Description & Keywords -->
+    <!-- Meta Description -->
     <meta name="description" content="Nettoyage de toiture et véranda | Jardinier et entretien de jardin à Rochefort">
-    <meta name="keywords" content="nettoyage toiture Rochefort, démoussage, nettoyage véranda, jardinier Rochefort, entretien jardin, jardinage, entretien espaces verts">
     <meta name="author" content="Ced A Tout Faire">
     <meta name="robots" content="index, follow">
     <meta name="language" content="French">
@@ -46,14 +45,6 @@
             fetch('reviews.json')
                 .then(response => response.json())
                 .then(data => {
-                    // Update review count in schema.org
-                    const schemaScript = document.querySelector('script[id="schema-local-business"]');
-                    if(schemaScript) {
-                        const schema = JSON.parse(schemaScript.textContent);
-                        schema.aggregateRating.reviewCount = String(data.totalReviews);
-                        schemaScript.textContent = JSON.stringify(schema, null, 2);
-                    }
-                    
                     // Update display count
                     const reviewCountElement = document.getElementById('review-count-display');
                     if(reviewCountElement) {
@@ -82,220 +73,125 @@
         })();
     </script>
  
- <script type="application/ld+json" id="schema-local-business">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-    "@id": "https://cedatoutfaire.org/#localbusiness",
-  "name": "Ced A Tout Faire",
-  "url": "https://cedatoutfaire.org",
-  "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
-    "description": "Nettoyage de toiture et véranda | Jardinier et entretien de jardin à Rochefort",
-  "priceRange": "$$", 
-  
-  "address": {
-    "@type": "PostalAddress", 
-    "streetAddress": "79 rue Lefevre", 
-    "addressLocality": "Rochefort",
-    "addressRegion": "Charente-Maritime",
-    "postalCode": "17300",
-    "addressCountry": "FR"
-  },
-  
-  "telephone": "+33649386780",
-  "email": "cedric.puygrenier@gmail.com",
-  
-  "sameAs": [
-    "https://www.facebook.com/profile.php?id=100089059665059"
-  ],
-
-    "areaServed": [
-        { "@type": "City", "name": "Rochefort" },
-        { "@type": "City", "name": "Échillais" },
-        { "@type": "City", "name": "Tonnay-Charente" },
-        { "@type": "City", "name": "Saint-Agnant" }
-    ],
-
-    "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Services proposés",
-        "itemListElement": [
+    <script type="application/ld+json" id="schema-local-business">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
             {
-                "@type": "Offer",
-                "itemOffered": {
-                    "@type": "Service",
-                    "name": "Nettoyage et démoussage de toiture",
-                    "url": "https://cedatoutfaire.org/nettoyage-toiture.html"
+                "@type": "LocalBusiness",
+                "@id": "https://cedatoutfaire.org/#localbusiness",
+                "name": "Ced A Tout Faire",
+                "url": "https://cedatoutfaire.org/",
+                "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+                "logo": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+                "description": "Nettoyage de toiture et de véranda, jardinier et entretien de jardin à Rochefort et alentours.",
+                "priceRange": "€€",
+                "foundingDate": "2013",
+                "founder": {
+                    "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier"
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "79 rue Lefevre",
+                    "addressLocality": "Rochefort",
+                    "addressRegion": "Charente-Maritime",
+                    "postalCode": "17300",
+                    "addressCountry": "FR"
+                },
+                "telephone": "+33649386780",
+                "email": "cedric.puygrenier@gmail.com",
+                "sameAs": [
+                    "https://www.facebook.com/profile.php?id=100089059665059"
+                ],
+                "areaServed": [
+                    { "@type": "City", "name": "Rochefort" },
+                    { "@type": "City", "name": "Échillais" },
+                    { "@type": "City", "name": "Tonnay-Charente" },
+                    { "@type": "City", "name": "Saint-Agnant" }
+                ],
+                "openingHoursSpecification": {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday"
+                    ],
+                    "opens": "08:30",
+                    "closes": "19:30"
+                },
+                "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "Services proposés",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "@id": "https://cedatoutfaire.org/nettoyage-toiture.html#service",
+                                "name": "Nettoyage et démoussage de toiture",
+                                "url": "https://cedatoutfaire.org/nettoyage-toiture.html"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "@id": "https://cedatoutfaire.org/nettoyage-veranda.html#service",
+                                "name": "Nettoyage de véranda",
+                                "url": "https://cedatoutfaire.org/nettoyage-veranda.html"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "@id": "https://cedatoutfaire.org/entretien-espaces-verts.html#service",
+                                "name": "Entretien de jardin",
+                                "alternateName": "Entretien des espaces verts",
+                                "url": "https://cedatoutfaire.org/entretien-espaces-verts.html"
+                            }
+                        }
+                    ]
                 }
             },
             {
-                "@type": "Offer",
-                "itemOffered": {
-                    "@type": "Service",
-                    "name": "Nettoyage de véranda",
-                    "url": "https://cedatoutfaire.org/nettoyage-veranda.html"
+                "@type": "Person",
+                "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier",
+                "name": "Cédric Puygrenier",
+                "jobTitle": "Professionnel multiservices",
+                "image": "https://cedatoutfaire.org/ressources/a_propos/a_propos.webp",
+                "worksFor": {
+                    "@id": "https://cedatoutfaire.org/#localbusiness"
                 }
             },
             {
-                "@type": "Offer",
-                "itemOffered": {
-                    "@type": "Service",
-                    "name": "Entretien de jardin",
-                    "alternateName": "Entretien des espaces verts",
-                    "url": "https://cedatoutfaire.org/entretien-espaces-verts.html"
-                }
+                "@type": "WebSite",
+                "@id": "https://cedatoutfaire.org/#website",
+                "url": "https://cedatoutfaire.org/",
+                "name": "Ced A Tout Faire",
+                "publisher": {
+                    "@id": "https://cedatoutfaire.org/#localbusiness"
+                },
+                "inLanguage": "fr-FR"
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://cedatoutfaire.org/#webpage",
+                "url": "https://cedatoutfaire.org/",
+                "name": "Nettoyage toiture, véranda et entretien de jardin à Rochefort",
+                "isPartOf": {
+                    "@id": "https://cedatoutfaire.org/#website"
+                },
+                "about": {
+                    "@id": "https://cedatoutfaire.org/#localbusiness"
+                },
+                "inLanguage": "fr-FR"
             }
         ]
-    },
-  
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
-    ],
-    "opens": "08:30",
-    "closes": "19:30"
-  },
-
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "itemReviewed": {
-      "@type": "LocalBusiness",
-      "name": "Ced A Tout Faire",
-      "telephone": "+33649386780",
-      "priceRange": "$$",
-      "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
-      "address": { 
-        "@type": "PostalAddress", 
-        "streetAddress": "79 rue Lefèvre", 
-        "addressLocality": "Rochefort",
-        "addressRegion": "Charente-Maritime",
-        "postalCode": "17300",
-        "addressCountry": "FR"
-      }
-    },
-    "ratingValue": "5",
-    "reviewCount": "33",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  
-  "review": [
-    {
-      "@type": "Review",
-      "itemReviewed": {
-        "@type": "LocalBusiness",
-        "name": "Ced A Tout Faire",
-        "telephone": "+33649386780",
-        "priceRange": "$$",
-        "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
-        "address": { 
-            "@type": "PostalAddress", 
-            "streetAddress": "79 rue Lefèvre", 
-            "addressLocality": "Rochefort",
-            "addressRegion": "Charente-Maritime",
-            "postalCode": "17300",
-            "addressCountry": "FR"
-        }
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Alexis F"
-      },
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      },
-    "reviewBody": "Equipe sympathique et sérieuse qui est intervenue rapidement pour le démoussage et traitement de ma toiture. Super travail! Je recommande pleinement.",
-    "datePublished": "2026-04-01"
-    },
-    {
-      "@type": "Review",
-      "itemReviewed": {
-        "@type": "LocalBusiness",
-        "name": "Ced A Tout Faire",
-        "telephone": "+33649386780", 
-        "priceRange": "$$",
-        "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
-        "address": { 
-            "@type": "PostalAddress", 
-            "streetAddress": "79 rue Lefèvre", 
-            "addressLocality": "Rochefort",
-            "addressRegion": "Charente-Maritime",
-            "postalCode": "17300",
-            "addressCountry": "FR"
-        }
-      },
-      "author": {
-        "@type": "Person",
-                "name": "Claudine BREON"
-      },
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      },
-    "reviewBody": "J'ai beaucoup apprécier la gentillesse, le sérieux et la qualité professionnelle de M. PUYGRENIER et de son collègue qui ont super bien taillé mes haies. Je les recommande particulièrement et garde précieusement leurs coordonnées pour toutes futures interventions.",
-    "datePublished": "2026-01-01"
-    },
-    {
-      "@type": "Review",
-      "itemReviewed": {
-        "@type": "LocalBusiness",
-        "name": "Ced A Tout Faire",
-        "telephone": "+33649386780",
-        "priceRange": "$$",
-        "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
-        "address": { 
-            "@type": "PostalAddress", 
-            "streetAddress": "79 rue Lefèvre", 
-            "addressLocality": "Rochefort",
-            "addressRegion": "Charente-Maritime",
-            "postalCode": "17300",
-            "addressCountry": "FR"
-        }
-      },
-      "author": {
-        "@type": "Person",
-                "name": "Karine Ferré"
-      },
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      },
-            "reviewBody": "Sérieux, ponctualité, efficacité et professionnalisme sont des mots qui résument parfaitement ce duo d'entrepreneurs, intervenus pour le nettoyage de la toiture et de la façade d'une maison à étage. Je garde précieusement les coordonnées de cette Entreprise et je la recommande vivement.",
-            "datePublished": "2026-04-01"
-        },
-        {
-            "@type": "Review",
-            "itemReviewed": {
-                "@type": "LocalBusiness",
-                "name": "Ced A Tout Faire",
-                "telephone": "+33649386780",
-                "priceRange": "$$",
-                "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
-                "address": {
-                        "@type": "PostalAddress",
-                        "streetAddress": "79 rue Lefèvre",
-                        "addressLocality": "Rochefort",
-                        "addressRegion": "Charente-Maritime",
-                        "postalCode": "17300",
-                        "addressCountry": "FR"
-                }
-            },
-            "author": {
-                "@type": "Person",
-                "name": "Stephane Gaillard"
-            },
-            "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "5"
-            },
-            "reviewBody": "Equipe de choc! Cédric et Christophe forment un duo sérieux, efficace et tellement sympathique! J'ai fait appel à eux pour mon jardin, les résultats sont surprenants. Quant aux tarifs, des plus raisonnables. Merci Messieurs et à très vite pour ma toiture.",
-            "datePublished": "2025-11"
     }
-  ]
-}
-</script>
+    </script>
             <!-- Consent & GA loader: n'ajoute pas le script GA tant que l'utilisateur n'a pas donné son consentement -->
             <script>
                 (function(){
@@ -325,12 +221,12 @@
     </head>
 <body>
         <!-- Cookie consent banner -->
-        <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite">
+        <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Gestion des cookies analytiques" aria-live="polite">
             <div class="cookie-inner">
                 <p>Nous utilisons des cookies analytiques pour améliorer ce site. Acceptez-vous les cookies analytiques&nbsp;?</p>
                 <div class="cookie-actions">
-                    <button id="cookie-accept" class="btn">Accepter</button>
-                    <button id="cookie-decline" class="btn btn-secondary">Refuser</button>
+                    <button type="button" id="cookie-accept" class="btn">Accepter</button>
+                    <button type="button" id="cookie-decline" class="btn btn-secondary">Refuser</button>
                 </div>
             </div>
         </div>
@@ -386,12 +282,13 @@
         </script>
     <!-- Header / Navigation -->
     <header class="header">
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Navigation principale">
             <div class="container">
                 <div class="nav-content">
                     <ul class="nav-menu">
                         <li><a href="#accueil">Accueil</a></li>
                         <li><a href="#services">Services</a></li>
+                        <li><a href="qui-suis-je.html">Qui suis-je&nbsp;?</a></li>
                         <li><a href="#testimonials">Avis</a></li>
                         <li><a href="#contact">Contacts</a></li>
                     </ul>
@@ -407,9 +304,10 @@
                 <img src="ressources/logoCATF.webp" alt="Logo Ced A Tout Faire - Nettoyage et démoussage de toiture, nettoyage de véranda, jardinier et entretien de jardin à Rochefort" title="Ced A Tout Faire" class="logo-img" loading="eager" width="500" height="220">
             </div>
             <h1>Nettoyage de toiture, nettoyage de véranda et entretien de jardin à Rochefort</h1>
-            <p>Fort de plus de 10 ans d'expérience, je suis à votre disposition dans ces domaines.</p>
+            <p>À votre service à Rochefort et dans les alentours depuis 2013.</p>
             <p>Vous trouverez tous les détails de ces activités dans la rubrique <strong>"Services".</strong></p>
             <p class="tagline">Ma priorité, <strong>votre satisfaction.</strong></p>
+            <p class="about-link"><a href="qui-suis-je.html">Découvrir qui je suis</a></p>
             <div class="hero-photo">
                 <img src="ressources/moi.webp" alt="Cédric - Propriétaire Ced A Tout Faire, jardinier et expert en nettoyage de toiture, jardinage à Rochefort" title="Cédric - Fondateur Ced A Tout Faire" loading="eager">
             </div>
@@ -452,7 +350,6 @@
                     </div>
                 </a>
                
-                </div>
             </div>
         </div>
     </section>
@@ -475,7 +372,7 @@
                         <span id="review-count-display">33</span> avis clients sur Google, moyenne 5/5
                     </p>
                     <!-- Galerie d'avis (texte) -->
-                    <div class="avis-gallery" id="recent-reviews-container" aria-label="Galerie des avis clients">
+                    <div class="avis-gallery" id="recent-reviews-container" role="region" aria-label="Galerie des avis clients">
                         <!-- Avis sont chargés dynamiquement depuis reviews.json -->
                         <!-- Fallback: affichage statique en cas d'erreur -->
                         <div class="avis-item avis-card">
@@ -555,10 +452,17 @@
             
             <div class="contact-info">
                 <div class="contact-item">
+                    <i class="fas fa-location-dot"></i>
+                    <div>
+                        <h3>Adresse</h3>
+                        <address>79 rue Lefevre<br>17300 Rochefort</address>
+                    </div>
+                </div>
+                <div class="contact-item">
                     <i class="fas fa-phone"></i>
                     <div>
                         <h3>Téléphone</h3>
-                        <p><a href="tel:+33649386780">06 49 38 67 80</a></p>
+                        <p><a href="tel:+33649386780">06&nbsp;49&nbsp;38&nbsp;67&nbsp;80</a></p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -572,7 +476,7 @@
                     <i class="fab fa-facebook"></i>
                     <div>
                         <h3>Facebook</h3>
-                        <p><a href="https://www.facebook.com/profile.php?id=100089059665059" target="_blank">Ced A Tout Faire</a></p>
+                        <p><a href="https://www.facebook.com/profile.php?id=100089059665059" target="_blank" rel="noopener noreferrer">Ced A Tout Faire</a></p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -589,8 +493,11 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Ced A Tout Faire - Tous droits réservés</p>
+            <p>&copy; 2026 Ced A Tout Faire - Tous droits réservés</p>
+            <p>79 rue Lefevre, 17300 Rochefort</p>
             <p>
+                <a href="qui-suis-je.html">Qui suis-je&nbsp;?</a>
+                &nbsp;&middot;&nbsp;
                 <a href="privacy.html">Politique de confidentialité / Cookies</a>
                 &nbsp;&middot;&nbsp;
                 <a href="#" id="cookie-settings">Paramètres cookies</a>

@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Jardinier à Rochefort | Entretien de jardin | Ced A Tout Faire</title>
     
-    <!-- Meta Description & Keywords -->
+    <!-- Meta Description -->
     <meta name="description" content="Jardinier à Rochefort pour l'entretien de jardin : tonte, taille de haies, débroussaillage et évacuation des déchets verts. Devis gratuit.">
-    <meta name="keywords" content="jardinier Rochefort, entretien jardin Rochefort, tonte pelouse, taille de haies, débroussaillage, entretien espaces verts">
     <meta name="author" content="Ced A Tout Faire">
     <meta name="robots" content="index, follow">
     <meta name="language" content="French">
@@ -46,9 +45,16 @@
         "@graph": [
             {
                 "@type": "LocalBusiness",
+                "@id": "https://cedatoutfaire.org/#localbusiness",
                 "name": "Ced A Tout Faire",
                 "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
-                "description": "Jardinier et entretien de jardin à Rochefort",
+                "logo": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+                "description": "Nettoyage de toiture et de véranda, jardinier et entretien de jardin à Rochefort et alentours.",
+                "priceRange": "€€",
+                "foundingDate": "2013",
+                "founder": {
+                    "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier"
+                },
                 "address": {
                     "@type": "PostalAddress",
                     "streetAddress": "79 rue Lefevre",
@@ -59,10 +65,32 @@
                 },
                 "telephone": "+33649386780",
                 "email": "cedric.puygrenier@gmail.com",
-                "url": "https://cedatoutfaire.org",
+                "url": "https://cedatoutfaire.org/",
                 "sameAs": [
                     "https://www.facebook.com/profile.php?id=100089059665059"
-                ]
+                ],
+                "areaServed": [
+                    { "@type": "City", "name": "Rochefort" },
+                    { "@type": "City", "name": "Échillais" },
+                    { "@type": "City", "name": "Tonnay-Charente" },
+                    { "@type": "City", "name": "Saint-Agnant" }
+                ],
+                "openingHoursSpecification": {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    "opens": "08:30",
+                    "closes": "19:30"
+                }
+            },
+            {
+                "@type": "Person",
+                "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier",
+                "name": "Cédric Puygrenier",
+                "jobTitle": "Professionnel multiservices",
+                "image": "https://cedatoutfaire.org/ressources/a_propos/a_propos.webp",
+                "worksFor": {
+                    "@id": "https://cedatoutfaire.org/#localbusiness"
+                }
             },
             {
                 "@type": "Service",
@@ -82,7 +110,32 @@
                 ]
             },
             {
+                "@type": "BreadcrumbList",
+                "@id": "https://cedatoutfaire.org/entretien-espaces-verts.html#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Accueil",
+                        "item": "https://cedatoutfaire.org/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Services",
+                        "item": "https://cedatoutfaire.org/#services"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Entretien de jardin",
+                        "item": "https://cedatoutfaire.org/entretien-espaces-verts.html"
+                    }
+                ]
+            },
+            {
                 "@type": "FAQPage",
+                "@id": "https://cedatoutfaire.org/entretien-espaces-verts.html#faq",
                 "mainEntity": [
                     {
                         "@type": "Question",
@@ -142,12 +195,12 @@
 </head>
 <body>
     <!-- Cookie consent banner -->
-    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite">
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Gestion des cookies analytiques" aria-live="polite">
         <div class="cookie-inner">
             <p>Nous utilisons des cookies analytiques pour améliorer ce site. Acceptez-vous les cookies analytiques&nbsp;?</p>
             <div class="cookie-actions">
-                <button id="cookie-accept" class="btn">Accepter</button>
-                <button id="cookie-decline" class="btn btn-secondary">Refuser</button>
+            <button type="button" id="cookie-accept" class="btn">Accepter</button>
+            <button type="button" id="cookie-decline" class="btn btn-secondary">Refuser</button>
             </div>
         </div>
     </div>
@@ -204,12 +257,13 @@
     
     <!-- Header / Navigation -->
     <header class="header">
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Navigation principale">
             <div class="container">
                 <div class="nav-content">
                     <ul class="nav-menu">
                         <li><a href="index.html#accueil">Accueil</a></li>
                         <li><a href="index.html#services">Services</a></li>
+                        <li><a href="qui-suis-je.html">Qui suis-je&nbsp;?</a></li>
                         <li><a href="index.html#testimonials">Avis</a></li>
                         <li><a href="index.html#contact">Contacts</a></li>
                     </ul>
@@ -221,6 +275,14 @@
     <!-- Service Detail Section -->
     <section class="service-detail">
         <div class="container">
+            <nav class="breadcrumb" aria-label="Fil d'Ariane">
+                <ol>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li aria-current="page">Entretien de jardin</li>
+                </ol>
+            </nav>
+
             <!-- Service Image & Title -->
             <div class="service-detail-header">
                 <img src="ressources/tonte.webp" alt="Jardinier à Rochefort - entretien de jardin, tonte, taille de haies et débroussaillage" title="Service d'entretien de jardin à Rochefort" class="service-detail-image" loading="lazy">
@@ -229,17 +291,17 @@
 
             <!-- Service Description -->
             <div class="service-detail-content">
-                <h2>A propos de ce service</h2>
-                <h3><p><strong>L'entretien de jardin pour un beau jardin.</strong></p></h3>
+                <h2>À propos de ce service</h2>
+                <h3>L'entretien de jardin pour un beau jardin</h3>
                 <p>Un jardin bien entretenu est un jardin dont vous profitez. Si vous recherchez un jardinier à Rochefort pour l'entretien de votre jardin, je suis là pour prendre le relais. Mon objectif est de vous livrer un travail propre et soigné, exactement selon vos attentes.
                 J'interviens pour les travaux courants d'entretien des espaces verts : tonte de pelouse, débroussaillage des zones envahies et taille des végétaux comme les haies, arbustes et bosquets. Mon rôle est de vous décharger complètement de ces tâches physiques.</p>
-               <h3><p><strong>Ma philosophie de jardinier</strong></p></h3>
+               <h3>Ma philosophie de jardinier</h3>
                <p>Je ne suis pas une entreprise d'aménagement paysager, mais un service d'entretien à taille humaine, cela signifie  que je prends
                  le temps de comprendre ce que vous attendez de chaque intervention. 
                  Je travaille à votre rythme, que vous ayez besoin d'un coup de main ponctuel ou d'un suivi saisonnier. C'est pour cette raison 
                  que je ne fais pas de contrat d'entretien pour le jardin, ce qui vous permet de gérer le nombre d'interventions et votre
                  budget. Mon intervention inclut l'utilisation de mon propre matériel professionnel.</p>
-               <h3><p><strong>Gestion des déchets verts</strong></p></h3>
+               <h3>Gestion des déchets verts</h3>
                <p>La gestion des déchets après la taille ou la tonte est une question que nous réglons ensemble. Je peux m'occuper de l'enlèvement 
                 et de l'évacuation complète des déchets verts, selon vos préférences. Je propose également le broyage des branches et végétaux, 
                 le broyat peut être réutilisé sur place dans votre jardin (en paillage).</p>  
@@ -247,6 +309,42 @@
                 <h2>Zone d'intervention</h2>
                 <p>J'interviens à Rochefort et dans les alentours, notamment à Échillais, Tonnay-Charente et Saint-Agnant. Contactez-moi pour vérifier la possibilité d'intervention à votre adresse.</p>
 
+                <section class="service-faq" aria-labelledby="faq-jardin-title">
+                    <h2 id="faq-jardin-title">Questions fréquentes sur l'entretien de jardin</h2>
+                    <p>Voici les réponses aux questions que mes clients me posent le plus souvent avant une intervention.</p>
+
+                    <div class="faq-list">
+                        <details class="faq-item" open>
+                            <summary>Travaillez-vous avec des contrats d'entretien annuels pour le jardin&nbsp;?</summary>
+                            <div class="faq-answer">
+                                <p>Non, mon service d'entretien est conçu pour vous offrir une flexibilité totale. Je n'impose pas de contrat annuel, vous permettant de gérer à votre rythme et selon votre budget le nombre d'interventions nécessaires (ponctuelles ou suivis saisonniers).</p>
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary>Le tarif du service inclut-il la gestion et l'évacuation des déchets verts&nbsp;?</summary>
+                            <div class="faq-answer">
+                                <p>Oui, la gestion des déchets (tonte, taille, etc.) est une question que nous réglons ensemble selon vos préférences. Je propose l'enlèvement et l'évacuation complète des déchets verts, mais aussi le broyage des branches et végétaux pour une réutilisation en paillage sur place.</p>
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary>Quels travaux d'entretien de jardin réalisez-vous à Rochefort&nbsp;?</summary>
+                            <div class="faq-answer">
+                                <p>J'interviens pour l'entretien de jardin : tonte de pelouse, débroussaillage des zones envahies et taille des végétaux comme les haies, arbustes et bosquets. Mon intervention inclut l'utilisation de mon propre matériel professionnel.</p>
+                            </div>
+                        </details>
+                    </div>
+                </section>
+
+                <nav class="related-services" aria-label="À découvrir également">
+                    <h2>À découvrir également</h2>
+                    <div class="related-services-links">
+                        <a href="nettoyage-toiture.html">Nettoyage de toiture</a>
+                        <a href="nettoyage-veranda.html">Nettoyage de véranda</a>
+                        <a href="qui-suis-je.html">Qui suis-je&nbsp;?</a>
+                    </div>
+                </nav>
 
                 <!-- Call to Action -->
                 <div class="service-cta">
@@ -269,8 +367,11 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Ced A Tout Faire - Tous droits réservés</p>
+            <p>&copy; 2026 Ced A Tout Faire - Tous droits réservés</p>
+            <p>79 rue Lefevre, 17300 Rochefort</p>
             <p>
+                <a href="qui-suis-je.html">Qui suis-je&nbsp;?</a>
+                &nbsp;&middot;&nbsp;
                 <a href="privacy.html">Politique de confidentialité / Cookies</a>
                 &nbsp;&middot;&nbsp;
                 <a href="#" id="cookie-settings">Paramètres cookies</a>

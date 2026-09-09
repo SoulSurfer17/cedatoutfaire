@@ -13,7 +13,8 @@
         "title photo"
         "intro photo"
         "details photo"
-        "tagline photo";
+        "tagline photo"
+        "about photo";
     column-gap: 48px;
     align-items: center;
 }
@@ -41,6 +42,17 @@
     grid-area: tagline;
 }
 
+.hero-content .about-link {
+    grid-area: about;
+    margin-top: 8px;
+}
+
+.hero-content .about-link a {
+    color: #fff;
+    font-weight: 700;
+    text-underline-offset: 0.25rem;
+}
+
 .hero-photo {
     position: static;
     grid-area: photo;
@@ -52,7 +64,7 @@
 }
 
 .contact-info {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
 
 .contact-item,
@@ -119,6 +131,7 @@
             "intro"
             "details"
             "tagline"
+            "about"
             "photo";
     }
 

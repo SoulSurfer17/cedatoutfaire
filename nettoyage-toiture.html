@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Nettoyage démoussage de toiture à Rochefort | Ced A Tout Faire</title>
     
-    <!-- Meta Description & Keywords -->
+    <!-- Meta Description -->
     <meta name="description" content="Nettoyage démoussage de toiture à Rochefort - Grattage manuel, traitement fongicide professionnel. Devis gratuit.">
-    <meta name="keywords" content="nettoyage toiture Rochefort, démoussage toiture, nettoyage mousse lichen, traitement fongicide, toiture Rochefort">
     <meta name="author" content="Ced A Tout Faire">
     <meta name="robots" content="index, follow">
     <meta name="language" content="French">
@@ -46,9 +45,16 @@
         "@graph": [
             {
                 "@type": "LocalBusiness",
+                "@id": "https://cedatoutfaire.org/#localbusiness",
                 "name": "Ced A Tout Faire",
                 "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
-                "description": "Nettoyage et démoussage de toiture à Rochefort",
+                "logo": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+                "description": "Nettoyage de toiture et de véranda, jardinier et entretien de jardin à Rochefort et alentours.",
+                "priceRange": "€€",
+                "foundingDate": "2013",
+                "founder": {
+                    "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier"
+                },
                 "address": {
                     "@type": "PostalAddress",
                     "streetAddress": "79 rue Lefevre",
@@ -59,10 +65,32 @@
                 },
                 "telephone": "+33649386780",
                 "email": "cedric.puygrenier@gmail.com",
-                "url": "https://cedatoutfaire.org",
+                "url": "https://cedatoutfaire.org/",
                 "sameAs": [
                     "https://www.facebook.com/profile.php?id=100089059665059"
-                ]
+                ],
+                "areaServed": [
+                    { "@type": "City", "name": "Rochefort" },
+                    { "@type": "City", "name": "Échillais" },
+                    { "@type": "City", "name": "Tonnay-Charente" },
+                    { "@type": "City", "name": "Saint-Agnant" }
+                ],
+                "openingHoursSpecification": {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    "opens": "08:30",
+                    "closes": "19:30"
+                }
+            },
+            {
+                "@type": "Person",
+                "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier",
+                "name": "Cédric Puygrenier",
+                "jobTitle": "Professionnel multiservices",
+                "image": "https://cedatoutfaire.org/ressources/a_propos/a_propos.webp",
+                "worksFor": {
+                    "@id": "https://cedatoutfaire.org/#localbusiness"
+                }
             },
             {
                 "@type": "Service",
@@ -81,7 +109,32 @@
                 ]
             },
             {
+                "@type": "BreadcrumbList",
+                "@id": "https://cedatoutfaire.org/nettoyage-toiture.html#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Accueil",
+                        "item": "https://cedatoutfaire.org/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Services",
+                        "item": "https://cedatoutfaire.org/#services"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Nettoyage de toiture",
+                        "item": "https://cedatoutfaire.org/nettoyage-toiture.html"
+                    }
+                ]
+            },
+            {
                 "@type": "FAQPage",
+                "@id": "https://cedatoutfaire.org/nettoyage-toiture.html#faq",
                 "mainEntity": [
                     {
                         "@type": "Question",
@@ -141,12 +194,12 @@
 </head>
 <body>
     <!-- Cookie consent banner -->
-    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite">
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Gestion des cookies analytiques" aria-live="polite">
         <div class="cookie-inner">
             <p>Nous utilisons des cookies analytiques pour améliorer ce site. Acceptez-vous les cookies analytiques&nbsp;?</p>
             <div class="cookie-actions">
-                <button id="cookie-accept" class="btn">Accepter</button>
-                <button id="cookie-decline" class="btn btn-secondary">Refuser</button>
+            <button type="button" id="cookie-accept" class="btn">Accepter</button>
+            <button type="button" id="cookie-decline" class="btn btn-secondary">Refuser</button>
             </div>
         </div>
     </div>
@@ -203,12 +256,13 @@
     
     <!-- Header / Navigation -->
     <header class="header">
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Navigation principale">
             <div class="container">
                 <div class="nav-content">
                     <ul class="nav-menu">
                         <li><a href="index.html#accueil">Accueil</a></li>
                         <li><a href="index.html#services">Services</a></li>
+                        <li><a href="qui-suis-je.html">Qui suis-je&nbsp;?</a></li>
                         <li><a href="index.html#testimonials">Avis</a></li>
                         <li><a href="index.html#contact">Contacts</a></li>
                     </ul>
@@ -220,6 +274,14 @@
     <!-- Service Detail Section -->
     <section class="service-detail">
         <div class="container">
+            <nav class="breadcrumb" aria-label="Fil d'Ariane">
+                <ol>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li aria-current="page">Nettoyage de toiture</li>
+                </ol>
+            </nav>
+
             <!-- Service Image & Title -->
             <div class="service-detail-header">
                 <img src="ressources/toiture.webp" alt="Nettoyage de toiture professionnel à Rochefort - démoussage, nettoyage mousse et lichen" title="Service de nettoyage de toiture" class="service-detail-image" loading="lazy">
@@ -229,17 +291,17 @@
             <!-- Service Description -->
             <div class="service-detail-content">
                 <h2>À propos de ce service</h2>
-                <h3><p><strong>Pourquoi et quand nettoyer sa toiture?</strong></p></h3>
+                <h3>Pourquoi et quand nettoyer sa toiture&nbsp;?</h3>
                 <p>Pour conserver votre toiture en bon état et éviter l'humidité, une vérification et un nettoyage sont recommandés 
                     tous les 5 ans environ. Le temps qui passe, la pluie et l'ombre favorisent l'apparition de mousses, lichens et algues. 
                     Si ces éléments ne sont pas retirés, ils fragilisent vos tuiles et peuvent entraîner des problèmes d'étanchéité à long terme.</p>
-                    <h3><p><strong>Quel procédé pour nettoyer une toiture?</strong></p></h3>
+                    <h3>Quel procédé pour nettoyer une toiture&nbsp;?</h3>
                 <p>Ma priorité est de nettoyer sans abîmer. C'est pourquoi je n'utilise jamais la haute pression. Un nettoyeur haute pression
                  sur une tuile (terre cuite, bêton...) fragilise le revêtement et pousse l'eau là où elle ne devrait pas aller. Je procède 
                  à un grattage manuel complet des mousses et lichens sur toute la surface. Je m'assure de retirer les éléments indésirables un par un. 
                  C'est plus exigeant, mais cela garantit l'intégrité de votre couverture. De plus le nettoyage des gouttières de tous les débris est 
                  systématique et inclus dans la prestation.</p>
-                 <h3><p><strong>Le traitement de la toiture</strong></p></h3>
+                 <h3>Le traitement de la toiture</h3>
                  <p>Après le nettoyage physique, le produit est là pour traiter la racine du problème. Je pulvérise à basse pression un produit fongicide professionnel. 
                     Ce produit est agréé par le Ministère de l'Environnement pour son efficacité et sa sécurité. Il élimine les spores et les racines invisibles sous 6 à 
                     12 mois. Cette action lente permet non seulement de nettoyer en profondeur, mais aussi de protéger durablement votre toiture.
@@ -247,6 +309,43 @@
 
                 <h2>Zone d'intervention</h2>
                 <p>J'interviens à Rochefort et dans les alentours, notamment à Échillais, Tonnay-Charente et Saint-Agnant. Contactez-moi pour vérifier la possibilité d'intervention à votre adresse.</p>
+
+                <section class="service-faq" aria-labelledby="faq-toiture-title">
+                    <h2 id="faq-toiture-title">Questions fréquentes sur le nettoyage de toiture</h2>
+                    <p>Voici les réponses aux questions que mes clients me posent le plus souvent avant une intervention.</p>
+
+                    <div class="faq-list">
+                        <details class="faq-item" open>
+                            <summary>À quelle fréquence recommandez-vous le nettoyage et démoussage de toiture&nbsp;?</summary>
+                            <div class="faq-answer">
+                                <p>Pour maintenir votre toiture en bon état et prévenir les problèmes d'étanchéité dus à l'humidité, une vérification et un nettoyage complet sont généralement recommandés tous les 5 ans environ.</p>
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary>Quelle méthode utilisez-vous pour nettoyer la toiture et les tuiles&nbsp;?</summary>
+                            <div class="faq-answer">
+                                <p>Ma priorité est de nettoyer sans abîmer. C'est pourquoi je n'utilise jamais la haute pression. Je procède à un grattage manuel complet des mousses et lichens, ce qui garantit l'intégrité de votre couverture. De plus, le nettoyage des gouttières de tous les débris est inclus et systématique.</p>
+                            </div>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary>Quel type de traitement est appliqué après le nettoyage physique du toit&nbsp;?</summary>
+                            <div class="faq-answer">
+                                <p>Après le nettoyage, je pulvérise à basse pression un produit fongicide professionnel agréé par le Ministère de l'Environnement. Ce traitement agit lentement (6 à 12 mois) pour éliminer les spores en profondeur, protégeant ainsi durablement votre toiture contre la réapparition des végétaux.</p>
+                            </div>
+                        </details>
+                    </div>
+                </section>
+
+                <nav class="related-services" aria-label="À découvrir également">
+                    <h2>À découvrir également</h2>
+                    <div class="related-services-links">
+                        <a href="nettoyage-veranda.html">Nettoyage de véranda</a>
+                        <a href="entretien-espaces-verts.html">Entretien de jardin</a>
+                        <a href="qui-suis-je.html">Qui suis-je&nbsp;?</a>
+                    </div>
+                </nav>
 
                 <!-- Call to Action -->
                 <div class="service-cta">
@@ -269,8 +368,11 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Ced A Tout Faire - Tous droits réservés</p>
+            <p>&copy; 2026 Ced A Tout Faire - Tous droits réservés</p>
+            <p>79 rue Lefevre, 17300 Rochefort</p>
             <p>
+                <a href="qui-suis-je.html">Qui suis-je&nbsp;?</a>
+                &nbsp;&middot;&nbsp;
                 <a href="privacy.html">Politique de confidentialité / Cookies</a>
                 &nbsp;&middot;&nbsp;
                 <a href="#" id="cookie-settings">Paramètres cookies</a>
