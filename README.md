@@ -4,9 +4,9 @@ Site professionnel pour Ced A Tout Faire, entreprise de services multi-services 
 
 ## 🎯 Services proposés
 
-- **Nettoyage de toiture** : Démoussage, nettoyage mousse et lichen
-- **Nettoyage de véranda** : Haute pression, vitrage et cadres
-- **Entretien d'espaces verts** : Tonte, taille de haie, débroussaillage
+- **Nettoyage de toiture** : Démoussage, nettoyage mousse et lichen, à partir de 7 € par m²
+- **Nettoyage de véranda** : Haute pression, vitrage et cadres, à partir de 10 € par m²
+- **Entretien d'espaces verts** : Tonte, taille de haie et débroussaillage, sur devis
 
 ## 📋 Caractéristiques
 

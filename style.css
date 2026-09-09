@@ -253,6 +253,13 @@ h3 strong {
     line-height: 1.6;
 }
 
+.service-content .service-price {
+    margin: 0;
+    color: #f5d76e;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
 /* Testimonials Section */
 .testimonials {
     background-color: #1a6f7a;
@@ -735,6 +742,17 @@ h3 strong {
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 20px;
+}
+
+.service-detail-content .service-price--detail {
+    padding: 0.85rem 1rem;
+    background: rgba(245, 215, 110, 0.08);
+    border-left: 4px solid #f5d76e;
+    border-radius: 4px;
+}
+
+.service-detail-content .service-price--detail strong {
+    color: #f5d76e;
 }
 
 /* FAQ visible sur les pages de service */

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Réalisations à Rochefort | Ced A Tout Faire</title>
+
+    <meta name="description" content="Découvrez quelques réalisations de Ced A Tout Faire : nettoyage de toiture et de véranda, taille de haies et entretien de jardin à Rochefort.">
+    <meta name="author" content="Ced A Tout Faire">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="French">
+    <link rel="canonical" href="https://cedatoutfaire.org/realisations.html">
+    <link rel="sitemap" type="application/xml" href="https://cedatoutfaire.org/sitemap.xml">
+    <link rel="icon" type="image/webp" href="ressources/logoCATF.webp">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .realisations-page {
+            min-height: calc(100vh - 200px);
+            padding: 36px 20px 60px;
+            background: linear-gradient(135deg, #1a6f7a 0%, #0f4a50 100%);
+        }
+
+        .realisations-intro {
+            max-width: 720px;
+            margin: 0 auto 2.5rem;
+            text-align: center;
+        }
+
+        .realisations-intro .section-kicker {
+            margin-bottom: 0.6rem;
+            color: #f5d76e;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .realisations-intro h1 {
+            margin-bottom: 0.8rem;
+            color: #fff;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            line-height: 1.1;
+        }
+
+        .realisations-intro p:last-child {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+
+        .realisations-section {
+            max-width: 1120px;
+            margin: 3rem auto 0;
+        }
+
+        .realisations-section-header {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            flex: 0 0 38px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            color: #f5d76e;
+            font-weight: 800;
+        }
+
+        .realisations-section-header h2 {
+            color: #fff;
+            font-size: clamp(1.45rem, 3vw, 1.8rem);
+        }
+
+        .realisations-section-header p {
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        .works-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .works-grid--three {
+            justify-content: center;
+        }
+
+        .work-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 400px;
+            flex: 0 1 360px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+        }
+
+        .work-card--wide {
+            max-width: 400px;
+        }
+
+        .work-card img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.35s ease;
+        }
+
+        .realisations-section[aria-labelledby="toiture-title"] .work-card img,
+        .realisations-section[aria-labelledby="veranda-title"] .work-card img {
+            aspect-ratio: 16 / 9;
+        }
+
+        .realisations-section[aria-labelledby="jardin-title"] .work-card img {
+            height: 300px;
+        }
+
+        .work-card--portrait {
+            max-width: 240px;
+            flex-basis: 240px;
+        }
+
+        .work-card:hover img {
+            transform: scale(1.025);
+        }
+
+        .work-label {
+            position: absolute;
+            top: 0.65rem;
+            left: 0.65rem;
+            z-index: 1;
+            padding: 0.28rem 0.6rem;
+            border-radius: 999px;
+            color: #083038;
+            background: #fff;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .work-label--after {
+            background: #f5d76e;
+        }
+
+        .work-card figcaption {
+            flex: 1;
+            padding: 0.75rem 0.9rem 0.85rem;
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        .realisations-cta {
+            max-width: 760px;
+            margin: 3rem auto 0;
+            padding: 24px;
+        }
+
+        @media (max-width: 680px) {
+            .realisations-page {
+                padding: 30px 15px 50px;
+            }
+
+            .realisations-section-header {
+                align-items: flex-start;
+            }
+
+            .work-card {
+                flex-basis: 100%;
+            }
+
+            .work-card--portrait {
+                max-width: 240px;
+                flex-basis: 240px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .work-card img {
+                transition: none;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "LocalBusiness",
+                "@id": "https://cedatoutfaire.org/#localbusiness",
+                "name": "Ced A Tout Faire",
+                "url": "https://cedatoutfaire.org/"
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://cedatoutfaire.org/#website",
+                "url": "https://cedatoutfaire.org/",
+                "name": "Ced A Tout Faire"
+            },
+            {
+                "@type": "ImageGallery",
+                "@id": "https://cedatoutfaire.org/realisations.html#gallery",
+                "url": "https://cedatoutfaire.org/realisations.html",
+                "name": "Réalisations de Ced A Tout Faire à Rochefort",
+                "description": "Exemples de nettoyage de toiture et de véranda, de taille de haies et d'entretien de jardin réalisés à Rochefort et aux alentours.",
+                "inLanguage": "fr-FR",
+                "isPartOf": {
+                    "@id": "https://cedatoutfaire.org/#website"
+                },
+                "about": {
+                    "@id": "https://cedatoutfaire.org/#localbusiness"
+                },
+                "breadcrumb": {
+                    "@id": "https://cedatoutfaire.org/realisations.html#breadcrumb"
+                },
+                "primaryImageOfPage": {
+                    "@id": "https://cedatoutfaire.org/realisations.html#toiture-resultat"
+                },
+                "image": [
+                    {
+                        "@type": "ImageObject",
+                        "contentUrl": "https://cedatoutfaire.org/ressources/toiture/grattage.webp",
+                        "caption": "Grattage manuel des mousses et lichens sur une toiture."
+                    },
+                    {
+                        "@type": "ImageObject",
+                        "contentUrl": "https://cedatoutfaire.org/ressources/toiture/pulverisation.webp",
+                        "caption": "Application à basse pression du traitement de toiture."
+                    },
+                    {
+                        "@type": "ImageObject",
+                        "@id": "https://cedatoutfaire.org/realisations.html#toiture-resultat",
+                        "contentUrl": "https://cedatoutfaire.org/ressources/toiture/r%C3%A9sultat.webp",
+                        "caption": "Résultat après le nettoyage et le traitement d'une toiture."
+                    },
+                    {
+                        "@type": "ImageObject",
+                        "contentUrl": "https://cedatoutfaire.org/ressources/v%C3%A9randa/veranda_avant.webp",
+                        "caption": "Toiture de véranda avant son nettoyage."
+                    },
+                    {
+                        "@type": "ImageObject",
+                        "contentUrl": "https://cedatoutfaire.org/ressources/v%C3%A9randa/veranda_apres.webp",
+                        "caption": "Toiture de véranda après son nettoyage."
+                    },
+                    {
+                        "@type": "ImageObject",
+                        "contentUrl": "https://cedatoutfaire.org/ressources/jardin/taille_1.webp",
+                        "caption": "Grande haie après une taille régulière."
+                    },
+                    {
+                        "@type": "ImageObject",
+                        "contentUrl": "https://cedatoutfaire.org/ressources/jardin/taille_2_avant.webp",
+                        "caption": "Arbuste avant sa remise en forme."
+                    },
+                    {
+                        "@type": "ImageObject",
+                        "contentUrl": "https://cedatoutfaire.org/ressources/jardin/taille_2_apres.webp",
+                        "caption": "Arbuste arrondi après sa remise en forme."
+                    },
+                    {
+                        "@type": "ImageObject",
+                        "contentUrl": "https://cedatoutfaire.org/ressources/jardin/tonte_1.webp",
+                        "caption": "Tonte et remise au propre d'une pelouse arborée."
+                    },
+                    {
+                        "@type": "ImageObject",
+                        "contentUrl": "https://cedatoutfaire.org/ressources/jardin/tonte_2.webp",
+                        "caption": "Pelouse entretenue autour des arbres et des massifs."
+                    }
+                ]
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "https://cedatoutfaire.org/realisations.html#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Accueil",
+                        "item": "https://cedatoutfaire.org/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Réalisations",
+                        "item": "https://cedatoutfaire.org/realisations.html"
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+
+    <script>
+        (function(){
+            var MEAS_ID = 'G-6GML1CR323';
+            window.loadGtag = function(){
+                if(window.gtagLoaded) return;
+                var s = document.createElement('script');
+                s.async = true;
+                s.src = 'https://www.googletagmanager.com/gtag/js?id=' + MEAS_ID;
+                document.head.appendChild(s);
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                window.gtag = gtag;
+                gtag('js', new Date());
+                gtag('config', MEAS_ID, { 'anonymize_ip': true });
+                window.gtagLoaded = true;
+            };
+            try{
+                if(localStorage.getItem('ga_consent') === 'granted'){
+                    window.addEventListener('load', window.loadGtag);
+                }
+            }catch(e){}
+        })();
+    </script>
+</head>
+<body>
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Gestion des cookies analytiques" aria-live="polite">
+        <div class="cookie-inner">
+            <p>Nous utilisons des cookies analytiques pour améliorer ce site. Acceptez-vous les cookies analytiques&nbsp;?</p>
+            <div class="cookie-actions">
+                <button type="button" id="cookie-accept" class="btn">Accepter</button>
+                <button type="button" id="cookie-decline" class="btn btn-secondary">Refuser</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function(){
+            var banner = document.getElementById('cookie-banner');
+            if(!banner) return;
+
+            window.openCookieSettings = function(){
+                banner.style.display = 'flex';
+                var btn = banner.querySelector('#cookie-accept');
+                if(btn) btn.focus();
+            };
+
+            document.addEventListener('click', function(event){
+                var target = event.target;
+                if(target && target.closest && target.closest('#cookie-settings')){
+                    event.preventDefault();
+                    window.openCookieSettings();
+                }
+            });
+
+            function setConsent(value){
+                try{ localStorage.setItem('ga_consent', value); }catch(e){}
+                banner.style.display = 'none';
+                if(value === 'granted' && window.loadGtag) window.loadGtag();
+            }
+
+            document.getElementById('cookie-accept').addEventListener('click', function(){ setConsent('granted'); });
+            document.getElementById('cookie-decline').addEventListener('click', function(){ setConsent('denied'); });
+
+            try{
+                var consent = localStorage.getItem('ga_consent');
+                if(consent === 'granted' || consent === 'denied'){
+                    banner.style.display = 'none';
+                    if(consent === 'granted' && window.loadGtag) window.loadGtag();
+                }
+            }catch(e){}
+        })();
+    </script>
+
+    <header class="header">
+        <nav class="navbar" aria-label="Navigation principale">
+            <div class="container">
+                <div class="nav-content">
+                    <ul class="nav-menu">
+                        <li><a href="index.html#accueil">Accueil</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="realisations.html" aria-current="page">Réalisations</a></li>
+                        <li><a href="qui-suis-je.html">Qui suis-je&nbsp;?</a></li>
+                        <li><a href="index.html#testimonials">Avis</a></li>
+                        <li><a href="index.html#contact">Contacts</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="realisations-page">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="Fil d'Ariane">
+                <ol>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li aria-current="page">Réalisations</li>
+                </ol>
+            </nav>
+
+            <header class="realisations-intro">
+                <p class="section-kicker">Interventions à Rochefort et alentours</p>
+                <h1>Quelques réalisations</h1>
+                <p>Nettoyage de toiture et de véranda, taille de haies ou entretien de pelouse&nbsp;: voici quelques exemples concrets de mon travail.</p>
+            </header>
+
+            <section class="realisations-section" aria-labelledby="toiture-title">
+                <div class="realisations-section-header">
+                    <span class="section-number" aria-hidden="true">01</span>
+                    <div>
+                        <h2 id="toiture-title">Nettoyage de toiture</h2>
+                        <p>Les différentes étapes d'une intervention respectueuse des tuiles.</p>
+                    </div>
+                </div>
+
+                <div class="works-grid works-grid--three">
+                    <figure class="work-card">
+                        <img src="ressources/toiture/grattage.webp" alt="Grattage manuel des mousses et lichens sur des tuiles" loading="lazy">
+                        <figcaption>Grattage manuel des mousses et lichens, sans nettoyeur haute pression.</figcaption>
+                    </figure>
+                    <figure class="work-card">
+                        <img src="ressources/toiture/pulverisation.webp" alt="Toiture en tuiles pendant l'application du traitement" loading="lazy">
+                        <figcaption>Application du traitement à basse pression après le nettoyage mécanique.</figcaption>
+                    </figure>
+                    <figure class="work-card">
+                        <img src="ressources/toiture/résultat.webp" alt="Vue générale d'une toiture après intervention" loading="lazy">
+                        <span class="work-label work-label--after">Résultat</span>
+                        <figcaption>Vue générale de la toiture après l'action du produit pendant plusieurs mois.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section class="realisations-section" aria-labelledby="veranda-title">
+                <div class="realisations-section-header">
+                    <span class="section-number" aria-hidden="true">02</span>
+                    <div>
+                        <h2 id="veranda-title">Nettoyage de véranda</h2>
+                        <p>Retrouver une toiture propre et laisser entrer davantage de lumière.</p>
+                    </div>
+                </div>
+
+                <div class="works-grid">
+                    <figure class="work-card">
+                        <img src="ressources/véranda/veranda_avant.webp" alt="Toiture de véranda encrassée avant son nettoyage" loading="lazy">
+                        <span class="work-label">Avant</span>
+                        <figcaption>La toiture de la véranda avant le nettoyage.</figcaption>
+                    </figure>
+                    <figure class="work-card">
+                        <img src="ressources/véranda/veranda_apres.webp" alt="Toiture de véranda propre après son nettoyage" loading="lazy">
+                        <span class="work-label work-label--after">Après</span>
+                        <figcaption>Le vitrage et les profilés après le nettoyage.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section class="realisations-section" aria-labelledby="jardin-title">
+                <div class="realisations-section-header">
+                    <span class="section-number" aria-hidden="true">03</span>
+                    <div>
+                        <h2 id="jardin-title">Entretien de jardin</h2>
+                        <p>Taille des végétaux et entretien courant des pelouses.</p>
+                    </div>
+                </div>
+
+                <div class="works-grid">
+                    <figure class="work-card work-card--wide">
+                        <img src="ressources/jardin/taille_1.webp" alt="Grande haie taillée avec des lignes régulières" loading="lazy">
+                        <span class="work-label work-label--after">Taille terminée</span>
+                        <figcaption>Taille d'une grande haie pour retrouver des lignes nettes et régulières.</figcaption>
+                    </figure>
+                    <figure class="work-card work-card--portrait">
+                        <img src="ressources/jardin/taille_2_avant.webp" alt="Arbuste dense avant sa taille" loading="lazy">
+                        <span class="work-label">Avant</span>
+                        <figcaption>L'arbuste avant la remise en forme.</figcaption>
+                    </figure>
+                    <figure class="work-card work-card--portrait">
+                        <img src="ressources/jardin/taille_2_apres.webp" alt="Arbuste arrondi après sa taille" loading="lazy">
+                        <span class="work-label work-label--after">Après</span>
+                        <figcaption>Une forme arrondie et un volume maîtrisé après la taille.</figcaption>
+                    </figure>
+                    <figure class="work-card">
+                        <img src="ressources/jardin/tonte_1.webp" alt="Pelouse arborée pendant son entretien" loading="lazy">
+                        <figcaption>Tonte et remise au propre d'une pelouse arborée.</figcaption>
+                    </figure>
+                    <figure class="work-card">
+                        <img src="ressources/jardin/tonte_2.webp" alt="Pelouse entretenue autour d'un palmier" loading="lazy">
+                        <span class="work-label work-label--after">Après la tonte</span>
+                        <figcaption>Pelouse entretenue autour des arbres et des massifs.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <div class="service-cta realisations-cta">
+                <h2>Un besoin similaire&nbsp;?</h2>
+                <p>Contactez-moi pour échanger sur votre projet. Les devis sont gratuits et sans engagement.</p>
+                <div class="cta-buttons">
+                    <a href="index.html#contact" class="btn btn-service-outline">Me contacter</a>
+                    <a href="tel:+33649386780" class="btn btn-service-outline">Appeler</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Ced A Tout Faire - Tous droits réservés</p>
+            <p>79 rue Lefevre, 17300 Rochefort</p>
+            <p>
+                <a href="qui-suis-je.html">Qui suis-je&nbsp;?</a>
+                &nbsp;&middot;&nbsp;
+                <a href="privacy.html">Politique de confidentialité / Cookies</a>
+                &nbsp;&middot;&nbsp;
+                <a href="#" id="cookie-settings">Paramètres cookies</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
