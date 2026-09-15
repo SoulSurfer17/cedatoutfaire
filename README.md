@@ -48,7 +48,7 @@ Site professionnel pour Ced A Tout Faire, entreprise de services multi-services 
 - 📱 Téléphone : 06 49 38 67 80
 - 📧 Email : cedric.puygrenier@gmail.com
 - 👍 Facebook : [Ced A Tout Faire](https://www.facebook.com/profile.php?id=100089059665059)
-- ⭐ Avis Google : [33 avis - 5 étoiles](https://www.google.com/search?q=Ced+A+Tout+Faire)
+- ⭐ Avis Google : [34 avis - 5 étoiles](https://www.google.com/search?q=Ced+A+Tout+Faire)
 
 ## 🚀 Déploiement
 

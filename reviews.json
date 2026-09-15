@@ -1,8 +1,14 @@
 {
-  "totalReviews": 33,
+  "totalReviews": 34,
   "ratingValue": 5,
-  "lastUpdated": "2026-08-02",
+  "lastUpdated": "2026-09-15",
   "recentReviews": [
+    {
+      "author": "Françoise Libert",
+      "rating": 5,
+      "date": "Septembre 2026",
+      "text": "Je suis très satisfaite de l'intervention de l'équipe pour un démoussage de mon toit. Equipe sympathique, travail propre et sens du service. Merci beaucoup"
+    },
     {
       "author": "Karine Ferré",
       "rating": 5,
@@ -10,22 +16,16 @@
       "text": "Sérieux, ponctualité, efficacité et professionnalisme sont des mots qui résument parfaitement ce duo d'entrepreneurs, intervenus pour le nettoyage de la toiture et de la façade d'une maison à étage. Je garde précieusement les coordonnées de cette Entreprise et je la recommande vivement."
     },
     {
-      "author": "Stephane Gaillard",
-      "rating": 5,
-      "date": "Novembre 2025",
-      "text": "Equipe de choc! Cédric et Christophe forment un duo sérieux, efficace et tellement sympathique! J'ai fait appel à eux pour mon jardin, les résultats sont surprenants. Quant aux tarifs, des plus raisonnables. Merci Messieurs et à très vite pour ma toiture."
-    },
-    {
-      "author": "Alexis F",
-      "rating": 5,
-      "date": "Avril 2026",
-      "text": "Equipe sympathique et sérieuse qui est intervenue rapidement pour le démoussage et traitement de ma toiture. Super travail! Je recommande pleinement."
-    },
-    {
       "author": "Claudine BREON",
       "rating": 5,
       "date": "Janvier 2026",
       "text": "J'ai beaucoup apprécier la gentillesse, le sérieux et la qualité professionnelle de M. PUYGRENIER et de son collègue qui ont super bien taillé mes haies. Je les recommande particulièrement et garde précieusement leurs coordonnées pour toutes futures interventions."
+    },
+    {
+      "author": "Stephane Gaillard",
+      "rating": 5,
+      "date": "Novembre 2025",
+      "text": "Equipe de choc! Cédric et Christophe forment un duo sérieux, efficace et tellement sympathique! J'ai fait appel à eux pour mon jardin, les résultats sont surprenants. Quant aux tarifs, des plus raisonnables. Merci Messieurs et à très vite pour ma toiture."
     }
   ]
 }
