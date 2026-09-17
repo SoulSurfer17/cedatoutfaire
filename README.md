@@ -53,9 +53,8 @@ contrôles ; ne pas compter sur un effacement du cache des visiteurs.
   durée distincte de 180 jours. La collecte reste bloquée avant acceptation.
 - Domaine principal : `cedatoutfaire.org`. Les quatre adresses A de GitHub Pages
   sont `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`.
-- Pour HTTPS avec `www`, le DNS attendu est un CNAME `www` vers
-  `soulsurfer17.github.io`, sans chemin, en remplacement de la redirection de
-  domaine existante pour `www`. Préserver les autres entrées DNS. Vérifier ensuite
-  le certificat et la redirection HTTPS vers le domaine principal.
+- Le CNAME `www` vers `soulsurfer17.github.io` remplace la redirection Namecheap
+  depuis le 17 septembre 2026. Les autres entrées DNS ont été préservées.
+  GitHub a validé le DNS et lancé le renouvellement du certificat HTTPS.
 
-La correction DNS de `www` reste à appliquer chez le gestionnaire du domaine.
+Le certificat et la redirection HTTPS de `www` restent à vérifier après émission.
