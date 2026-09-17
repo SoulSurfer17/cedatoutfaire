@@ -24,3 +24,8 @@ dist/
 # Environnement
 .env
 .env.local
+
+# Local audits and Python caches (never published)
+tmp/
+__pycache__/
+*.pyc

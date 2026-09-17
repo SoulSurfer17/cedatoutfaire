@@ -1,0 +1,50 @@
+name: Check and publish site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install test dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Install test browser
+        run: python -m playwright install --with-deps chromium
+      - name: Check pages and prepare public files
+        run: python scripts/check_site.py --stage
+      - name: Check rendering, accessibility and consent
+        run: python scripts/check_browser.py
+      - name: Upload checked site
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish checked site
+        id: deployment
+        uses: actions/deploy-pages@v4
