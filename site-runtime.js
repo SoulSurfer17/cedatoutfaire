@@ -8,34 +8,105 @@ document.querySelectorAll('.mobile-menu a').forEach(link => {
     const settings = document.getElementById('cookie-settings');
     const measurementId = 'G-6GML1CR323';
     const isProduction = ['cedatoutfaire.org', 'www.cedatoutfaire.org'].includes(location.hostname);
+    const consentKey = 'ga_consent';
+    const consentLifetime = 180 * 24 * 60 * 60 * 1000;
     let consent;
-    try { consent = localStorage.getItem('ga_consent'); } catch (_) {}
+    let expiresAt = 0;
+    let expiryTimer;
+
+    function readConsent() {
+        consent = undefined;
+        expiresAt = 0;
+        try {
+            const saved = JSON.parse(localStorage.getItem(consentKey));
+            if (saved && saved.version === 1 && ['granted', 'denied'].includes(saved.value)
+                && Number.isFinite(saved.expiresAt) && saved.expiresAt > Date.now()
+                && saved.expiresAt <= Date.now() + consentLifetime) {
+                consent = saved.value;
+                expiresAt = saved.expiresAt;
+            }
+        } catch (_) { /* Missing, old or unavailable storage requires a new choice. */ }
+    }
+
+    function clearAnalyticsCookies() {
+        const domains = ['', location.hostname, 'cedatoutfaire.org'];
+        document.cookie.split(';').forEach(cookie => {
+            const name = cookie.split('=')[0].trim();
+            if (name !== '_ga' && !name.startsWith('_ga_')) return;
+            domains.forEach(domain => {
+                document.cookie = name + '=; Max-Age=0; Path=/; SameSite=Lax'
+                    + (domain ? '; Domain=' + domain : '');
+            });
+        });
+    }
+
+    // Basic consent mode: queue defaults locally; no Google script before consent.
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+    });
 
     function loadAnalytics() {
         if (!isProduction || window.gtagLoaded) return;
         window.gtagLoaded = true;
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function () { window.dataLayer.push(arguments); };
         window.gtag('js', new Date());
-        window.gtag('config', measurementId, { anonymize_ip: true });
+        window.gtag('config', measurementId, {
+            allow_google_signals: false,
+            allow_ad_personalization_signals: false,
+            cookie_expires: consentLifetime / 1000,
+            cookie_update: false
+        });
         const script = document.createElement('script');
         script.async = true;
         script.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
         document.head.append(script);
     }
 
+    function applyConsent() {
+        const granted = consent === 'granted';
+        window['ga-disable-' + measurementId] = !granted || !isProduction;
+        window.gtag('consent', 'update', {
+            analytics_storage: granted ? 'granted' : 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+        if (granted) loadAnalytics();
+        else clearAnalyticsCookies();
+        banner.hidden = consent === 'granted' || consent === 'denied';
+        clearTimeout(expiryTimer);
+        if (expiresAt) {
+            // Browser timers are limited to about 24 days; recheck long-lived tabs.
+            expiryTimer = setTimeout(checkExpiry, Math.min(expiresAt - Date.now(), 2147483647));
+        }
+    }
+
+    function checkExpiry() {
+        if (!expiresAt) return;
+        if (Date.now() >= expiresAt) {
+            consent = undefined;
+            expiresAt = 0;
+            try { localStorage.removeItem(consentKey); } catch (_) {}
+        }
+        applyConsent();
+    }
+
     function setConsent(value) {
         consent = value;
-        try { localStorage.setItem('ga_consent', value); } catch (_) {}
-        window['ga-disable-' + measurementId] = value !== 'granted';
-        banner.hidden = true;
-        if (window.gtag) window.gtag('consent', 'update', { analytics_storage: value === 'granted' ? 'granted' : 'denied' });
-        if (value === 'granted') loadAnalytics();
+        expiresAt = Date.now() + consentLifetime;
+        try {
+            localStorage.setItem(consentKey, JSON.stringify({ version: 1, value, expiresAt }));
+        } catch (_) { /* The choice still applies to this page when storage is blocked. */ }
+        applyConsent();
         settings.focus({ preventScroll: true });
     }
     window.openCookieSettings = () => {
         banner.hidden = false;
-        document.getElementById('cookie-accept').focus({ preventScroll: true });
+        document.getElementById(consent === 'granted' ? 'cookie-decline' : 'cookie-accept').focus({ preventScroll: true });
     };
     settings.addEventListener('click', event => {
         event.preventDefault();
@@ -43,9 +114,16 @@ document.querySelectorAll('.mobile-menu a').forEach(link => {
     });
     document.getElementById('cookie-accept').addEventListener('click', () => setConsent('granted'));
     document.getElementById('cookie-decline').addEventListener('click', () => setConsent('denied'));
-    banner.hidden = consent === 'granted' || consent === 'denied';
-    window['ga-disable-' + measurementId] = consent !== 'granted';
-    if (consent === 'granted') loadAnalytics();
+    window.addEventListener('storage', event => {
+        if (event.key !== consentKey && event.key !== null) return;
+        readConsent();
+        applyConsent();
+    });
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) checkExpiry();
+    });
+    readConsent();
+    applyConsent();
 })();
 
 // Keep the four HTML reviews as a readable fallback if the JSON cannot load.

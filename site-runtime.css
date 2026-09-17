@@ -4,7 +4,6 @@
 .cookie-inner p{margin:0;font-size:.9rem}
 .cookie-actions{display:flex;gap:12px;flex-shrink:0}
 .cookie-actions button{font:inherit;cursor:pointer;padding:9px 18px;border:1px solid var(--green,#176670);border-radius:4px;background:transparent;color:var(--green,#176670)}
-.cookie-actions button:first-child{background:var(--green,#176670);color:white}
 button:focus-visible{outline:3px solid #bf933a;outline-offset:4px}
 #testimonials{display:block;scroll-margin-top:110px}
 @media(max-width:700px){.cookie-inner{display:block}.cookie-actions{margin-top:14px}.cookie-banner{padding:16px 20px}}
