@@ -46,9 +46,10 @@ contrôles ; ne pas compter sur un effacement du cache des visiteurs.
 
 ## Réglages externes
 
-- GA4 existant : `G-6GML1CR323`. La durée demandée pour les données détaillées est
-  **2 mois**, à régler et vérifier dans l’administration GA4 ; le code du site ne
-  peut pas modifier ce paramètre. Le choix de consentement et les cookies ont une
+- GA4 existant : `G-6GML1CR323`. Conservation des données d’événement et utilisateur
+  réglée et vérifiée à **2 mois** le 17 septembre 2026, sans réinitialisation lors
+  d’une nouvelle activité. Google annonce une prise en compte sous 24 heures.
+  Le choix de consentement et les cookies ont une
   durée distincte de 180 jours. La collecte reste bloquée avant acceptation.
 - Domaine principal : `cedatoutfaire.org`. Les quatre adresses A de GitHub Pages
   sont `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`.
@@ -57,5 +58,4 @@ contrôles ; ne pas compter sur un effacement du cache des visiteurs.
   domaine existante pour `www`. Préserver les autres entrées DNS. Vérifier ensuite
   le certificat et la redirection HTTPS vers le domaine principal.
 
-Ces réglages externes doivent être confirmés dans leurs comptes respectifs ;
-leur description ici ne vaut pas confirmation de leur application.
+La correction DNS de `www` reste à appliquer chez le gestionnaire du domaine.
