@@ -1,11 +1,20 @@
 import * as THREE from 'three';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+
+// Give input and painting a turn between construction stages, including browsers
+// without the Scheduling API. This does not postpone the scene until interaction.
+const yieldToBrowser = () => globalThis.scheduler?.yield
+  ? globalThis.scheduler.yield()
+  : new Promise(resolve => setTimeout(resolve, 0));
 
 const colors = { grass: '#5b8261', grassLight: '#78966e', earth: '#b2a085', wall: '#eee4cc', trim: '#f8f0dc', roof: '#b97556', wood: '#b18b61', leaf: '#3e7260', gold: '#e6cd83', teal: '#176670' };
-export function createWorld(canvas) {
+export async function createWorld(canvas) {
+  performance.mark('catf-scene-start');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'low-power' });
+  renderer.debug.checkShaderErrors = import.meta.env.DEV;
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.7));
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.3;
@@ -15,11 +24,18 @@ export function createWorld(canvas) {
   const sun = new THREE.DirectionalLight('#fff1d6', 4.5);
   sun.position.set(-8, 18, 12); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048);
+  sun.shadow.autoUpdate = false;
+  sun.shadow.needsUpdate = true;
   Object.assign(sun.shadow.camera, { left: -16, right: 16, top: 16, bottom: -16, near: 1, far: 60 });
   sun.shadow.bias = -.0006; sun.shadow.normalBias = .035;
   scene.add(sun);
   const root = new THREE.Group(); scene.add(root);
   const materials = new Map();
+  const geometries = new Map();
+  function geometry(key, create) {
+    if (!geometries.has(key)) geometries.set(key, create());
+    return geometries.get(key);
+  }
   function mat(color, extra = {}) {
     const key = color + JSON.stringify(extra);
     if (!materials.has(key)) materials.set(key, new THREE.MeshStandardMaterial({ color, roughness: .84, ...extra }));
@@ -29,13 +45,14 @@ export function createWorld(canvas) {
     const m = new THREE.Mesh(geometry, mat(color, extra));
     m.position.set(...pos); m.castShadow = true; m.receiveShadow = true; parent.add(m); return m;
   }
-  function box(w, h, d, color, x, y, z, parent = root, extra = {}) { return mesh(new THREE.BoxGeometry(w, h, d), color, [x, y, z], parent, extra); }
-  function sphere(r, color, x, y, z, parent = root) { return mesh(new THREE.IcosahedronGeometry(r, 1), color, [x, y, z], parent); }
+  function box(w, h, d, color, x, y, z, parent = root, extra = {}) { return mesh(geometry(`box:${w}:${h}:${d}`, () => new THREE.BoxGeometry(w, h, d)), color, [x, y, z], parent, extra); }
+  function sphere(r, color, x, y, z, parent = root) { return mesh(geometry(`sphere:${r}`, () => new THREE.IcosahedronGeometry(r, 1)), color, [x, y, z], parent); }
   function rod(a, b, radius, color, parent = root) {
     const from = new THREE.Vector3(...a), to = new THREE.Vector3(...b), delta = to.clone().sub(from);
-    const m = mesh(new THREE.CylinderGeometry(radius, radius, delta.length(), 8), color, from.clone().add(to).multiplyScalar(.5).toArray(), parent);
+    const m = mesh(geometry(`rod:${radius}:${delta.length()}`, () => new THREE.CylinderGeometry(radius, radius, delta.length(), 8)), color, from.clone().add(to).multiplyScalar(.5).toArray(), parent);
     m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0), delta.normalize()); return m;
   }
+  await yieldToBrowser();
   // A small, crafted Charente-Maritime garden, on a floating slice of land.
   const base = mesh(new THREE.CylinderGeometry(10, 9.5, .85, 72), colors.earth, [0, -.52, 0]); base.scale.z = .79;
   const turf = mesh(new THREE.CylinderGeometry(10.02, 10.02, .16, 72), colors.grass, [0, -.02, 0]); turf.scale.z = .79;
@@ -67,6 +84,7 @@ export function createWorld(canvas) {
   mesh(new THREE.TubeGeometry(routeLine,180,.025,5,false),colors.gold,[0,0,0],root,{emissive:colors.gold,emissiveIntensity:.25});
   const traveler = sphere(.105, '#fff2c5', -8.5,.25,3.4);
   const halo = mesh(new THREE.TorusGeometry(.22,.02,6,28), colors.gold, [0,0,0], traveler); halo.rotation.x=Math.PI/2;
+  await yieldToBrowser();
   // House, tiled pitched roof and pale stone details.
   const house = new THREE.Group(); house.position.set(-2,0,-1.1); root.add(house);
   box(5.8,.23,4.5,'#c4bda3',0,.17,0,house);
@@ -103,6 +121,7 @@ export function createWorld(canvas) {
     box(1.2,.12,.26,colors.trim,x,1.25,2.15,house);
   }
   for(let i=0;i<5;i++)box(.9,.08,.4,'#e4d9bf',-2,.12,1.4+i*.54);
+  await yieldToBrowser();
   // Glass veranda attached to the east facade.
   const veranda = new THREE.Group(); veranda.position.set(1.4,0,-1.45);root.add(veranda);
   box(2.4,.18,3.2,'#ddd3b7',0,.25,0,veranda);
@@ -118,6 +137,7 @@ export function createWorld(canvas) {
   for(let y of [.35,2.25])rod([1.2,y,-1.56],[1.2,y,1.56],.035,colors.trim,veranda);
   rod([-1.2,2.55,1.56],[1.2,2.25,1.56],.04,colors.trim,veranda);
   mesh(new THREE.CylinderGeometry(.42,.42,.07,20),colors.wood,[0,.95,.2],veranda);rod([0,.35,.2],[0,.92,.2],.07,colors.trim,veranda);
+  await yieldToBrowser();
   // Trees and clipped hedges, with deterministic geometry.
   function tree(x,z,s=1) {
     const g=new THREE.Group();g.position.set(x,.07,z);g.scale.setScalar(s);root.add(g);
@@ -130,6 +150,7 @@ export function createWorld(canvas) {
     sphere(.62,i%2?'#436f51':'#527958',-6.9+i*.9,.65,-5.7);
     box(.8,.72,.85,'#4f7655',-6.9+i*.9,.43,-5.7);
   }
+  await yieldToBrowser();
   // Fence and a garden bench.
   for(let i=0;i<12;i++) box(.1,1,.1,'#e0d2ae',-7.6+i*.52,.6,1.8);
   box(5.9,.09,.08,'#e0d2ae',-4.73,.4,1.8);box(5.9,.09,.08,'#e0d2ae',-4.73,.9,1.8);
@@ -179,6 +200,7 @@ export function createWorld(canvas) {
   box(.04,.04,.023,'#acaa93',.045,1.79,.261,cedric);
   sphere(.035,'#343b35',0,2.05,0,cedric);
 
+  await yieldToBrowser();
   // Rounded American mailbox, on the outer edge of the path, left of Cédric.
   const mailbox=new THREE.Group();mailbox.name='contact-mailbox';
   mailbox.position.set(.9,.1,4.6);mailbox.rotation.y=.35;root.add(mailbox);
@@ -205,6 +227,54 @@ export function createWorld(canvas) {
   box(.035,.4,.048,mailboxEdge,.352,1.68,-.04,mailbox);
   box(.035,.14,.21,mailboxRed,.352,1.87,.04,mailbox);
   sphere(.037,'#bdb49b',.378,1.51,-.04,mailbox);
+
+  // Bake only the fixed opaque scenery. Vertex colors preserve each original
+  // linear-space color while compatible surfaces share one draw call. Keep the
+  // moving traveler and transparent glass separate for animation and sorting.
+  await yieldToBrowser();
+  root.updateMatrixWorld(true);
+  const batches = new Map();
+  const fixed = [];
+  root.traverse(object => {
+    if (!object.isMesh || object.material.transparent) return;
+    for (let ancestor = object; ancestor; ancestor = ancestor.parent) {
+      if (ancestor === traveler) return;
+    }
+    fixed.push(object);
+  });
+  let sliceStart = performance.now();
+  for (const object of fixed) {
+    const source = object.material;
+    const key = JSON.stringify([source.roughness, source.metalness, source.side,
+      source.emissive.getHex(), source.emissiveIntensity, object.castShadow, object.receiveShadow]);
+    if (!batches.has(key)) {
+      const material = source.clone();
+      material.color.set(0xffffff); material.vertexColors = true;
+      materials.set(`batch:${key}`, material);
+      batches.set(key, { material, parts: [], castShadow: object.castShadow, receiveShadow: object.receiveShadow });
+    }
+    const part = object.geometry.index ? object.geometry.toNonIndexed() : object.geometry.clone();
+    part.applyMatrix4(object.matrixWorld);
+    const count = part.getAttribute('position').count;
+    const colors = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) source.color.toArray(colors, i * 3);
+    part.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    batches.get(key).parts.push(part);
+    object.removeFromParent();
+    if (performance.now() - sliceStart > 8) {
+      await yieldToBrowser(); sliceStart = performance.now();
+    }
+  }
+  for (const batch of batches.values()) {
+    const combined = mergeGeometries(batch.parts);
+    if (!combined) throw new Error('Incompatible static scene geometry');
+    const object = new THREE.Mesh(combined, batch.material);
+    object.castShadow = batch.castShadow; object.receiveShadow = batch.receiveShadow;
+    root.add(object);
+    batch.parts.forEach(part => part.dispose());
+    await yieldToBrowser();
+  }
+  performance.measure('catf-scene-construction', 'catf-scene-start');
 
   // Native links are projected onto these 3D anchors (readable at every zoom).
   const markers = [
@@ -244,6 +314,7 @@ export function createWorld(canvas) {
     renderer.render(scene,camera);
   }
   let directMove;
+  const shadowTraveler = new THREE.Vector3(NaN, NaN, NaN);
   function prepareDirectMove() {
     directMove={position:camera.position.clone(),look:viewTarget.clone(),traveler:traveler.position.clone()};
   }
@@ -261,7 +332,62 @@ export function createWorld(canvas) {
       viewTarget.lerpVectors(directMove.look,viewTarget,blend);camera.lookAt(viewTarget);
       traveler.position.lerpVectors(directMove.traveler,traveler.position,blend);
     }
+    // Camera/pointer movement does not change light-space shadows. Refresh
+    // the map only when the one moving object has actually moved.
+    if (!traveler.position.equals(shadowTraveler)) {
+      sun.shadow.needsUpdate = true; shadowTraveler.copy(traveler.position);
+    }
     renderer.render(scene,camera);
   }
-  return { render, resize, renderTransition, prepareTransition, prepareDirectMove, renderer, scene, camera, markers, dispose(){renderer.dispose();scene.traverse(o=>{if(o.geometry)o.geometry.dispose();});materials.forEach(m=>m.dispose());} };
+  async function prepare() {
+    performance.mark('catf-shaders-start');
+    await yieldToBrowser();
+    // compileAsync covers visible materials, not the shadow pass. Compile its
+    // depth variants in render-target color space as well, before the first draw.
+    const depthScene = new THREE.Scene();
+    const depths = new Map();
+    scene.traverse(object => {
+      if (!object.isMesh || !object.castShadow) return;
+      const side = object.material.side === THREE.FrontSide ? THREE.BackSide : object.material.side;
+      if (!depths.has(side)) {
+        const material = new THREE.MeshDepthMaterial({ side });
+        depths.set(side, material); materials.set(`depth:${side}`, material);
+        depthScene.add(new THREE.Mesh(object.geometry, material));
+      }
+      object.customDepthMaterial = depths.get(side);
+    });
+    const target = new THREE.WebGLRenderTarget(1, 1);
+    try {
+      renderer.setRenderTarget(target);
+      await renderer.compileAsync(depthScene, sun.shadow.camera, scene);
+    } finally {
+      renderer.setRenderTarget(null); target.dispose();
+    }
+    await yieldToBrowser();
+    await renderer.compileAsync(scene, camera);
+    await yieldToBrowser();
+    performance.measure('catf-shader-preparation', 'catf-shaders-start');
+  }
+  async function finishFirstFrame() {
+    // Let the GPU finish the hidden first frame without forcing the compositor
+    // to synchronously wait for it on the browser's main thread.
+    const gl = renderer.getContext();
+    const fence = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+    if (!fence) return;
+    gl.flush();
+    const deadline = performance.now() + 10000;
+    try {
+      while (!gl.isContextLost()) {
+        const status = gl.clientWaitSync(fence, 0, 0);
+        if (status === gl.WAIT_FAILED) throw new Error('GPU preparation failed');
+        if (status !== gl.TIMEOUT_EXPIRED) break;
+        if (performance.now() > deadline) throw new Error('GPU preparation timed out');
+        await new Promise(resolve => setTimeout(resolve, 8));
+      }
+      if (gl.isContextLost()) throw new Error('WebGL context lost during preparation');
+    } finally {
+      gl.deleteSync(fence);
+    }
+  }
+  return { prepare, finishFirstFrame, render, resize, renderTransition, prepareTransition, prepareDirectMove, renderer, scene, camera, markers, dispose(){renderer.dispose();scene.traverse(o=>{if(o.geometry)o.geometry.dispose();});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());} };
 }

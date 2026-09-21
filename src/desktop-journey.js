@@ -47,14 +47,19 @@ function update(){
   }
   dirty=true;
 }
-function fallback(){document.body.classList.add('no-webgl');toggle.hidden=true;sceneLabels?.dispose();}
+function fallback(){document.body.classList.remove('webgl-ready');document.body.classList.add('no-webgl');toggle.hidden=true;sceneLabels?.dispose();}
 try {
-  world=createWorld(document.querySelector('#world'));
-  document.body.classList.add('webgl-ready');
   const canvas=document.querySelector('#world');
-  sceneLabels=createSceneLabels(world,canvas);
-  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();world.renderer.setAnimationLoop(null);fallback();});
+  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();world?.renderer.setAnimationLoop(null);fallback();});
   canvas.addEventListener('webglcontextrestored',()=>location.reload());
+  world=await createWorld(canvas);
+  await world.prepare();
+  performance.mark('catf-first-render-start');
+  world.render(0);
+  performance.measure('catf-first-render', 'catf-first-render-start');
+  await world.finishFirstFrame();
+  document.body.classList.add('webgl-ready');
+  sceneLabels=createSceneLabels(world,canvas);
   world.renderer.setAnimationLoop(time=>{
     if(document.hidden||mobileLayout.matches)return;
     if(cameraTransition){
