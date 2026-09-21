@@ -1,0 +1,911 @@
+{
+  "entretien-espaces-verts.html": {
+    "textSha256": "10bb1bd79c0742ee7410bc689d397b51b02383732ceaecc915594947798c2aa0",
+    "jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://cedatoutfaire.org/#localbusiness",
+            "name": "Ced A Tout Faire",
+            "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+            "logo": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+            "description": "Nettoyage de toiture et de véranda, jardinier et entretien de jardin à Rochefort et alentours.",
+            "priceRange": "€€",
+            "foundingDate": "2013",
+            "founder": {
+              "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "79 rue Lefevre",
+              "addressLocality": "Rochefort",
+              "addressRegion": "Charente-Maritime",
+              "postalCode": "17300",
+              "addressCountry": "FR"
+            },
+            "telephone": "+33649386780",
+            "email": "cedric.puygrenier@gmail.com",
+            "url": "https://cedatoutfaire.org/",
+            "sameAs": [
+              "https://www.facebook.com/profile.php?id=100089059665059"
+            ],
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Rochefort"
+              },
+              {
+                "@type": "City",
+                "name": "Échillais"
+              },
+              {
+                "@type": "City",
+                "name": "Tonnay-Charente"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Agnant"
+              }
+            ],
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "08:30",
+              "closes": "19:30"
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier",
+            "name": "Cédric Puygrenier",
+            "jobTitle": "Professionnel multiservices",
+            "image": "https://cedatoutfaire.org/ressources/a_propos/a_propos.webp",
+            "worksFor": {
+              "@id": "https://cedatoutfaire.org/#localbusiness"
+            }
+          },
+          {
+            "@type": "Service",
+            "@id": "https://cedatoutfaire.org/entretien-espaces-verts.html#service",
+            "name": "Entretien de jardin",
+            "alternateName": "Entretien des espaces verts",
+            "description": "Entretien de jardin, tonte, débroussaillage et taille de haies à Rochefort.",
+            "url": "https://cedatoutfaire.org/entretien-espaces-verts.html",
+            "provider": {
+              "@id": "https://cedatoutfaire.org/#localbusiness"
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": "https://cedatoutfaire.org/entretien-espaces-verts.html",
+              "description": "Prestation sur devis gratuit et sans engagement."
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Rochefort"
+              },
+              {
+                "@type": "City",
+                "name": "Échillais"
+              },
+              {
+                "@type": "City",
+                "name": "Tonnay-Charente"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Agnant"
+              }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://cedatoutfaire.org/entretien-espaces-verts.html#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://cedatoutfaire.org/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Services",
+                "item": "https://cedatoutfaire.org/#services"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Entretien de jardin",
+                "item": "https://cedatoutfaire.org/entretien-espaces-verts.html"
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://cedatoutfaire.org/entretien-espaces-verts.html#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Travaillez-vous avec des contrats d'entretien annuels pour le jardin ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Non, mon service d'entretien est conçu pour vous offrir une flexibilité totale. Je n'impose pas de contrat annuel, vous permettant de gérer à votre rythme et selon votre budget le nombre d'interventions nécessaires (ponctuelles ou suivis saisonniers)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Le tarif du service inclut-il la gestion et l'évacuation des déchets verts ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Non, l'évacuation des déchets verts n'est pas comprise dans le tarif de l'entretien. Ses modalités et son coût sont convenus avec vous lors du devis, selon vos besoins. Je propose l'enlèvement et l'évacuation complète des déchets verts, mais aussi le broyage des branches et végétaux pour une réutilisation en paillage sur place."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quels travaux d'entretien de jardin réalisez-vous à Rochefort ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "J'interviens pour l'entretien de jardin : tonte de pelouse, débroussaillage des zones envahies et taille des végétaux comme les haies, arbustes et bosquets. Mon intervention inclut l'utilisation de mon propre matériel professionnel."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "index.html": {
+    "textSha256": "bd115ef66c51d668bc599a03548abe0a63030ca7c96ad60fc886233ca5f98cb5",
+    "jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://cedatoutfaire.org/#localbusiness",
+            "name": "Ced A Tout Faire",
+            "url": "https://cedatoutfaire.org/",
+            "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+            "logo": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+            "description": "Nettoyage de toiture et de véranda, jardinier et entretien de jardin à Rochefort et alentours.",
+            "priceRange": "€€",
+            "foundingDate": "2013",
+            "founder": {
+              "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "79 rue Lefevre",
+              "addressLocality": "Rochefort",
+              "addressRegion": "Charente-Maritime",
+              "postalCode": "17300",
+              "addressCountry": "FR"
+            },
+            "telephone": "+33649386780",
+            "email": "cedric.puygrenier@gmail.com",
+            "sameAs": [
+              "https://www.facebook.com/profile.php?id=100089059665059"
+            ],
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Rochefort"
+              },
+              {
+                "@type": "City",
+                "name": "Échillais"
+              },
+              {
+                "@type": "City",
+                "name": "Tonnay-Charente"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Agnant"
+              }
+            ],
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "08:30",
+              "closes": "19:30"
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Services proposés",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "url": "https://cedatoutfaire.org/nettoyage-toiture.html",
+                  "priceSpecification": {
+                    "@type": "UnitPriceSpecification",
+                    "minPrice": "7",
+                    "priceCurrency": "EUR",
+                    "referenceQuantity": {
+                      "@type": "QuantitativeValue",
+                      "value": "1",
+                      "unitCode": "MTK",
+                      "unitText": "m²"
+                    }
+                  },
+                  "itemOffered": {
+                    "@type": "Service",
+                    "@id": "https://cedatoutfaire.org/nettoyage-toiture.html#service",
+                    "name": "Nettoyage et démoussage de toiture",
+                    "url": "https://cedatoutfaire.org/nettoyage-toiture.html"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "url": "https://cedatoutfaire.org/nettoyage-veranda.html",
+                  "priceSpecification": {
+                    "@type": "UnitPriceSpecification",
+                    "minPrice": "10",
+                    "priceCurrency": "EUR",
+                    "referenceQuantity": {
+                      "@type": "QuantitativeValue",
+                      "value": "1",
+                      "unitCode": "MTK",
+                      "unitText": "m²"
+                    }
+                  },
+                  "itemOffered": {
+                    "@type": "Service",
+                    "@id": "https://cedatoutfaire.org/nettoyage-veranda.html#service",
+                    "name": "Nettoyage de véranda",
+                    "url": "https://cedatoutfaire.org/nettoyage-veranda.html"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "url": "https://cedatoutfaire.org/entretien-espaces-verts.html",
+                  "description": "Prestation sur devis gratuit et sans engagement.",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "@id": "https://cedatoutfaire.org/entretien-espaces-verts.html#service",
+                    "name": "Entretien de jardin",
+                    "alternateName": "Entretien des espaces verts",
+                    "url": "https://cedatoutfaire.org/entretien-espaces-verts.html"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier",
+            "name": "Cédric Puygrenier",
+            "jobTitle": "Professionnel multiservices",
+            "image": "https://cedatoutfaire.org/ressources/a_propos/a_propos.webp",
+            "worksFor": {
+              "@id": "https://cedatoutfaire.org/#localbusiness"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://cedatoutfaire.org/#website",
+            "url": "https://cedatoutfaire.org/",
+            "name": "Ced A Tout Faire",
+            "publisher": {
+              "@id": "https://cedatoutfaire.org/#localbusiness"
+            },
+            "inLanguage": "fr-FR"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://cedatoutfaire.org/#webpage",
+            "url": "https://cedatoutfaire.org/",
+            "name": "Nettoyage toiture, véranda et entretien de jardin à Rochefort",
+            "isPartOf": {
+              "@id": "https://cedatoutfaire.org/#website"
+            },
+            "about": {
+              "@id": "https://cedatoutfaire.org/#localbusiness"
+            },
+            "inLanguage": "fr-FR"
+          }
+        ]
+      }
+    ]
+  },
+  "nettoyage-toiture.html": {
+    "textSha256": "dbdf2a13dfc33a2e9375daf2137a8452b1dccb2b0ff5de239201fcb1ca7504aa",
+    "jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://cedatoutfaire.org/#localbusiness",
+            "name": "Ced A Tout Faire",
+            "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+            "logo": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+            "description": "Nettoyage de toiture et de véranda, jardinier et entretien de jardin à Rochefort et alentours.",
+            "priceRange": "€€",
+            "foundingDate": "2013",
+            "founder": {
+              "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "79 rue Lefevre",
+              "addressLocality": "Rochefort",
+              "addressRegion": "Charente-Maritime",
+              "postalCode": "17300",
+              "addressCountry": "FR"
+            },
+            "telephone": "+33649386780",
+            "email": "cedric.puygrenier@gmail.com",
+            "url": "https://cedatoutfaire.org/",
+            "sameAs": [
+              "https://www.facebook.com/profile.php?id=100089059665059"
+            ],
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Rochefort"
+              },
+              {
+                "@type": "City",
+                "name": "Échillais"
+              },
+              {
+                "@type": "City",
+                "name": "Tonnay-Charente"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Agnant"
+              }
+            ],
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "08:30",
+              "closes": "19:30"
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier",
+            "name": "Cédric Puygrenier",
+            "jobTitle": "Professionnel multiservices",
+            "image": "https://cedatoutfaire.org/ressources/a_propos/a_propos.webp",
+            "worksFor": {
+              "@id": "https://cedatoutfaire.org/#localbusiness"
+            }
+          },
+          {
+            "@type": "Service",
+            "@id": "https://cedatoutfaire.org/nettoyage-toiture.html#service",
+            "name": "Nettoyage et démoussage de toiture",
+            "description": "Nettoyage et démoussage de toiture, retrait des mousses et traitement fongicide à Rochefort.",
+            "url": "https://cedatoutfaire.org/nettoyage-toiture.html",
+            "provider": {
+              "@id": "https://cedatoutfaire.org/#localbusiness"
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": "https://cedatoutfaire.org/nettoyage-toiture.html",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "minPrice": "7",
+                "priceCurrency": "EUR",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": "1",
+                  "unitCode": "MTK",
+                  "unitText": "m²"
+                }
+              }
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Rochefort"
+              },
+              {
+                "@type": "City",
+                "name": "Échillais"
+              },
+              {
+                "@type": "City",
+                "name": "Tonnay-Charente"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Agnant"
+              }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://cedatoutfaire.org/nettoyage-toiture.html#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://cedatoutfaire.org/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Services",
+                "item": "https://cedatoutfaire.org/#services"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Nettoyage de toiture",
+                "item": "https://cedatoutfaire.org/nettoyage-toiture.html"
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://cedatoutfaire.org/nettoyage-toiture.html#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "À quelle fréquence recommandez-vous le nettoyage et démoussage de toiture ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Pour maintenir votre toiture en bon état et prévenir les problèmes d'étanchéité dus à l'humidité, une vérification et un nettoyage complet sont généralement recommandés tous les 5 ans environ."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quelle méthode utilisez-vous pour nettoyer la toiture et les tuiles ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ma priorité est de nettoyer sans abîmer. C'est pourquoi je n'utilise jamais la haute pression. Je procède à un grattage manuel complet des mousses et lichens, ce qui garantit l'intégrité de votre couverture. De plus, le nettoyage des gouttières de tous les débris est inclus et systématique."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quel type de traitement est appliqué après le nettoyage physique du toit ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Après le nettoyage, je pulvérise à basse pression un produit fongicide professionnel. Ce traitement agit lentement (6 à 12 mois) pour éliminer les spores en profondeur, protégeant ainsi durablement votre toiture contre la réapparition des végétaux."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "nettoyage-veranda.html": {
+    "textSha256": "24f68da44f17469665cd88b434b397a0b224a759dde52c23aa16f7774c90168d",
+    "jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://cedatoutfaire.org/#localbusiness",
+            "name": "Ced A Tout Faire",
+            "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+            "logo": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+            "description": "Nettoyage de toiture et de véranda, jardinier et entretien de jardin à Rochefort et alentours.",
+            "priceRange": "€€",
+            "foundingDate": "2013",
+            "founder": {
+              "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "79 rue Lefevre",
+              "addressLocality": "Rochefort",
+              "addressRegion": "Charente-Maritime",
+              "postalCode": "17300",
+              "addressCountry": "FR"
+            },
+            "telephone": "+33649386780",
+            "email": "cedric.puygrenier@gmail.com",
+            "url": "https://cedatoutfaire.org/",
+            "sameAs": [
+              "https://www.facebook.com/profile.php?id=100089059665059"
+            ],
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Rochefort"
+              },
+              {
+                "@type": "City",
+                "name": "Échillais"
+              },
+              {
+                "@type": "City",
+                "name": "Tonnay-Charente"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Agnant"
+              }
+            ],
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "08:30",
+              "closes": "19:30"
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier",
+            "name": "Cédric Puygrenier",
+            "jobTitle": "Professionnel multiservices",
+            "image": "https://cedatoutfaire.org/ressources/a_propos/a_propos.webp",
+            "worksFor": {
+              "@id": "https://cedatoutfaire.org/#localbusiness"
+            }
+          },
+          {
+            "@type": "Service",
+            "@id": "https://cedatoutfaire.org/nettoyage-veranda.html#service",
+            "name": "Nettoyage de véranda",
+            "description": "Nettoyage complet de véranda, toiture, vitrages, profilés et chéneaux à Rochefort.",
+            "url": "https://cedatoutfaire.org/nettoyage-veranda.html",
+            "provider": {
+              "@id": "https://cedatoutfaire.org/#localbusiness"
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": "https://cedatoutfaire.org/nettoyage-veranda.html",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "minPrice": "10",
+                "priceCurrency": "EUR",
+                "referenceQuantity": {
+                  "@type": "QuantitativeValue",
+                  "value": "1",
+                  "unitCode": "MTK",
+                  "unitText": "m²"
+                }
+              }
+            },
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Rochefort"
+              },
+              {
+                "@type": "City",
+                "name": "Échillais"
+              },
+              {
+                "@type": "City",
+                "name": "Tonnay-Charente"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Agnant"
+              }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://cedatoutfaire.org/nettoyage-veranda.html#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://cedatoutfaire.org/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Services",
+                "item": "https://cedatoutfaire.org/#services"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Nettoyage de véranda",
+                "item": "https://cedatoutfaire.org/nettoyage-veranda.html"
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://cedatoutfaire.org/nettoyage-veranda.html#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "À quelle fréquence est-il recommandé de faire nettoyer ma véranda ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Pour maintenir une bonne luminosité et prolonger la durée de vie de votre espace de vie, le nettoyage complet de votre véranda est nécessaire au moins une fois par an. Cela prévient l'accumulation de pollution et de mousses."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Le nettoyage de véranda comprend-il la toiture, les vitres et la structure ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Oui, mon intervention est complète et couvre l'ensemble de votre véranda : la toiture, les vitres latérales et tous les profilés. L'objectif est de décoller les saletés sans compromettre l'étanchéité."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Utilisez-vous le nettoyeur haute pression sur les vérandas ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "J'utilise le nettoyeur haute pression sur la toiture et les vitrages car l'efficacité y est maximale et sans danger. Je prends toujours le soin de ne jamais insister sur les joints ni les points de raccordement, et je vérifie et nettoie les chéneaux pour assurer un écoulement libre."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "privacy.html": {
+    "textSha256": "b1ef511419fecd8563d6fcf4c13a162ce1ba78c1945645e8a3b6d9e2bfec51a9",
+    "jsonld": []
+  },
+  "qui-suis-je.html": {
+    "textSha256": "5af10ddb06999e148a1d3ee63fe944307d7a320ecac8917974e633725d053416",
+    "jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://cedatoutfaire.org/#localbusiness",
+            "name": "Ced A Tout Faire",
+            "url": "https://cedatoutfaire.org/",
+            "image": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+            "logo": "https://cedatoutfaire.org/ressources/logoCATF.webp",
+            "description": "Nettoyage de toiture et de véranda, jardinier et entretien de jardin à Rochefort et alentours.",
+            "priceRange": "€€",
+            "foundingDate": "2013",
+            "founder": {
+              "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "79 rue Lefevre",
+              "addressLocality": "Rochefort",
+              "addressRegion": "Charente-Maritime",
+              "postalCode": "17300",
+              "addressCountry": "FR"
+            },
+            "telephone": "+33649386780",
+            "email": "cedric.puygrenier@gmail.com",
+            "sameAs": [
+              "https://www.facebook.com/profile.php?id=100089059665059"
+            ],
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Rochefort"
+              },
+              {
+                "@type": "City",
+                "name": "Échillais"
+              },
+              {
+                "@type": "City",
+                "name": "Tonnay-Charente"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Agnant"
+              }
+            ],
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "08:30",
+              "closes": "19:30"
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier",
+            "name": "Cédric Puygrenier",
+            "jobTitle": "Professionnel multiservices",
+            "description": "Fondateur de Ced A Tout Faire, professionnel multiservices à Rochefort et alentours depuis 2013.",
+            "image": "https://cedatoutfaire.org/ressources/a_propos/a_propos.webp",
+            "worksFor": {
+              "@id": "https://cedatoutfaire.org/#localbusiness"
+            }
+          },
+          {
+            "@type": "AboutPage",
+            "@id": "https://cedatoutfaire.org/qui-suis-je.html#webpage",
+            "url": "https://cedatoutfaire.org/qui-suis-je.html",
+            "name": "Qui suis-je ? Cédric, professionnel multiservices à Rochefort",
+            "description": "Présentation de Cédric Puygrenier et de son activité Ced A Tout Faire créée en 2013.",
+            "mainEntity": {
+              "@id": "https://cedatoutfaire.org/qui-suis-je.html#cedric-puygrenier"
+            },
+            "about": {
+              "@id": "https://cedatoutfaire.org/#localbusiness"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://cedatoutfaire.org/qui-suis-je.html#portrait"
+            },
+            "inLanguage": "fr-FR"
+          },
+          {
+            "@type": "ImageObject",
+            "@id": "https://cedatoutfaire.org/qui-suis-je.html#portrait",
+            "contentUrl": "https://cedatoutfaire.org/ressources/a_propos/a_propos.webp",
+            "caption": "Cédric Puygrenier, fondateur de Ced A Tout Faire"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://cedatoutfaire.org/qui-suis-je.html#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://cedatoutfaire.org/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Qui suis-je ?",
+                "item": "https://cedatoutfaire.org/qui-suis-je.html"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "realisations.html": {
+    "textSha256": "034d9ccdde9c56567e9f4e88586de69d399db5e073ae7cf5c94bcf3176d9eaac",
+    "jsonld": [
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://cedatoutfaire.org/#localbusiness",
+            "name": "Ced A Tout Faire",
+            "url": "https://cedatoutfaire.org/"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://cedatoutfaire.org/#website",
+            "url": "https://cedatoutfaire.org/",
+            "name": "Ced A Tout Faire"
+          },
+          {
+            "@type": "ImageGallery",
+            "@id": "https://cedatoutfaire.org/realisations.html#gallery",
+            "url": "https://cedatoutfaire.org/realisations.html",
+            "name": "Réalisations de Ced A Tout Faire à Rochefort",
+            "description": "Exemples de nettoyage de toiture et de véranda, de taille de haies et d'entretien de jardin réalisés à Rochefort et aux alentours.",
+            "inLanguage": "fr-FR",
+            "isPartOf": {
+              "@id": "https://cedatoutfaire.org/#website"
+            },
+            "about": {
+              "@id": "https://cedatoutfaire.org/#localbusiness"
+            },
+            "breadcrumb": {
+              "@id": "https://cedatoutfaire.org/realisations.html#breadcrumb"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://cedatoutfaire.org/realisations.html#toiture-resultat"
+            },
+            "image": [
+              {
+                "@type": "ImageObject",
+                "contentUrl": "https://cedatoutfaire.org/ressources/toiture/grattage.webp",
+                "caption": "Grattage manuel des mousses et lichens sur une toiture."
+              },
+              {
+                "@type": "ImageObject",
+                "contentUrl": "https://cedatoutfaire.org/ressources/toiture/pulverisation.webp",
+                "caption": "Application à basse pression du traitement de toiture."
+              },
+              {
+                "@type": "ImageObject",
+                "@id": "https://cedatoutfaire.org/realisations.html#toiture-resultat",
+                "contentUrl": "https://cedatoutfaire.org/ressources/toiture/r%C3%A9sultat.webp",
+                "caption": "Résultat après le nettoyage et le traitement d'une toiture."
+              },
+              {
+                "@type": "ImageObject",
+                "contentUrl": "https://cedatoutfaire.org/ressources/v%C3%A9randa/veranda_avant.webp",
+                "caption": "Toiture de véranda avant son nettoyage."
+              },
+              {
+                "@type": "ImageObject",
+                "contentUrl": "https://cedatoutfaire.org/ressources/v%C3%A9randa/veranda_apres.webp",
+                "caption": "Toiture de véranda en cours de nettoyage."
+              },
+              {
+                "@type": "ImageObject",
+                "contentUrl": "https://cedatoutfaire.org/ressources/jardin/taille_1.webp",
+                "caption": "Grande haie après une taille régulière."
+              },
+              {
+                "@type": "ImageObject",
+                "contentUrl": "https://cedatoutfaire.org/ressources/jardin/taille_2_avant.webp",
+                "caption": "Arbuste avant sa remise en forme."
+              },
+              {
+                "@type": "ImageObject",
+                "contentUrl": "https://cedatoutfaire.org/ressources/jardin/taille_2_apres.webp",
+                "caption": "Arbuste arrondi après sa remise en forme."
+              },
+              {
+                "@type": "ImageObject",
+                "contentUrl": "https://cedatoutfaire.org/ressources/jardin/tonte_1.webp",
+                "caption": "Tonte et remise au propre d'une pelouse arborée."
+              },
+              {
+                "@type": "ImageObject",
+                "contentUrl": "https://cedatoutfaire.org/ressources/jardin/tonte_2.webp",
+                "caption": "Pelouse entretenue autour des arbres et des massifs."
+              }
+            ]
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://cedatoutfaire.org/realisations.html#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": "https://cedatoutfaire.org/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Réalisations",
+                "item": "https://cedatoutfaire.org/realisations.html"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

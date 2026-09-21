@@ -2,6 +2,7 @@
 from datetime import date
 from html.parser import HTMLParser
 import json
+import hashlib
 from pathlib import Path
 from urllib.parse import unquote, urljoin, urlsplit
 import xml.etree.ElementTree as ET
@@ -13,24 +14,33 @@ PAGES = ['index.html','nettoyage-toiture.html','nettoyage-veranda.html','entreti
 class Document(HTMLParser):
     def __init__(self, source):
         super().__init__(); self.tags=[];self.ids=[];self.meta={};self.title=False;self.jsonld=[];self.json_text=None
+        self.headings=[];self.heading=None;self.text=[];self.skip_text=0
         self.feed(source)
     def handle_starttag(self, tag, attrs):
         a=dict(attrs);self.tags.append((tag,a))
+        if tag in ('script','style'):self.skip_text+=1
+        if tag in ('h1','h2','h3','h4','h5','h6'):
+            self.heading={'level':int(tag[1]),'text':''};self.headings.append(self.heading)
         if 'id' in a:self.ids.append(a['id'])
         if tag=='title':self.title=True
         if tag=='meta' and a.get('name') in ['description','robots']:self.meta[a['name']]=a.get('content')
         if tag=='link' and a.get('rel')=='canonical':self.meta['canonical']=a.get('href')
         if tag=='script' and a.get('type')=='application/ld+json':self.json_text=''
     def handle_data(self,data):
+        if not self.skip_text:self.text.append(data)
+        if self.heading is not None:self.heading['text']+=data
         if self.title:self.meta['title']=self.meta.get('title','')+data
         if self.json_text is not None:self.json_text+=data
     def handle_endtag(self,tag):
+        if tag in ('script','style'):self.skip_text-=1
+        if self.heading is not None and tag=='h'+str(self.heading['level']):self.heading=None
         if tag=='title':self.title=False
         if tag=='script' and self.json_text is not None:self.jsonld.append(json.loads(self.json_text));self.json_text=None
     def select(self,tag):return [a for t,a in self.tags if t==tag]
 
 def check():
     baseline=json.loads((REPO/'scripts/seo-baseline.json').read_text(encoding='utf-8'))
+    content_baseline=json.loads((REPO/'scripts/content-baseline.json').read_text(encoding='utf-8'))
     docs={name:Document((ROOT/name).read_text(encoding='utf-8')) for name in PAGES}
     def check_url(name,href):
         url=urlsplit(urljoin(DOMAIN+'/'+name,href))
@@ -42,6 +52,16 @@ def check():
     for name,doc in docs.items():
         assert doc.meta==baseline[name],f'{name}: SEO metadata changed: {doc.meta}'
         assert len(doc.select('h1'))==1 and len(doc.select('title'))==1,f'{name}: page heading/title'
+        text_hash=hashlib.sha256(' '.join(' '.join(doc.text).split()).encode('utf-8')).hexdigest()
+        assert text_hash==content_baseline[name]['textSha256'],f'{name}: page text changed'
+        assert doc.jsonld==content_baseline[name]['jsonld'],f'{name}: structured data changed'
+        previous=0
+        for heading in doc.headings:
+            assert heading['text'].strip(),f'{name}: empty heading'
+            assert heading['level']<=previous+1,f'{name}: heading level skipped before {heading}'
+            previous=heading['level']
+        counts={f'h{level}':sum(h['level']==level for h in doc.headings) for level in (1,2,3)}
+        print(f'HEADINGS {name}: {counts}')
         assert len(doc.ids)==len(set(doc.ids)),f'{name}: duplicate IDs'
         assert {'cookie-banner','cookie-settings','cookie-accept','cookie-decline'}<=set(doc.ids),f'{name}: consent controls'
         if name!='privacy.html':assert doc.jsonld,f'{name}: missing structured data'

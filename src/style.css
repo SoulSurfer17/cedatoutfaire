@@ -121,3 +121,6 @@ html:has(> body.journey){scroll-padding-top:0}
 
 /* Reveal the first frame only after asynchronous GPU preparation completes. */
 .scene-shell canvas{visibility:hidden}.webgl-ready .scene-shell canvas{visibility:visible}
+
+/* The standalone service contact block is a peer section; retain its typography. */
+.detail-page .service-cta h2{font-size:1.6rem;font-weight:600;letter-spacing:-.02em}

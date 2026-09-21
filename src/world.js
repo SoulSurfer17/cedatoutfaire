@@ -10,7 +10,13 @@ const yieldToBrowser = () => globalThis.scheduler?.yield
 const colors = { grass: '#5b8261', grassLight: '#78966e', earth: '#b2a085', wall: '#eee4cc', trim: '#f8f0dc', roof: '#b97556', wood: '#b18b61', leaf: '#3e7260', gold: '#e6cd83', teal: '#176670' };
 export async function createWorld(canvas) {
   performance.mark('catf-scene-start');
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'low-power' });
+  performance.mark('catf-context-start');
+  const context = canvas.getContext('webgl2', { alpha: true, antialias: true, powerPreference: 'low-power' });
+  if (!context) throw new Error('WebGL2 unavailable');
+  performance.measure('catf-context', 'catf-context-start');
+  await yieldToBrowser();
+  const renderer = new THREE.WebGLRenderer({ canvas, context, antialias: true, alpha: true, powerPreference: 'low-power' });
+  await yieldToBrowser();
   renderer.debug.checkShaderErrors = import.meta.env.DEV;
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.7));
   renderer.shadowMap.enabled = true;
@@ -290,7 +296,12 @@ export async function createWorld(canvas) {
   const path = new THREE.CatmullRomCurve3(positions.map(p=>new THREE.Vector3(...p)),false,'catmullrom',.25);
   const aim = new THREE.CatmullRomCurve3(targets.map(p=>new THREE.Vector3(...p)),false,'catmullrom',.25);
   let width=0,height=0;
-  function resize(){const rect=canvas.getBoundingClientRect();width=rect.width;height=rect.height;renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix();}
+  function resize(){
+    const rect=canvas.getBoundingClientRect();
+    if (!rect.width || !rect.height || (rect.width===width && rect.height===height)) return;
+    width=rect.width;height=rect.height;
+    renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix();
+  }
   resize();
   const viewTarget = new THREE.Vector3();
   let transition;
@@ -367,6 +378,44 @@ export async function createWorld(canvas) {
     await renderer.compileAsync(scene, camera);
     await yieldToBrowser();
     performance.measure('catf-shader-preparation', 'catf-shaders-start');
+    // A compiled program can still trigger driver work on its first draw.
+    // Warm each mesh separately in a one-pixel viewport while the canvas is
+    // hidden, yielding between draws and awaiting the GPU without blocking.
+    performance.mark('catf-upload-start');
+    const meshes = [];
+    scene.traverse(object => { if (object.isMesh) meshes.push(object); });
+    const state = meshes.map(object => ({ object, visible: object.visible, culled: object.frustumCulled }));
+    const viewport = renderer.getViewport(new THREE.Vector4());
+    const warmedDepths = new Set();
+    camera.position.copy(path.getPoint(0)); camera.lookAt(aim.getPoint(0));
+    state.forEach(({ object }) => { object.visible = false; object.frustumCulled = false; });
+    const scissor = renderer.getScissor(new THREE.Vector4());
+    const scissorTest = renderer.getScissorTest();
+    renderer.setViewport(0, 0, 1, 1);
+    renderer.setScissor(0, 0, 1, 1); renderer.setScissorTest(true);
+    try {
+      for (const { object, visible } of state) {
+        if (!visible) continue;
+        object.visible = true;
+        // The traveler owns its halo; make its parent visible for that pass.
+        const parentVisible = object.parent.visible;
+        object.parent.visible = true;
+        sun.shadow.needsUpdate = object.castShadow && !warmedDepths.has(object.customDepthMaterial);
+        renderer.render(scene, camera);
+        if (object.castShadow) warmedDepths.add(object.customDepthMaterial);
+        renderer.getContext().flush();
+        object.parent.visible = parentVisible;
+        object.visible = false;
+        await yieldToBrowser();
+      }
+    } finally {
+      state.forEach(({ object, visible, culled }) => { object.visible = visible; object.frustumCulled = culled; });
+      renderer.setViewport(viewport);
+      renderer.setScissor(scissor); renderer.setScissorTest(scissorTest);
+      sun.shadow.needsUpdate = true;
+    }
+    await finishFirstFrame();
+    performance.measure('catf-geometry-upload', 'catf-upload-start');
   }
   async function finishFirstFrame() {
     // Let the GPU finish the hidden first frame without forcing the compositor

@@ -46,3 +46,29 @@ Pour comparer le démarrage, construire et servir le site, puis lancer :
 Trois essais locaux Chromium, à 1440 × 900, DPR 1 et sans ralentissement artificiel : médiane de la somme des dépassements de 50 ms des tâches longues, 189 ms avant et 21 ms après optimisation. Cette mesure couvre le démarrage jusqu'à 1,8 seconde après disponibilité de la scène ; elle ne constitue pas un score Lighthouse et dépend du matériel. Le score final doit être mesuré sur le site publié.
 
 Les comparaisons du décor sur six cadrages conservent le rendu (écart moyen inférieur à 0,004 sur 255 par canal). Les tests de caméra vérifient aussi que les ombres réutilisées donnent les mêmes pixels qu'un recalcul et qu'aucun nouveau programme graphique n'est compilé au premier rendu après préparation.
+
+## Deuxième passe : premier rendu et contrôle des titres
+
+Le contexte WebGL et le renderer sont initialisés dans deux tâches distinctes. Après compilation des shaders, les géométries et les premières utilisations des matériaux sont préparées objet par objet dans une zone de 1 pixel du canvas masqué. Le navigateur peut traiter les interactions entre ces étapes. Le viewport, les objets et les ombres sont restaurés avant le premier dessin complet. Aucun détail du décor, éclairage ou niveau de qualité n'est retiré. Les demandes de redimensionnement à dimensions identiques ne réinitialisent plus le canvas.
+
+La construction du décor étant déjà répartie en étapes sans tâche longue dans ces essais, aucun nouvel export volumineux de géométrie n'est ajouté au téléchargement. Le changement cible le premier dessin effectivement mesuré comme coûteux.
+
+Comparaison de trois chargements du build précédent et du nouveau build, Chromium local à 1440 × 900, DPR 1, CPU ralenti 4 fois : premier rendu médian **62,5 → 5,3 ms**, blocage après FCP **49 → 34 ms**, scène prête **1 004 → 1 060 ms**. Le coût est réparti au prix d'environ 56 ms supplémentaires avant apparition complète dans cet environnement. Ces valeurs ne prédisent pas le score PageSpeed ; refaire le test publié. Le diagnostic accepte désormais le ralentissement en troisième argument et exclut les tâches antérieures au premier affichage :
+
+    node scripts/measure_startup.mjs http://127.0.0.1:4184/ 4
+
+Le logo utilise des variantes 148/296/444 pixels. Les photos des services ajoutent une variante de 160 pixels ; les définitions existantes sont conservées pour le mobile et les écrans denses. Le téléchargement des quatre images initialement observées sur PC standard passe de 39 592 à 18 262 octets.
+
+Les sept pages ont un H1 unique, des titres non vides et aucun saut de niveau. Les blocs de contact indépendants des trois pages de services passent de H3 à H2, sans changer leur texte ni leur présentation. Les pages sans sous-section n'ont pas besoin de H3.
+
+| Page | H1 | H2 | H3 |
+| --- | ---: | ---: | ---: |
+| Accueil | 1 | 7 | 0 |
+| Nettoyage de toiture | 1 | 5 | 3 |
+| Nettoyage de véranda | 1 | 5 | 2 |
+| Entretien de jardin | 1 | 5 | 3 |
+| Réalisations | 1 | 4 | 0 |
+| Qui suis-je ? | 1 | 3 | 3 |
+| Confidentialité | 1 | 6 | 0 |
+
+`check_site.py` contrôle aussi le texte de chaque page et les données structurées contre `scripts/content-baseline.json`, en plus des métadonnées SEO, liens, images, sitemap, domaine et consentement existants. Cette référence ne doit être actualisée que pour une modification de contenu volontaire. Les tests graphiques vérifient la restitution du viewport, l'identité des pixels après préparation et le fonctionnement des redimensionnements réels.

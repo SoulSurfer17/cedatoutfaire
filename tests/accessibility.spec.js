@@ -17,3 +17,14 @@ test('Descriptive section headings are present in the public HTML',async({page})
   await expect(page.locator(`#${id} p.chapter-display`)).toHaveCount(1);
  }
 });
+
+test('All seven pages have an ordered heading outline and independent contact sections',async({page})=>{
+ for(const name of ['index','nettoyage-toiture','nettoyage-veranda','entretien-espaces-verts','realisations','qui-suis-je','privacy']){
+  await page.goto('/'+name+'.html');
+  const headings=await page.locator('main :is(h1,h2,h3,h4,h5,h6)').evaluateAll(elements=>elements.map(el=>({level:Number(el.tagName[1]),text:el.textContent.trim()})));
+  expect(headings.filter(h=>h.level===1),name).toHaveLength(1);
+  let previous=0;
+  for(const heading of headings){expect(heading.text,name).not.toBe('');expect(heading.level,`${name}: ${heading.text}`).toBeLessThanOrEqual(previous+1);previous=heading.level;}
+  if(['nettoyage-toiture','nettoyage-veranda','entretien-espaces-verts'].includes(name))await expect(page.locator('.service-cta h2')).toHaveCount(1);
+ }
+});

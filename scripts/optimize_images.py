@@ -7,7 +7,12 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 VARIANTS = [
     ('logoCATF.webp', 'logoCATF-header.webp', 444, 90),
+    ('logoCATF.webp', 'logoCATF-header-148.webp', 148, 90),
+    ('logoCATF.webp', 'logoCATF-header-296.webp', 296, 90),
     ('moi.webp', 'moi-signature.webp', 128, 86),
+    ('toiture.webp', 'toiture-thumb.webp', 160, 84),
+    ('veranda.webp', 'veranda-thumb.webp', 160, 84),
+    ('tonte.webp', 'tonte-thumb.webp', 160, 84),
     ('toiture.webp', 'toiture-card.webp', 240, 84),
     ('veranda.webp', 'veranda-card.webp', 240, 84),
     ('tonte.webp', 'tonte-card.webp', 240, 84),
