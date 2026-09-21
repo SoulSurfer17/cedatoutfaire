@@ -4,6 +4,15 @@ test('Short targeted departure, entry fade and return to the same section',async
   await page.setViewportSize({width:1440,height:1000});
   await page.addInitScript(()=>{
     window.entrySeen=false;
+    // Assert the application's navigation delay independently of CI software
+    // rendering and the Node-to-browser command queue.
+    const schedule=window.setTimeout.bind(window);
+    window.setTimeout=(callback,delay,...args)=>{
+      if(document.documentElement?.classList.contains('page-leaving')){
+        sessionStorage.setItem('test-departure-delay',String(delay));
+      }
+      return schedule(callback,delay,...args);
+    };
     new MutationObserver(()=>{
       if(document.documentElement?.classList.contains('page-entering'))window.entrySeen=true;
     }).observe(document,{subtree:true,attributes:true,attributeFilter:['class']});
@@ -17,7 +26,7 @@ test('Short targeted departure, entry fade and return to the same section',async
   await expect(page.locator('html')).toHaveClass(/page-leaving/);
   await expect(page).toHaveURL(/nettoyage-veranda.html$/);
   expect(requestedAt-clickedAt).toBeGreaterThanOrEqual(290);
-  expect(requestedAt-clickedAt).toBeLessThan(850);
+  expect(await page.evaluate(()=>sessionStorage.getItem('test-departure-delay'))).toBe('320');
   expect(await page.evaluate(()=>window.entrySeen)).toBeTruthy();
   await expect(page.locator('html')).not.toHaveClass(/page-entering/);
   await page.locator('.detail-return').click();
