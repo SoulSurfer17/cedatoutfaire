@@ -1,60 +1,32 @@
-# Ced A Tout Faire
+﻿# Ced A Tout Faire
 
-Site statique publié sur GitHub Pages : https://cedatoutfaire.org/.
-Sept pages HTML, sans serveur applicatif, base de données ni formulaire.
-Les contacts passent par téléphone et e-mail.
+Site publié sur https://cedatoutfaire.org/ avec GitHub Pages.
+Le parcours 3D fonctionne sur ordinateur. Jusqu’à 760 px, le site utilise des images et une lecture classique sans charger Three.js.
 
-## Fichiers utilisés
+## Préparer et vérifier
 
-- Les fichiers HTML contiennent le contenu, les métadonnées et les styles propres aux pages.
-- `site-runtime.css` et `site-runtime.js` gèrent les éléments communs, le menu, les avis et le consentement Analytics.
-- `ressources/` contient les photos WebP et l’icône carrée `favicon.png`.
-- `reviews.json` contient les avis affichés ; aucun avis n’est récupéré automatiquement auprès de Google.
-- `sitemap.xml`, `robots.txt` et `CNAME` décrivent les pages et le domaine.
+Avec Node 22 et Python 3.12 :
 
-## Vérifier et publier
+    npm ci
+    npx playwright install chromium
+    python -m pip install -r requirements-dev.txt
+    python -m playwright install chromium
+    npm run build
+    python scripts/check_site.py
+    npm test
+    python scripts/check_browser.py --consent-only
 
-Installer Python 3.12 ou plus récent, puis :
+Les contrôles de publication portent sur le dossier `dist`, les sept URL d’origine, les métadonnées SEO, le consentement, l’accessibilité et la navigation.
+Le contrôle des caméras utilise le serveur de développement. Pour les tests sur le build, définir `TEST_PRODUCTION=1` avant `npm test`.
 
-```sh
-python -m pip install -r requirements-dev.txt
-python -m playwright install chromium
-python scripts/check_site.py --stage
-python scripts/check_browser.py
-```
+GitHub prépare et teste le site automatiquement. Seule la branche principale `main` peut être publiée. La branche `release/threejs-mobile` exécute les contrôles sans publier.
+Le domaine, le fichier de validation Google et les réglages Analytics existants sont conservés. Les documents, tests et outils ne sont pas publiés.
+Les avis proviennent de `reviews.json`, pas d’une récupération automatique chez Google.
 
-Les contrôles vérifient les liens locaux, les images, les métadonnées, les données
-structurées (syntaxe), le sitemap, l’affichage à quatre largeurs, l’accessibilité
-automatisée et le consentement. Les tests remplacent Google par une simulation :
-ils ne créent aucune visite Analytics et ne vérifient pas les réglages du compte.
-Un contrôle visuel et une vérification réelle après publication restent nécessaires.
+## Retour au site classique
 
-Le workflow `.github/workflows/pages.yml` contrôle chaque modification et publie
-`dist/` seulement si les contrôles réussissent. Dans Settings → Pages, la source
-doit être **GitHub Actions**. Les documents, outils et audits locaux sont exclus
-de l’archive publiée. Un échec laisse la dernière version publiée en place.
+Le repère `site-classique-avant-3d-2026-09-21` conserve le site classique et son ancienne méthode de publication (révision b2b648bb56ac8c935ede6638c772a2b296876fa1).
+Pour revenir en arrière, créer une modification qui restaure l’ensemble des fichiers suivis à cet état, puis la publier sur main. Ne pas effacer l’historique ni pousser de force.
+Le dossier local `D:/Happy Appz/Site CATF` est aussi conservé intact comme sauvegarde supplémentaire.
 
-Lors d’un changement important de contenu, actualiser la date `lastmod` de la page
-concernée dans `sitemap.xml` à la date réelle du changement. Vérifier aussi les
-descriptions, les informations partagées et les textes des données structurées.
-Ne pas réencoder les photos déjà compressées ; repartir d’un original.
-
-GitHub Pages gère les en-têtes de cache. Un fichier `_headers` ne les configure
-pas sur cet hébergeur. Pour un changement incompatible d’un fichier partagé,
-changer son nom ou sa version dans les références HTML et mettre à jour les
-contrôles ; ne pas compter sur un effacement du cache des visiteurs.
-
-## Réglages externes
-
-- GA4 existant : `G-6GML1CR323`. Conservation des données d’événement et utilisateur
-  réglée et vérifiée à **2 mois** le 17 septembre 2026, sans réinitialisation lors
-  d’une nouvelle activité. Google annonce une prise en compte sous 24 heures.
-  Le choix de consentement et les cookies ont une
-  durée distincte de 180 jours. La collecte reste bloquée avant acceptation.
-- Domaine principal : `cedatoutfaire.org`. Les quatre adresses A de GitHub Pages
-  sont `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`.
-- Le CNAME `www` vers `soulsurfer17.github.io` remplace la redirection Namecheap
-  depuis le 17 septembre 2026. Les autres entrées DNS ont été préservées.
-  GitHub a validé le DNS et lancé le renouvellement du certificat HTTPS.
-
-Le certificat et la redirection HTTPS de `www` restent à vérifier après émission.
+Lors des prochaines modifications, travailler dans ce dépôt de publication. Le dossier `Site CATF threeJS` conserve la version de conception, mais ne publie pas automatiquement.

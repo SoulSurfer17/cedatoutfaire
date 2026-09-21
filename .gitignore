@@ -1,31 +1,13 @@
-# Node modules (si jamais tu ajoutes du JS)
 node_modules/
-package-lock.json
-yarn.lock
-
-# Fichiers système
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Logs
-*.log
-npm-debug.log*
-
-# Cache
-.cache/
 dist/
-
-# Environnement
-.env
-.env.local
-
-# Local audits and Python caches (never published)
+audit/
+test-results/
+playwright-report/
 tmp/
 __pycache__/
 *.pyc
+.env
+.env.*
+*.log
+.DS_Store
+Thumbs.db

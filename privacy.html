@@ -24,14 +24,16 @@
 
 .privacy-hero{background:var(--green);color:white;padding:45px 0}.privacy-hero h1{max-width:900px;font-size:clamp(2rem,4vw,3rem)}.privacy-hero p{margin-top:20px;color:#dce9e6;font-size:.9rem}.privacy-copy{max-width:760px;padding:45px 0 55px}.privacy-copy h2{font-size:1.5rem;margin:32px 0 15px}.privacy-copy h2:first-child{margin-top:0}.privacy-copy p,.privacy-copy li{color:var(--muted)}.privacy-copy ul{padding-left:22px}.privacy-copy li{margin-bottom:10px}.privacy-copy a{color:var(--green);overflow-wrap:anywhere}.privacy-copy>p:last-child{margin-top:32px;padding-top:22px;border-top:1px solid var(--line)}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}</style>
 <link rel="stylesheet" href="site-runtime.css">
-<script src="site-runtime.js" defer></script>
-</head>
-<body>
+<script type="module" src="site-runtime.js"></script>
+<script src="page-entry.js"></script><link rel="stylesheet" href="/src/style.css"><script type="module" src="/src/detail.js"></script></head>
+<body class="detail-page">
 <a class="skip" href="#contenu">Aller au contenu</a>
-<header class="site-header"><div class="wrap header-inner">
-<a class="brand" href="index.html" aria-label="Ced A Tout Faire, accueil"><img src="ressources/logoCATF.webp" alt="Ced A Tout Faire" width="500" height="222"></a>
-<nav class="nav" aria-label="Navigation principale"><a href="index.html#services">Services</a><a href="realisations.html">Réalisations</a><a href="qui-suis-je.html">Qui suis-je ?</a><a href="index.html#avis">Avis</a><a href="index.html#contact">Me contacter</a></nav>
-<details class="mobile-menu"><summary>Menu</summary><nav aria-label="Navigation mobile"><a href="index.html#services">Services</a><a href="realisations.html">Réalisations</a><a href="qui-suis-je.html">Qui suis-je ?</a><a href="index.html#avis">Avis</a><a href="index.html#contact">Me contacter</a></nav></details>
+
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="index.html#accueil" aria-label="Ced A Tout Faire, accueil"><picture><source media="(max-width: 760px)" srcset="ressources/logoCATF-mobile.webp"><img src="ressources/logoCATF.webp" alt="Ced A Tout Faire" width="500" height="222"></picture></a>
+<nav class="nav" aria-label="Navigation principale"><a href="index.html#services">Les services</a><a href="index.html#realisations">Réalisations</a><a href="index.html#cedric">Qui suis-je ?</a><a href="index.html#avis">Les avis</a></nav>
+<a class="header-contact" href="index.html#contact">Parlons de votre projet <span aria-hidden="true">↗</span></a>
+<details class="mobile-menu"><summary>Menu</summary><nav aria-label="Navigation mobile"><a href="index.html#services">Les services</a><a href="index.html#realisations">Réalisations</a><a href="index.html#cedric">Qui suis-je ?</a><a href="index.html#avis">Les avis</a><a href="index.html#contact">Me contacter</a></nav></details>
 </div></header>
 <main id="contenu"><section class="privacy-hero"><div class="wrap">
         <h1>Politique de confidentialité &amp; Cookies</h1>

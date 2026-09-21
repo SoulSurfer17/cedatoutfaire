@@ -41,7 +41,8 @@ def main():
                     page.set_viewport_size({'width': width, 'height': 900})
                     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), f'{name}: overflow at {width}px'
                 for img in page.locator('img').all():
-                    img.scroll_into_view_if_needed()
+                    if img.is_visible():
+                        img.scroll_into_view_if_needed()
                     img.evaluate('(img) => img.decode()')
                 page.evaluate('window.scrollTo(0,0)')
                 page.add_script_tag(content=axe.decode('utf-8'))
@@ -111,4 +112,11 @@ def consent(browser):
     print('PASS: consent gating, refusal, single GA configuration, withdrawal across tabs, cookie deletion and expiry (Google mocked)')
 
 if __name__ == '__main__':
-    main()
+    import sys
+    if '--consent-only' in sys.argv:
+        with sync_playwright() as p:
+            browser = p.chromium.launch()
+            consent(browser)
+            browser.close()
+    else:
+        main()

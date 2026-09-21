@@ -190,14 +190,16 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 <link rel="stylesheet" href="site-runtime.css">
-<script src="site-runtime.js" defer></script>
-</head>
-<body>
+<script type="module" src="site-runtime.js"></script>
+<script src="page-entry.js"></script><link rel="stylesheet" href="/src/style.css"><script type="module" src="/src/detail.js"></script></head>
+<body class="detail-page">
 <a class="skip" href="#contenu">Aller au contenu</a>
-<header class="site-header"><div class="wrap header-inner">
-<a class="brand" href="index.html" aria-label="Ced A Tout Faire, accueil"><img src="ressources/logoCATF.webp" alt="Ced A Tout Faire" width="500" height="222"></a>
-<nav class="nav" aria-label="Navigation principale"><a href="index.html#services">Services</a><a href="realisations.html">Réalisations</a><a href="qui-suis-je.html">Qui suis-je ?</a><a href="index.html#avis">Avis</a><a href="index.html#contact">Me contacter</a></nav>
-<details class="mobile-menu"><summary>Menu</summary><nav aria-label="Navigation mobile"><a href="index.html#services">Services</a><a href="realisations.html">Réalisations</a><a href="qui-suis-je.html">Qui suis-je ?</a><a href="index.html#avis">Avis</a><a href="index.html#contact">Me contacter</a></nav></details>
+
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="index.html#accueil" aria-label="Ced A Tout Faire, accueil"><picture><source media="(max-width: 760px)" srcset="ressources/logoCATF-mobile.webp"><img src="ressources/logoCATF.webp" alt="Ced A Tout Faire" width="500" height="222"></picture></a>
+<nav class="nav" aria-label="Navigation principale"><a href="index.html#services">Les services</a><a href="index.html#realisations">Réalisations</a><a href="index.html#cedric">Qui suis-je ?</a><a href="index.html#avis">Les avis</a></nav>
+<a class="header-contact" href="index.html#contact">Parlons de votre projet <span aria-hidden="true">↗</span></a>
+<details class="mobile-menu"><summary>Menu</summary><nav aria-label="Navigation mobile"><a href="index.html#services">Les services</a><a href="index.html#realisations">Réalisations</a><a href="index.html#cedric">Qui suis-je ?</a><a href="index.html#avis">Les avis</a><a href="index.html#contact">Me contacter</a></nav></details>
 </div></header>
 <main id="contenu">
 <section class="service-hero"><div class="container"><nav class="breadcrumb" aria-label="Fil d'Ariane">

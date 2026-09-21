@@ -1,40 +1,57 @@
 name: Check and publish site
-
 on:
   push:
-    branches: [main]
+    branches: [main, release/threejs-mobile]
   pull_request:
     branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
   group: pages-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
-      - name: Install test dependencies
-        run: python -m pip install -r requirements-dev.txt
-      - name: Install test browser
-        run: python -m playwright install --with-deps chromium
-      - name: Check pages and prepare public files
-        run: python scripts/check_site.py --stage
-      - name: Check rendering, accessibility and consent
-        run: python scripts/check_browser.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m playwright install chromium
+      - name: Build public site
+        run: npm run build
+      - name: Check SEO, links and publication files
+        run: python scripts/check_site.py
+      - name: Check camera calculations
+        run: npx playwright test tests/label-camera.spec.js
+      - name: Check the actual production site
+        run: npm test
+        env:
+          TEST_PRODUCTION: '1'
+      - name: Check analytics consent without contacting Google
+        run: python scripts/check_browser.py --consent-only
+      - name: Save test diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results/
       - name: Upload checked site
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v4
         with:
           path: dist
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: check
     runs-on: ubuntu-latest
     timeout-minutes: 10

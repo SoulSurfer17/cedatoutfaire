@@ -1,0 +1,43 @@
+{
+  "entretien-espaces-verts.html": {
+    "title": "Jardinier à Rochefort | Entretien de jardin | Ced A Tout Faire",
+    "description": "Jardinier à Rochefort pour la tonte, la taille de haies, le débroussaillage et l'évacuation des déchets verts. Prestations sur devis gratuit.",
+    "robots": "index, follow",
+    "canonical": "https://cedatoutfaire.org/entretien-espaces-verts.html"
+  },
+  "index.html": {
+    "title": "Nettoyage toiture, véranda & entretien de jardin à Rochefort",
+    "description": "Nettoyage de toiture et de véranda, entretien de jardin à Rochefort et alentours. Cédric, à votre service depuis 2013. Devis gratuit et sans engagement.",
+    "robots": "index, follow",
+    "canonical": "https://cedatoutfaire.org/"
+  },
+  "nettoyage-toiture.html": {
+    "title": "Nettoyage démoussage de toiture à Rochefort | Ced A Tout Faire",
+    "description": "Nettoyage et démoussage de toiture à Rochefort : grattage manuel et traitement fongicide, à partir de 7 € TTC/m². Devis gratuit.",
+    "robots": "index, follow",
+    "canonical": "https://cedatoutfaire.org/nettoyage-toiture.html"
+  },
+  "nettoyage-veranda.html": {
+    "title": "Nettoyage de véranda haute pression à Rochefort | Ced A Tout Faire",
+    "description": "Nettoyage complet de véranda à Rochefort : toiture, vitrages, profilés et chéneaux, à partir de 10 € TTC/m². Devis gratuit.",
+    "robots": "index, follow",
+    "canonical": "https://cedatoutfaire.org/nettoyage-veranda.html"
+  },
+  "privacy.html": {
+    "title": "Politique de confidentialité et cookies - Ced A Tout Faire",
+    "description": "Politique de confidentialité et cookies du site Ced A Tout Faire - Informations sur les données collectées, finalités, et comment exercer vos droits.",
+    "canonical": "https://cedatoutfaire.org/privacy.html"
+  },
+  "qui-suis-je.html": {
+    "title": "Qui suis-je ? Cédric, professionnel multiservices à Rochefort",
+    "description": "Découvrez Cédric Puygrenier, fondateur de Ced A Tout Faire, professionnel multiservices à Rochefort et alentours depuis 2013.",
+    "robots": "index, follow",
+    "canonical": "https://cedatoutfaire.org/qui-suis-je.html"
+  },
+  "realisations.html": {
+    "title": "Réalisations à Rochefort | Ced A Tout Faire",
+    "description": "Découvrez quelques réalisations de Ced A Tout Faire : nettoyage de toiture et de véranda, taille de haies et entretien de jardin à Rochefort.",
+    "robots": "index, follow",
+    "canonical": "https://cedatoutfaire.org/realisations.html"
+  }
+}
