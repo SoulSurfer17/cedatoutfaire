@@ -34,7 +34,7 @@ test('Mobile HTML remains readable without JavaScript',async({browser})=>{
  const page=await context.newPage();await page.goto('/');
  await expect(page.locator('h1')).toContainText('Nettoyage de toiture');
  await expect(page.locator('.mobile-house img')).toBeVisible();
- await expect(page.locator('.quote')).toHaveCount(4);
+ await expect(page.locator('.quote')).toHaveCount(6);
  await page.locator('.mobile-services a[href="#jardin"]').click();
  await expect(page.locator('#jardin h2')).toBeInViewport();await context.close();
 });

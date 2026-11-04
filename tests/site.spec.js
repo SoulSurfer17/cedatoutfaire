@@ -60,7 +60,7 @@ test('Reduced motion preference and unavailable WebGL preserve navigation',async
 });
 test('Content remains accessible without JavaScript',async({browser})=>{
   const context=await browser.newContext({javaScriptEnabled:false});const page=await context.newPage();await page.goto('/');
-  await expect(page.locator('h1')).toContainText('Nettoyage de toiture');await expect(page.locator('.quote')).toHaveCount(4);
+  await expect(page.locator('h1')).toContainText('Nettoyage de toiture');await expect(page.locator('.quote')).toHaveCount(6);
   await page.locator('.journey-nav a[href="#contact"]').click();await expect(page.locator('#contact .phone')).toBeInViewport();await context.close();
 });
 

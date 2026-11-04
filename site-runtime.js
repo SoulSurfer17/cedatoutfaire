@@ -126,7 +126,7 @@ document.querySelectorAll('.mobile-menu a').forEach(link => {
     applyConsent();
 })();
 
-// Keep the four HTML reviews as a readable fallback if the JSON cannot load.
+// Keep the HTML reviews as a readable fallback if the JSON cannot load.
 const reviewsContainer = document.getElementById('recent-reviews-container');
 if (reviewsContainer) {
     fetch('reviews.json').then(response => {
@@ -148,9 +148,8 @@ if (reviewsContainer) {
         });
         reviewsContainer.replaceChildren(...reviews);
         document.getElementById('review-count-display').textContent = data.totalReviews;
-        document.getElementById('review-rating-display').textContent = data.ratingValue;
         const stars = document.querySelector('.rating .stars');
         stars.textContent = '★'.repeat(Math.round(Number(data.ratingValue)));
-        stars.setAttribute('aria-label', data.ratingValue + ' étoiles sur 5');
+        stars.setAttribute('aria-label', 'Avis ' + data.ratingValue + ' étoiles');
     }).catch(() => { /* Static reviews remain available. */ });
 }

@@ -1,8 +1,21 @@
 {
-  "totalReviews": 34,
+  "totalReviews": 35,
+  "countDescription": "Nombre d'avis 5 étoiles uniquement, pas le nombre total d'avis Google.",
   "ratingValue": 5,
-  "lastUpdated": "2026-09-15",
+  "lastUpdated": "2026-11-04",
   "recentReviews": [
+    {
+      "author": "Amy Lan",
+      "rating": 5,
+      "date": "Octobre 2026",
+      "text": "J’ai fait appel à Cédric pour l’entretien d’un extérieur qui était laissé à l’abandon et je recommande vivement. Très réactif, à l’écoute, travail très bien fait et propre. Je suis ravie. Vous pouvez faire appel à des services les yeux fermés."
+    },
+    {
+      "author": "Valérie C.",
+      "rating": 5,
+      "date": "Octobre 2026",
+      "text": "Je recommande : travail (de titan) très sérieux et soigné. Débroussaillage du jardin : incroyable ! En plus tout est nickel et propre en partant. Premier contact très sympathique, à l’écoute. Bravo et merci ! À très vite pour d'autres missions, c'est certain !"
+    },
     {
       "author": "Françoise Libert",
       "rating": 5,
