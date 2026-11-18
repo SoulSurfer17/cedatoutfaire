@@ -1,6 +1,6 @@
 {
   "entretien-espaces-verts.html": {
-    "textSha256": "10bb1bd79c0742ee7410bc689d397b51b02383732ceaecc915594947798c2aa0",
+    "textSha256": "418822dba445b18a2987a6eea667facf3c41d21a2df9ec35c50b67b4a5e62370",
     "jsonld": [
       {
         "@context": "https://schema.org",
@@ -46,6 +46,26 @@
               {
                 "@type": "City",
                 "name": "Saint-Agnant"
+              },
+              {
+                "@type": "City",
+                "name": "Fouras"
+              },
+              {
+                "@type": "City",
+                "name": "Soubise"
+              },
+              {
+                "@type": "City",
+                "name": "Breuil-Magné"
+              },
+              {
+                "@type": "City",
+                "name": "Vergeroux"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Laurent-de-la-Prée"
               }
             ],
             "openingHoursSpecification": {
@@ -102,6 +122,26 @@
               {
                 "@type": "City",
                 "name": "Saint-Agnant"
+              },
+              {
+                "@type": "City",
+                "name": "Fouras"
+              },
+              {
+                "@type": "City",
+                "name": "Soubise"
+              },
+              {
+                "@type": "City",
+                "name": "Breuil-Magné"
+              },
+              {
+                "@type": "City",
+                "name": "Vergeroux"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Laurent-de-la-Prée"
               }
             ]
           },
@@ -164,7 +204,7 @@
     ]
   },
   "index.html": {
-    "textSha256": "0f33c585f18f8adb98d55576676b82e6fef9e1ce417a44a17c935752dccb0da6",
+    "textSha256": "a36ed3279fdf9892c733f24336151b623c519421a7f1109316a03113b0ee1250",
     "jsonld": [
       {
         "@context": "https://schema.org",
@@ -210,6 +250,26 @@
               {
                 "@type": "City",
                 "name": "Saint-Agnant"
+              },
+              {
+                "@type": "City",
+                "name": "Fouras"
+              },
+              {
+                "@type": "City",
+                "name": "Soubise"
+              },
+              {
+                "@type": "City",
+                "name": "Breuil-Magné"
+              },
+              {
+                "@type": "City",
+                "name": "Vergeroux"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Laurent-de-la-Prée"
               }
             ],
             "openingHoursSpecification": {
@@ -323,7 +383,7 @@
     ]
   },
   "nettoyage-toiture.html": {
-    "textSha256": "dbdf2a13dfc33a2e9375daf2137a8452b1dccb2b0ff5de239201fcb1ca7504aa",
+    "textSha256": "b16736787725f6a1336333df4c96d8f936ad843f5271ec7dd622b822a65d6b09",
     "jsonld": [
       {
         "@context": "https://schema.org",
@@ -369,6 +429,26 @@
               {
                 "@type": "City",
                 "name": "Saint-Agnant"
+              },
+              {
+                "@type": "City",
+                "name": "Fouras"
+              },
+              {
+                "@type": "City",
+                "name": "Soubise"
+              },
+              {
+                "@type": "City",
+                "name": "Breuil-Magné"
+              },
+              {
+                "@type": "City",
+                "name": "Vergeroux"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Laurent-de-la-Prée"
               }
             ],
             "openingHoursSpecification": {
@@ -434,6 +514,26 @@
               {
                 "@type": "City",
                 "name": "Saint-Agnant"
+              },
+              {
+                "@type": "City",
+                "name": "Fouras"
+              },
+              {
+                "@type": "City",
+                "name": "Soubise"
+              },
+              {
+                "@type": "City",
+                "name": "Breuil-Magné"
+              },
+              {
+                "@type": "City",
+                "name": "Vergeroux"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Laurent-de-la-Prée"
               }
             ]
           },
@@ -496,7 +596,7 @@
     ]
   },
   "nettoyage-veranda.html": {
-    "textSha256": "24f68da44f17469665cd88b434b397a0b224a759dde52c23aa16f7774c90168d",
+    "textSha256": "f2ec6d1b4c1285ced39db3b9de1b001e26ddb26fd7c66e1a6cff59e637e9b414",
     "jsonld": [
       {
         "@context": "https://schema.org",
@@ -542,6 +642,26 @@
               {
                 "@type": "City",
                 "name": "Saint-Agnant"
+              },
+              {
+                "@type": "City",
+                "name": "Fouras"
+              },
+              {
+                "@type": "City",
+                "name": "Soubise"
+              },
+              {
+                "@type": "City",
+                "name": "Breuil-Magné"
+              },
+              {
+                "@type": "City",
+                "name": "Vergeroux"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Laurent-de-la-Prée"
               }
             ],
             "openingHoursSpecification": {
@@ -607,6 +727,26 @@
               {
                 "@type": "City",
                 "name": "Saint-Agnant"
+              },
+              {
+                "@type": "City",
+                "name": "Fouras"
+              },
+              {
+                "@type": "City",
+                "name": "Soubise"
+              },
+              {
+                "@type": "City",
+                "name": "Breuil-Magné"
+              },
+              {
+                "@type": "City",
+                "name": "Vergeroux"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Laurent-de-la-Prée"
               }
             ]
           },
@@ -719,6 +859,26 @@
               {
                 "@type": "City",
                 "name": "Saint-Agnant"
+              },
+              {
+                "@type": "City",
+                "name": "Fouras"
+              },
+              {
+                "@type": "City",
+                "name": "Soubise"
+              },
+              {
+                "@type": "City",
+                "name": "Breuil-Magné"
+              },
+              {
+                "@type": "City",
+                "name": "Vergeroux"
+              },
+              {
+                "@type": "City",
+                "name": "Saint-Laurent-de-la-Prée"
               }
             ],
             "openingHoursSpecification": {
