@@ -19,7 +19,6 @@
             },
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "79 rue Lefevre",
               "addressLocality": "Rochefort",
               "addressRegion": "Charente-Maritime",
               "postalCode": "17300",
@@ -165,7 +164,7 @@
     ]
   },
   "index.html": {
-    "textSha256": "a307bace6fd4d9c772d201b0e32ad22b90d376264d5585b9ef694b522fec5ac9",
+    "textSha256": "0ce2e7a2d8f6b7f7632fb5e7e688c2de58b38d05b5ee321fb401f615cec4697a",
     "jsonld": [
       {
         "@context": "https://schema.org",
@@ -185,7 +184,6 @@
             },
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "79 rue Lefevre",
               "addressLocality": "Rochefort",
               "addressRegion": "Charente-Maritime",
               "postalCode": "17300",
@@ -344,7 +342,6 @@
             },
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "79 rue Lefevre",
               "addressLocality": "Rochefort",
               "addressRegion": "Charente-Maritime",
               "postalCode": "17300",
@@ -518,7 +515,6 @@
             },
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "79 rue Lefevre",
               "addressLocality": "Rochefort",
               "addressRegion": "Charente-Maritime",
               "postalCode": "17300",
@@ -697,7 +693,6 @@
             },
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "79 rue Lefevre",
               "addressLocality": "Rochefort",
               "addressRegion": "Charente-Maritime",
               "postalCode": "17300",
