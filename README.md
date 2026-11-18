@@ -1,7 +1,7 @@
 ﻿# Ced A Tout Faire
 
 Site publié sur https://cedatoutfaire.org/ avec GitHub Pages.
-Le parcours 3D fonctionne sur ordinateur. Jusqu’à 760 px, le site utilise des images et une lecture classique sans charger Three.js.
+À partir de 761 px, le parcours 3D se lance avec un pointeur précis capable de survoler les liens. Sur les écrans tactiles de cette taille, l’accueil affiche la vue statique et propose la 3D à la demande. Jusqu’à 760 px, le site utilise des images et une lecture classique sans charger Three.js.
 
 ## Préparer et vérifier
 
@@ -36,7 +36,7 @@ Lors des prochaines modifications, travailler dans ce dépôt de publication. Le
 
 Le décor opaque fixe est regroupé par matériau, avec les couleurs conservées par sommet. La végétation, les tuiles, le personnage et la clôture gardent leurs détails. Le point mobile et les vitres restent séparés. La première image utilise 20 appels de dessin au lieu de 632, pour les mêmes 33 910 triangles dans la vue de référence.
 
-La construction rend régulièrement la main au navigateur. Les programmes du décor et des ombres sont préparés avec `compileAsync` ; le premier rendu reste masqué jusqu'à la fin du travail GPU, vérifiée sans attente bloquante. Les ombres sont recalculées quand le point mobile se déplace, puis réutilisées lors des seuls mouvements de caméra. La photo de secours n'est chargée qu'en cas d'échec WebGL ou sans JavaScript.
+La construction rend régulièrement la main au navigateur. Les programmes du décor et des ombres sont préparés avec `compileAsync`. Le premier rendu reste masqué jusqu'à la fin du travail GPU, vérifiée sans attente bloquante. Le trajet est signalé par un repère lumineux, ce qui permet de conserver la carte d’ombres du décor fixe pendant les déplacements. La photo de secours est utilisée en cas d’échec WebGL ou lorsque JavaScript est désactivé.
 
 Les dérivés WebP sont reproductibles avec `python scripts/optimize_images.py`. Les originaux sont conservés. Les photos de services utilisent `srcset` pour conserver leur définition sur mobile, où elles sont affichées plus grandes. Le logo PC passe de 83 016 à 15 118 octets.
 

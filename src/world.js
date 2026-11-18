@@ -7,7 +7,24 @@ const yieldToBrowser = () => globalThis.scheduler?.yield
   ? globalThis.scheduler.yield()
   : new Promise(resolve => setTimeout(resolve, 0));
 
-const colors = { grass: '#5b8261', grassLight: '#78966e', earth: '#b2a085', wall: '#eee4cc', trim: '#f8f0dc', roof: '#b97556', wood: '#b18b61', leaf: '#3e7260', gold: '#e6cd83', teal: '#176670' };
+const colors = { grass: '#62875e', trim: '#e9dfc7', roof: '#aa654c', wood: '#a57552', leaf: '#3f7058', gold: '#e6cd83', teal: '#18646a' };
+const MAX_CANVAS_PIXELS = 1_800_000;
+
+function verticalColors(geometry, lower, upper) {
+  const positions = geometry.getAttribute('position');
+  geometry.computeBoundingBox();
+  const { min, max } = geometry.boundingBox;
+  const bottom = new THREE.Color(lower), top = new THREE.Color(upper);
+  const shade = new THREE.Color();
+  const values = new Float32Array(positions.count * 3);
+  for (let i = 0; i < positions.count; i++) {
+    const height = (positions.getY(i) - min.y) / (max.y - min.y);
+    shade.copy(bottom).lerp(top, height).toArray(values, i * 3);
+  }
+  geometry.setAttribute('color', new THREE.BufferAttribute(values, 3));
+  return geometry;
+}
+
 export async function createWorld(canvas) {
   performance.mark('catf-scene-start');
   performance.mark('catf-context-start');
@@ -18,17 +35,16 @@ export async function createWorld(canvas) {
   const renderer = new THREE.WebGLRenderer({ canvas, context, antialias: true, alpha: true, powerPreference: 'low-power' });
   await yieldToBrowser();
   renderer.debug.checkShaderErrors = import.meta.env.DEV;
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.7));
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.3;
+  renderer.toneMappingExposure = 1.12;
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(36, 1, .1, 160);
-  scene.add(new THREE.HemisphereLight('#fff1d4', '#3f6865', 3));
-  const sun = new THREE.DirectionalLight('#fff1d6', 4.5);
-  sun.position.set(-8, 18, 12); sun.castShadow = true;
+  scene.add(new THREE.HemisphereLight('#e8f5ed', '#466562', 2.55));
+  const sun = new THREE.DirectionalLight('#ffe4b6', 4.1);
+  sun.position.set(-10, 16, 13); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048);
   sun.shadow.autoUpdate = false;
   sun.shadow.needsUpdate = true;
@@ -60,41 +76,54 @@ export async function createWorld(canvas) {
   }
   await yieldToBrowser();
   // A small, crafted Charente-Maritime garden, on a floating slice of land.
-  const base = mesh(new THREE.CylinderGeometry(10, 9.5, .85, 72), colors.earth, [0, -.52, 0]); base.scale.z = .79;
+  const baseProfile = [[0, -.96], [9.3, -.96], [9.55, -.86], [9.93, -.28], [10, -.095], [0, -.095]];
+  const baseGeometry = new THREE.LatheGeometry(baseProfile.map(([radius, height]) => new THREE.Vector2(radius, height)), 72);
+  const base = mesh(verticalColors(baseGeometry, '#765342', '#c5a27d'), '#ffffff', [0, 0, 0]);
+  base.scale.z = .79;
   const turf = mesh(new THREE.CylinderGeometry(10.02, 10.02, .16, 72), colors.grass, [0, -.02, 0]); turf.scale.z = .79;
-  const rim = mesh(new THREE.TorusGeometry(9.87, .025, 6, 100), '#d1bc84', [0, -.08, 0]); rim.rotation.x = Math.PI/2; rim.scale.y = .79;
+  const rim = mesh(new THREE.TorusGeometry(9.91, .026, 6, 96), '#d9bf87', [0, -.12, 0]); rim.rotation.x = Math.PI/2; rim.scale.y = .79;
   // Lawn stripes, flower beds and stepping stones.
-  for(let i=0;i<7;i++) box(.63,.018,5.4,i%2 ? '#71936b' : '#668b63',3.7+i*.65,.076,1.6);
+  const lawn = new THREE.PlaneGeometry(4.55,5.4,7,1).toNonIndexed();
+  const lawnPositions = lawn.getAttribute('position');
+  const lawnColors = new Float32Array(lawnPositions.count * 3);
+  const lawnTones = [new THREE.Color('#68895d'), new THREE.Color('#709361')];
+  for (let i = 0; i < lawnPositions.count; i++) lawnTones[Math.floor(i / 6) % 2].toArray(lawnColors, i * 3);
+  lawn.setAttribute('color', new THREE.BufferAttribute(lawnColors, 3));
+  mesh(lawn, '#ffffff', [5.65,.071,1.6]).rotation.x = -Math.PI / 2;
   box(4.9,.13,1.25,'#b4a182',5.4,.12,-2.7);
   box(4.65,.1,1.02,'#4c5b40',5.4,.2,-2.7);
   for(let i=0;i<12;i++) {
     const x=3.3+i*.38;
-    sphere(.23, i%3 ? '#638355' : '#8e9958', x,.43,-2.7);
-    sphere(.07,i%2?'#e6cd83':'#f1d7b5',x,.65,-2.62);
+    sphere(.23, i%3 ? '#4e7656' : '#82915c', x,.43,-2.7);
+    sphere(.07,['#f2d799','#cd8876','#efdfbc'][i%3],x,.65,-2.62);
   }
   const road = new THREE.CatmullRomCurve3([
     new THREE.Vector3(-8.5,.09,3.4),new THREE.Vector3(-6.2,.09,4.1),new THREE.Vector3(-2.8,.09,5.1),new THREE.Vector3(.2,.09,4.5),new THREE.Vector3(2.2,.09,2.4),new THREE.Vector3(2.4,.09,-.8),new THREE.Vector3(4,.09,-4.3),new THREE.Vector3(7.2,.09,-4.8)
   ]);
+  const pathSegments = 120;
   function ribbon(curve,width,color,y) {
     const vertices=[],indices=[];
-    for(let i=0;i<=180;i++) {
-      const t=i/180,p=curve.getPoint(t),v=curve.getTangent(t),nx=-v.z,nz=v.x;
+    for(let i=0;i<=pathSegments;i++) {
+      const t=i/pathSegments,p=curve.getPoint(t),v=curve.getTangent(t),nx=-v.z,nz=v.x;
       vertices.push(p.x+nx*width/2,y,p.z+nz*width/2,p.x-nx*width/2,y,p.z-nz*width/2);
-      if(i<180){const j=i*2;indices.push(j,j+2,j+1,j+1,j+2,j+3);}
+      if(i<pathSegments){const j=i*2;indices.push(j,j+2,j+1,j+1,j+2,j+3);}
     }
     const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));g.setIndex(indices);g.computeVertexNormals();
     return mesh(g,color,[0,0,0],root,{side:THREE.DoubleSide});
   }
-  ribbon(road,1.3,'#d0bd97',.11);
-  const routeLine = new THREE.CatmullRomCurve3(road.getPoints(180).map(p=>p.setY(.135)));
-  mesh(new THREE.TubeGeometry(routeLine,180,.025,5,false),colors.gold,[0,0,0],root,{emissive:colors.gold,emissiveIntensity:.25});
+  ribbon(road,1.3,'#d3bc99',.11);
+  const routeLine = new THREE.CatmullRomCurve3(road.getPoints(pathSegments).map(p=>p.setY(.135)));
+  mesh(new THREE.TubeGeometry(routeLine,pathSegments,.025,5,false),colors.gold,[0,0,0],root,{emissive:colors.gold,emissiveIntensity:.25});
   const traveler = sphere(.105, '#fff2c5', -8.5,.25,3.4);
   const halo = mesh(new THREE.TorusGeometry(.22,.02,6,28), colors.gold, [0,0,0], traveler); halo.rotation.x=Math.PI/2;
+  // The animated guide is a light marker. The rest of the scene can share one shadow map.
+  traveler.castShadow = halo.castShadow = false;
   await yieldToBrowser();
   // House, tiled pitched roof and pale stone details.
   const house = new THREE.Group(); house.position.set(-2,0,-1.1); root.add(house);
-  box(5.8,.23,4.5,'#c4bda3',0,.17,0,house);
-  box(5.4,2.9,4.05,colors.wall,0,1.7,0,house);
+  box(5.8,.23,4.5,'#bba488',0,.17,0,house);
+  const walls = verticalColors(new THREE.BoxGeometry(5.4,2.9,4.05,1,3,1), '#c7b18f', '#f2e5cc');
+  mesh(walls, '#ffffff', [0,1.7,0], house);
   const roofGeo = new THREE.BufferGeometry();
   roofGeo.setAttribute('position',new THREE.Float32BufferAttribute([
     -3,3.12,-2.3, 3,3.12,-2.3, 3,4.75,0, -3,4.75,0,
@@ -104,14 +133,15 @@ export async function createWorld(canvas) {
   ],3));
   roofGeo.setIndex([0,2,1,0,3,2,4,6,5,4,7,6,8,9,10,11,12,13]); roofGeo.computeVertexNormals();
   mesh(roofGeo,colors.roof,[0,0,0],house,{side:THREE.DoubleSide});
+  const tileTones = ['#bc795c', '#cc8968', '#b57258', '#c28465'];
   for(let side of [-1,1]) {
     for(let row=0;row<9;row++) {
       const z=side*(row+.5)*.255,y=4.75-Math.abs(z)*1.63/2.3;
-      rod([-3,y+.02,z],[3,y+.02,z],.033,row%2?'#c58764':'#cb9171',house);
+      rod([-3,y+.02,z],[3,y+.02,z],.033,tileTones[(row+(side===1?0:2))%tileTones.length],house);
     }
-    for(let i=0;i<24;i++) rod([-2.95+i*.255,4.78,0],[-2.95+i*.255,3.15,side*2.3],.031,'#a66b50',house);
+    for(let i=0;i<24;i++) rod([-2.95+i*.255,4.78,0],[-2.95+i*.255,3.15,side*2.3],.031,i%3?'#a2684d':'#b17b5b',house);
   }
-  rod([-3.08,4.78,0],[3.08,4.78,0],.11,'#ca8a64',house);
+  rod([-3.08,4.78,0],[3.08,4.78,0],.11,'#ce9270',house);
   rod([-3.04,3.1,2.3],[3.04,3.1,2.3],.06,colors.trim,house);
   box(.55,1.15,.62,'#dfccb0',1.65,4.43,-.65,house); box(.68,.15,.75,'#ad8164',1.65,5.04,-.65,house);
   box(.78,1.7,.08,colors.teal,0,1.24,2.07,house);
@@ -130,18 +160,42 @@ export async function createWorld(canvas) {
   await yieldToBrowser();
   // Glass veranda attached to the east facade.
   const veranda = new THREE.Group(); veranda.position.set(1.4,0,-1.45);root.add(veranda);
-  box(2.4,.18,3.2,'#ddd3b7',0,.25,0,veranda);
-  const glass=mat('#b5ded5',{transparent:true,opacity:.29,metalness:.2,roughness:.12,side:THREE.DoubleSide,depthWrite:false});
-  function glassBox(w,h,d,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),glass);m.position.set(x,y,z);veranda.add(m);}
-  glassBox(2.35,1.9,.035,0,1.3,1.55);glassBox(.035,1.9,3.1,1.17,1.3,0);
-  const glassRoof=new THREE.Mesh(new THREE.BoxGeometry(2.6,.045,3.3),glass);glassRoof.position.set(0,2.4,0);glassRoof.rotation.z=-.12;veranda.add(glassRoof);
-  for(let z of [-1.56,-.52,.52,1.56]){
-    rod([1.2,.3,z],[1.2,2.25,z],.037,colors.trim,veranda);
-    rod([-1.2,2.56,z],[1.3,2.25,z],.04,colors.trim,veranda);
+  box(2.4,.18,3.2,'#d5c5a7',0,.25,0,veranda);
+  const glass = new THREE.MeshBasicMaterial({
+    transparent: true, opacity: .36, vertexColors: true, side: THREE.DoubleSide,
+    forceSinglePass: true, depthWrite: false, toneMapped: false,
+  });
+  materials.set('veranda-glass', glass);
+  function glassPanel(width, height, x, y, z, slope = 0) {
+    // The tint and soft highlight live on the panel itself.
+    const geometry = new THREE.PlaneGeometry(width, height, 4, 3);
+    const positions = geometry.getAttribute('position');
+    const values = new Float32Array(positions.count * 3);
+    const tint = new THREE.Color('#438f98'), highlight = new THREE.Color('#dcf6ed');
+    const shade = new THREE.Color();
+    for (let i = 0; i < positions.count; i++) {
+      const u = positions.getX(i) / width + .5, v = positions.getY(i) / height + .5;
+      const glint = Math.max(0, 1 - Math.abs(u - (.17 + .57 * v)) * 3.2);
+      shade.copy(tint).lerp(highlight, .1 + .25 * v + .48 * glint).toArray(values, i * 3);
+      positions.setY(i, positions.getY(i) + slope * positions.getX(i) * v);
+    }
+    geometry.setAttribute('color', new THREE.BufferAttribute(values, 3));
+    const panel = new THREE.Mesh(geometry, glass);
+    panel.position.set(x, y, z);
+    veranda.add(panel);
+    return panel;
   }
-  for(let x of [-1.2,0,1.2])rod([x,.3,1.56],[x,2.4-x*.12,1.56],.037,colors.trim,veranda);
-  for(let y of [.35,2.25])rod([1.2,y,-1.56],[1.2,y,1.56],.035,colors.trim,veranda);
-  rod([-1.2,2.55,1.56],[1.2,2.25,1.56],.04,colors.trim,veranda);
+  glassPanel(2.36,2.03,0,1.37,1.55,-.12);
+  glassPanel(3.1,1.9,1.17,1.3,0).rotation.y = Math.PI / 2;
+  glassPanel(2.6,3.3,0,2.4,0).rotation.set(-Math.PI / 2,0,-.12,'ZYX');
+  const frame = '#91adb0', crossbar = '#dbe2cc';
+  for(let z of [-1.56,-.52,.52,1.56]){
+    rod([1.2,.3,z],[1.2,2.25,z],.037,frame,veranda);
+    rod([-1.2,2.56,z],[1.3,2.25,z],.04,crossbar,veranda);
+  }
+  for(let x of [-1.2,0,1.2])rod([x,.3,1.56],[x,2.4-x*.12,1.56],.037,frame,veranda);
+  for(let y of [.35,2.25])rod([1.2,y,-1.56],[1.2,y,1.56],.035,crossbar,veranda);
+  rod([-1.2,2.55,1.56],[1.2,2.25,1.56],.04,crossbar,veranda);
   mesh(new THREE.CylinderGeometry(.42,.42,.07,20),colors.wood,[0,.95,.2],veranda);rod([0,.35,.2],[0,.92,.2],.07,colors.trim,veranda);
   await yieldToBrowser();
   // Trees and clipped hedges, with deterministic geometry.
@@ -149,9 +203,9 @@ export async function createWorld(canvas) {
     const g=new THREE.Group();g.position.set(x,.07,z);g.scale.setScalar(s);root.add(g);
     rod([0,0,0],[.05,2.5,0],.12,colors.wood,g);
     rod([0,1.3,0],[-.6,2.6,.2],.065,colors.wood,g);
-    sphere(1.03,colors.leaf,0,2.85,0,g);sphere(.8,'#64866a',-.52,2.7,.28,g);sphere(.72,'#7a9670',.33,3.38,-.1,g);
+    sphere(1.03,colors.leaf,0,2.85,0,g);sphere(.8,'#557e62',-.52,2.7,.28,g);sphere(.72,'#80955e',.33,3.38,-.1,g);
   }
-  tree(-7,-1.2,1.1);tree(-6,-4.2,1.2);tree(-3.7,-5.6,.9);tree(5.8,-5.8,.85);tree(8,1,1.05);tree(6.4,4,.72);
+  tree(-7,-1.2,1.1);tree(-6,-4.2,1.2);tree(-3.7,-5.6,.9);tree(5.8,-5.8,.85);tree(8.4,.1,.98);tree(7.1,-3.2,.72);
   for(let i=0;i<9;i++) {
     sphere(.62,i%2?'#436f51':'#527958',-6.9+i*.9,.65,-5.7);
     box(.8,.72,.85,'#4f7655',-6.9+i*.9,.43,-5.7);
@@ -261,10 +315,12 @@ export async function createWorld(canvas) {
     }
     const part = object.geometry.index ? object.geometry.toNonIndexed() : object.geometry.clone();
     part.applyMatrix4(object.matrixWorld);
-    const count = part.getAttribute('position').count;
-    const colors = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) source.color.toArray(colors, i * 3);
-    part.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    if (!part.hasAttribute('color')) {
+      const count = part.getAttribute('position').count;
+      const colors = new Float32Array(count * 3);
+      for (let i = 0; i < count; i++) source.color.toArray(colors, i * 3);
+      part.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    }
     batches.get(key).parts.push(part);
     object.removeFromParent();
     if (performance.now() - sliceStart > 8) {
@@ -291,16 +347,22 @@ export async function createWorld(canvas) {
     {id:'cedric',number:'05',label:'Qui suis-je ?',position:new THREE.Vector3(-1.35,2.24,4.9),labelPosition:mailbox.position.clone().add(new THREE.Vector3(0,.9,0)),labelOffsetX:-70,labelOffsetY:12},
     {id:'contact',number:'07',label:'Contact',position:mailbox.position.clone().add(new THREE.Vector3(0,2.03,0)),labelPosition:cedric.position.clone(),labelOffsetX:100,labelOffsetY:30},
   ];
-  const positions = [[19,17,24],[6,10,13],[10,5.8,9.8],[13,10,13],[-15,12,19],[5,4.6,13.8],[14,23,27],[5,7,16]];
-  const targets = [[0,.6,0],[-2,3,-.8],[1.6,1.1,-.7],[4,.7,1.6],[0,1,0],[-1.35,1.1,4.9],[0,.5,0],[-.2,1,4.9]];
+  const positions = [[19,17,24],[6,10,13],[10,5.8,9.8],[12,13.2,12.5],[-15,12,19],[5,4.6,13.8],[14,23,27],[5,7,16]];
+  const targets = [[0,.6,0],[-2,3,-.8],[1.6,1.1,-.7],[4.2,.85,.9],[0,1,0],[-1.35,1.1,4.9],[0,.5,0],[-.2,1,4.9]];
   const path = new THREE.CatmullRomCurve3(positions.map(p=>new THREE.Vector3(...p)),false,'catmullrom',.25);
   const aim = new THREE.CatmullRomCurve3(targets.map(p=>new THREE.Vector3(...p)),false,'catmullrom',.25);
-  let width=0,height=0;
-  function resize(){
-    const rect=canvas.getBoundingClientRect();
-    if (!rect.width || !rect.height || (rect.width===width && rect.height===height)) return;
-    width=rect.width;height=rect.height;
-    renderer.setSize(width,height,false);camera.aspect=width/height;camera.updateProjectionMatrix();
+  let width = 0, height = 0, pixelRatio = 0;
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const nextRatio = Math.min(devicePixelRatio, 1.7, Math.sqrt(MAX_CANVAS_PIXELS / (rect.width * rect.height)));
+    if (rect.width === width && rect.height === height && nextRatio === pixelRatio) return;
+    width = rect.width;
+    height = rect.height;
+    pixelRatio = nextRatio;
+    renderer.setDrawingBufferSize(width, height, pixelRatio);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
   }
   resize();
   const viewTarget = new THREE.Vector3();
@@ -325,7 +387,6 @@ export async function createWorld(canvas) {
     renderer.render(scene,camera);
   }
   let directMove;
-  const shadowTraveler = new THREE.Vector3(NaN, NaN, NaN);
   function prepareDirectMove() {
     directMove={position:camera.position.clone(),look:viewTarget.clone(),traveler:traveler.position.clone()};
   }
@@ -342,11 +403,6 @@ export async function createWorld(canvas) {
       camera.position.lerpVectors(directMove.position,camera.position,blend);
       viewTarget.lerpVectors(directMove.look,viewTarget,blend);camera.lookAt(viewTarget);
       traveler.position.lerpVectors(directMove.traveler,traveler.position,blend);
-    }
-    // Camera/pointer movement does not change light-space shadows. Refresh
-    // the map only when the one moving object has actually moved.
-    if (!traveler.position.equals(shadowTraveler)) {
-      sun.shadow.needsUpdate = true; shadowTraveler.copy(traveler.position);
     }
     renderer.render(scene,camera);
   }

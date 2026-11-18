@@ -27,5 +27,5 @@ test('Scene label, direct hash, menu and detail return share the same framing',a
   await page.locator('#services .button').click();await expect(page).toHaveURL(/nettoyage-toiture.html$/);
   await page.locator('.detail-return').click();await fullyFramed(page,'services');
   await page.goto('/#veranda');await fullyFramed(page,'veranda');
-  await page.locator('.nav a[href="index.html#cedric"]').click();await fullyFramed(page,'cedric');
+  await page.locator('.nav a[href="./#cedric"]').click();await fullyFramed(page,'cedric');
 });

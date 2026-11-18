@@ -8,6 +8,7 @@ export function createSceneLabels(world, canvas) {
   svg.classList.add('scene-connectors');svg.setAttribute('aria-hidden','true');layer.append(svg);
   const entries=world.markers.map(marker=>{
     const link=document.createElement('a');link.className='scene-label';link.href=`#${marker.id}`;
+    if (['realisations','cedric','contact'].includes(marker.id)) link.classList.add('scene-label--secondary');
     const number=document.createElement('span');number.className='scene-label-number';number.textContent=marker.number;
     const name=document.createElement('span');name.textContent=marker.label;
     link.append(number,name);link.setAttribute('aria-label',`${marker.number} ${marker.label}`);layer.append(link);
@@ -32,9 +33,10 @@ export function createSceneLabels(world, canvas) {
     const bottom=innerHeight-(mobile?64:115);
     // Protect every visible section, including the next section entering the
     // viewport. The active navigation item alone is insufficient mid-scroll.
-    const protectedRects=mobile?readingAreas.map(el=>el.getBoundingClientRect())
+    const readingRects=mobile?readingAreas.map(el=>el.getBoundingClientRect()):copyRect?[copyRect]:[];
+    const protectedRects=readingRects
       .filter(b=>b.width>0&&b.height>0&&b.bottom>0&&b.top<innerHeight)
-      .map(b=>({left:b.left-12,right:b.right+12,top:b.top-12,bottom:b.bottom+12})):[];
+      .map(b=>({left:b.left-12,right:b.right+12,top:b.top-12,bottom:b.bottom+12}));
     const coversReadingArea=(x,y,w,h)=>protectedRects.some(b=>
       x<b.right&&x+w>b.left&&y<b.bottom&&y+h>b.top);
     // Keep these two labels in one screen-space layout as the camera moves.

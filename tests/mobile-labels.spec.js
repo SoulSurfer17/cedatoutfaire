@@ -47,3 +47,30 @@ test('Changing viewport activates desktop and keeps mobile static',async({page})
  await page.setViewportSize({width:390,height:844});await expect(page.locator('.scene-labels')).toBeHidden();
  await expect(page.locator('.mobile-house')).toBeVisible();
 });
+
+test('A wide touchscreen loads the scene only after an explicit request', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 820, height: 1180 }, hasTouch: true });
+  try {
+    const page = await context.newPage();
+    const sceneRequests = [];
+    page.on('request', request => {
+      if (/\/desktop-journey(?:-[\w-]+)?\.js$/.test(new URL(request.url()).pathname)) sceneRequests.push(request.url());
+    });
+    await page.goto('/');
+    await page.locator('#cookie-decline').click();
+    const enable = page.getByRole('button', { name: 'Explorer en 3D' });
+    await expect(page.locator('.mobile-house img')).toBeVisible();
+    await expect.poll(() => page.locator('.mobile-house img').evaluate(img => img.naturalWidth)).toBeGreaterThan(1);
+    await expect(page.locator('.scene-shell')).toBeHidden();
+    expect(sceneRequests).toHaveLength(0);
+    await enable.click();
+    await expect(page.locator('body')).toHaveClass(/webgl-ready/);
+    await expect(page.locator('#world')).toBeVisible();
+    await expect(page.locator('.mobile-house')).toBeHidden();
+    expect(sceneRequests).toHaveLength(1);
+    await page.reload();
+    await expect(page.locator('body')).toHaveClass(/webgl-ready/);
+  } finally {
+    await context.close();
+  }
+});

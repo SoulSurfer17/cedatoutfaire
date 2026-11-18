@@ -2,7 +2,7 @@ import { createWorld } from './world.js';
 import { createSceneLabels } from './scene-labels.js';
 import { installNavigation, revealPage } from './navigation.js';
 
-const mobileLayout = matchMedia('(max-width: 760px)');
+const immersive = () => document.body.classList.contains('immersive-journey');
 const chapters = [...document.querySelectorAll('[data-scene]')];
 const links = [...document.querySelectorAll('.journey-nav a')];
 const toggle = document.querySelector('.motion-toggle');
@@ -15,7 +15,7 @@ let cameraTransition = null;
 let labelMove = null, lastScroll = 0;
 const pointer={x:0,y:0}, smoothPointer={x:0,y:0};
 let offsets=[];
-function measure(){offsets=chapters.map(el=>el.offsetTop);if(!mobileLayout.matches)world?.resize();dirty=true;update();}
+function measure(){offsets=chapters.map(el=>el.offsetTop);if(immersive())world?.resize();dirty=true;update();}
 function applyMotion(){
   document.body.classList.toggle('reduced-motion',reduced);
   toggle.setAttribute('aria-pressed',String(reduced));
@@ -27,7 +27,7 @@ toggle.addEventListener('click',()=>{reduced=!reduced;try{sessionStorage.setItem
 preference.addEventListener('change',e=>{reduced=e.matches;applyMotion();});
 applyMotion();
 function update(){
-  if(mobileLayout.matches)return;
+  if(!immersive())return;
   const y=scrollY;let segment=0;
   const anchorInset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
   for(let i=0;i<offsets.length;i++){if(y>=offsets[i]-anchorInset-5)segment=i;}
@@ -47,7 +47,7 @@ function update(){
   }
   dirty=true;
 }
-function fallback(){document.body.classList.remove('webgl-ready');document.body.classList.add('no-webgl');toggle.hidden=true;sceneLabels?.dispose();}
+function fallback(){document.body.classList.remove('webgl-ready','immersive-journey');document.body.classList.add('no-webgl');toggle.hidden=true;sceneLabels?.dispose();}
 try {
   const canvas=document.querySelector('#world');
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();world?.renderer.setAnimationLoop(null);fallback();});
@@ -61,7 +61,7 @@ try {
   document.body.classList.add('webgl-ready');
   sceneLabels=createSceneLabels(world,canvas);
   world.renderer.setAnimationLoop(time=>{
-    if(document.hidden||mobileLayout.matches)return;
+    if(document.hidden||!immersive())return;
     if(cameraTransition){
       const t=Math.min(1,(performance.now()-cameraTransition.start)/cameraTransition.duration);
       world.renderTransition(cameraTransition.returning?1-t:t);
@@ -97,7 +97,7 @@ try {
 } catch(error) { console.warn('Vue 3D indisponible, affichage du contenu classique.',error.message); fallback(); }
 window.addEventListener('scroll',()=>{lastScroll=performance.now();update();},{passive:true});
 document.addEventListener('click',event=>{
-  if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||reduced||!world)return;
+  if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||reduced||!world||!immersive())return;
   const link=event.target.closest('a[href]');
   if(!link||link.hasAttribute('download')||(link.target&&link.target!=='_self'))return;
   const url=new URL(link.href), here=new URL(location.href);
@@ -125,7 +125,7 @@ new ResizeObserver(measure).observe(document.querySelector('main'));
 window.addEventListener('load',()=>{measure();if(location.hash){const el=document.getElementById(location.hash.slice(1));el?.scrollIntoView({behavior:'instant'});update();current=target;}});
 measure();
 installNavigation({
-  canAnimate:()=>!reduced&&!mobileLayout.matches,
+  canAnimate:()=>!reduced&&immersive(),
   depart:section=>{
     if(!world||document.body.classList.contains('no-webgl')||!world.prepareTransition(section))return false;
     cameraTransition={start:performance.now(),duration:320,returning:false};return true;

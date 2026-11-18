@@ -4,7 +4,7 @@ revealPage();
 const section = pageSections[location.pathname.split('/').pop()] || 'accueil';
 const back = document.createElement('a');
 back.className = 'detail-return';
-back.href = `index.html#${section}`;
+back.href = `./#${section}`;
 back.textContent = '↶ Reprendre le parcours';
 const returnNav = document.createElement('nav');
 returnNav.setAttribute('aria-label', 'Retour au parcours 3D');

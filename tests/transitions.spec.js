@@ -30,7 +30,7 @@ test('Short targeted departure, entry fade and return to the same section',async
   expect(await page.evaluate(()=>window.entrySeen)).toBeTruthy();
   await expect(page.locator('html')).not.toHaveClass(/page-entering/);
   await page.locator('.detail-return').click();
-  await expect(page).toHaveURL(/index.html#veranda$/);
+  await expect(page).toHaveURL(/\/#veranda$/);
   await expect(page.locator('.journey-nav a[href="#veranda"]')).toHaveAttribute('aria-current','step');
   await expect(page.locator('html')).not.toHaveClass(/page-entering|page-leaving/);
   await page.goBack();await expect(page).toHaveURL(/nettoyage-veranda.html$/);
