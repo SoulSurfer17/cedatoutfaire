@@ -22,7 +22,7 @@ Le contrôle des caméras utilise le serveur de développement. Pour les tests s
 GitHub prépare et teste le site automatiquement. Seule la branche principale `main` peut être publiée. La branche `release/threejs-mobile` exécute les contrôles sans publier.
 Le domaine, le fichier de validation Google et les réglages Analytics existants sont conservés. Les documents, tests et outils ne sont pas publiés.
 Les avis proviennent de `reviews.json`, pas d’une récupération automatique chez Google.
-Le compteur `totalReviews` compte uniquement les avis 5 étoiles (35 au 4 novembre 2026), sans représenter le total des avis Google ni une moyenne globale. Les six témoignages affichés commencent par Amy Lan et Valérie C.
+Le compteur `totalReviews` compte uniquement les avis 5 étoiles (36 au 18 novembre 2026), sans représenter le total des avis Google ni une moyenne globale. Les six témoignages affichés commencent par Amy Lan et Valérie C.
 
 ## Retour au site classique
 
